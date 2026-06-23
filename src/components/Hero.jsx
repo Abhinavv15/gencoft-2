@@ -241,58 +241,39 @@ function Scene({ theme }) {
 /* ── Hero Component ── */
 export default function Hero({ theme }) {
   return (
-    <section className="hero-full" id="home">
-
-      {/* ── 3D canvas visual background ── */}
-      <div className="hero-bg-canvas">
-
-        <Canvas
-          camera={{ position: [0, 0, 4], fov: 55 }}
-          gl={{ antialias: false, alpha: true }}
-          dpr={Math.min(window.devicePixelRatio, 1.5)}
-          style={{ width: '100%', height: '100%' }}
-        >
-          <Scene theme={theme} />
-        </Canvas>
-      </div>
-
-
-      {/* ── Left Transparent Panel separating left and right ── */}
-      <div className="hero-left-pane" />
-
-      {/* ── Text overlay content ── */}
-      <div className="container hero-content-wrap">
-
+    <section className="hero-split-container" id="home">
+      
+      {/* ── Left Column: Text & Content ── */}
+      <div className="hero-left-col">
         <motion.div
-          className="hero-text-content"
+          className="hero-left-content-inner"
           variants={containerV}
           initial="hidden"
           animate="visible"
         >
           {/* Eyebrow tag */}
-          <motion.p className="hero-eyebrow" variants={itemV}>
+          <motion.p className="hero-eyebrow-new" variants={itemV}>
             <span className="hero-eyebrow-dot" />
             Innovative Software Agency
           </motion.p>
 
-          {/* Main heading */}
-          <motion.h1 className="hero-heading" variants={itemV}>
-            Gencoft
-            <span className="hero-heading-accent"> Technologies</span>
+          {/* Main heading GENCOFT */}
+          <motion.h1 className="hero-title-left" variants={itemV}>
+            GENCOFT
           </motion.h1>
 
           {/* Description */}
-          <motion.p className="hero-desc" variants={itemV}>
+          <motion.p className="hero-desc-new" variants={itemV}>
             We shape striking digital identities through bold contrasts and
             meaningful motion. Our development process transforms ideas into
             powerful, scalable products.
           </motion.p>
 
           {/* CTA buttons */}
-          <motion.div className="hero-ctas" variants={itemV}>
+          <motion.div className="hero-ctas-new" variants={itemV}>
             <motion.a
               href="#contact"
-              className="hero-btn-primary"
+              className="hero-btn-primary-new"
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
             >
@@ -304,8 +285,8 @@ export default function Hero({ theme }) {
 
             <motion.a
               href="#services"
-              className="hero-btn-ghost"
-              whileHover={{ scale: 1.04, y: -2, borderColor: 'rgba(234,88,12,0.5)' }}
+              className="hero-btn-ghost-new"
+              whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
             >
               Our Services
@@ -313,15 +294,15 @@ export default function Hero({ theme }) {
           </motion.div>
 
           {/* Bottom meta row */}
-          <motion.div className="hero-meta-row" variants={itemV}>
-            <a href="#projects" className="hero-meta-link">
+          <motion.div className="hero-bottom-meta-new" variants={itemV}>
+            <a href="#projects" className="hero-meta-link-new">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M7 17L17 7M17 7H7M17 7v10"/>
               </svg>
               Explore our work
             </a>
-            <span className="hero-meta-sep" />
-            <a href="mailto:hello@gencoft.com" className="hero-meta-link">
+            <span className="hero-meta-sep-new" />
+            <a href="mailto:hello@gencoft.com" className="hero-meta-link-new">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="4" width="20" height="16" rx="2"/>
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
@@ -330,6 +311,29 @@ export default function Hero({ theme }) {
             </a>
           </motion.div>
         </motion.div>
+      </div>
+
+      {/* ── Right Column: 3D Visual & Technologies Title ── */}
+      <div className="hero-right-col">
+        {/* 3D WebGL Canvas */}
+        <div className="hero-canvas-container">
+          <Canvas
+            camera={{ position: [0, 0, 4], fov: 55 }}
+            gl={{ antialias: false, alpha: true }}
+            dpr={Math.min(window.devicePixelRatio, 1.5)}
+            style={{ width: '100%', height: '100%' }}
+          >
+            <Scene theme={theme} />
+          </Canvas>
+        </div>
+
+        {/* Canvas overlay gradient */}
+        <div className="hero-canvas-overlay-new" />
+
+        {/* Big heading TECHNOLOGIES overlapping bottom */}
+        <h2 className="hero-title-right">
+          TECHNOLOGIES
+        </h2>
       </div>
 
     </section>
