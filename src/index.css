@@ -348,20 +348,6 @@ body::before {
   max-width: 540px;
 }
 
-/* Stencil Mask Cutout Container */
-.hero-title-mask-container {
-  background: #0d0d0d; /* matches the body background behind canvas */
-  mix-blend-mode: multiply;
-  display: block;
-  width: fit-content;
-  margin-bottom: 24px;
-}
-
-.light-mode .hero-title-mask-container {
-  background: var(--bg-primary); /* #f8fafc */
-  mix-blend-mode: screen;
-}
-
 /* Left Title GENCOFT */
 .hero-title-left {
   font-family: var(--font-primary);
@@ -371,13 +357,8 @@ body::before {
   letter-spacing: -0.05em;
   margin: 0;
   text-transform: uppercase;
-  color: #ffffff; /* White text becomes fully transparent cutout in multiply mode */
-  background: transparent;
-  -webkit-text-stroke: 0;
-}
-
-.light-mode .hero-title-left {
-  color: #000000; /* Black text becomes transparent cutout in screen mode */
+  color: #ea580c; /* plain orange colour */
+  margin-bottom: 12px;
 }
 
 /* Eyebrow */

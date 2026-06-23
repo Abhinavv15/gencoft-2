@@ -263,12 +263,10 @@ export default function Hero({ theme }) {
           initial="hidden"
           animate="visible"
         >
-          {/* Main heading GENCOFT (with mask cutout container) */}
-          <motion.div className="hero-title-mask-container" variants={itemV}>
-            <h1 className="hero-title-left">
-              GENCOFT
-            </h1>
-          </motion.div>
+          {/* Main heading GENCOFT */}
+          <motion.h1 className="hero-title-left" variants={itemV}>
+            GENCOFT
+          </motion.h1>
 
           {/* Eyebrow tag */}
           <motion.p className="hero-eyebrow-new" variants={itemV}>
