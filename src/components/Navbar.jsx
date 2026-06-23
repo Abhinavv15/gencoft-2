@@ -1,6 +1,19 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
+const SunIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+  </svg>
+)
+
+const MoonIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+  </svg>
+)
+
 const Logo = () => (
   <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -19,14 +32,14 @@ const Logo = () => (
       fontSize: '1.25rem',
       fontWeight: 800,
       letterSpacing: '-0.02em',
-      color: '#f8fafc',
+      color: 'var(--text-primary)',
     }}>
       Gencoft
     </span>
   </div>
 )
 
-export default function Navbar() {
+export default function Navbar({ theme, toggleTheme }) {
   const [scrolled, setScrolled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
@@ -80,39 +93,53 @@ export default function Navbar() {
           <Logo />
         </motion.a>
 
-        {/* Desktop Links */}
-        <ul className="nav-links">
-          {navItems.map((item, i) => (
+        {/* Right side container containing menu links + theme toggle + hamburger */}
+        <div className="nav-right-container">
+          {/* Desktop Links */}
+          <ul className="nav-links">
+            {navItems.map((item, i) => (
+              <motion.li
+                key={item.label}
+                custom={i}
+                variants={linkVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <a href={item.href}>{item.label}</a>
+              </motion.li>
+            ))}
             <motion.li
-              key={item.label}
-              custom={i}
+              custom={navItems.length}
               variants={linkVariants}
               initial="hidden"
               animate="visible"
             >
-              <a href={item.href}>{item.label}</a>
+              <a href="#contact" className="nav-cta">Get In Touch</a>
             </motion.li>
-          ))}
-          <motion.li
-            custom={navItems.length}
-            variants={linkVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <a href="#contact" className="nav-cta">Get In Touch</a>
-          </motion.li>
-        </ul>
+          </ul>
 
-        {/* Hamburger Menu Toggle (Mobile/Tablet only) */}
-        <button
-          className="nav-hamburger"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-        >
-          <span className={`hamburger-line line-1 ${isOpen ? 'open' : ''}`} />
-          <span className={`hamburger-line line-2 ${isOpen ? 'open' : ''}`} />
-          <span className={`hamburger-line line-3 ${isOpen ? 'open' : ''}`} />
-        </button>
+          {/* Theme Toggle Button */}
+          <motion.button
+            className="theme-toggle-btn"
+            onClick={toggleTheme}
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.92 }}
+            aria-label="Toggle theme"
+          >
+            {theme === 'light' ? <MoonIcon /> : <SunIcon />}
+          </motion.button>
+
+          {/* Hamburger Menu Toggle (Mobile/Tablet only) */}
+          <button
+            className="nav-hamburger"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className={`hamburger-line line-1 ${isOpen ? 'open' : ''}`} />
+            <span className={`hamburger-line line-2 ${isOpen ? 'open' : ''}`} />
+            <span className={`hamburger-line line-3 ${isOpen ? 'open' : ''}`} />
+          </button>
+        </div>
       </motion.nav>
 
       {/* Mobile Drawer Overlay */}

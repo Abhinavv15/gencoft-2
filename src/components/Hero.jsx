@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Stars } from '@react-three/drei'
@@ -15,7 +15,7 @@ const itemV = {
 }
 
 /* ── Animated fog plane (scroll noise shader) ── */
-function FogMesh() {
+function FogMesh({ theme }) {
   const meshRef = useRef(null)
   const materialRef = useRef(null)
 
@@ -29,6 +29,13 @@ function FogMesh() {
     }
   })
 
+  // Synchronize theme changes with uniforms
+  useEffect(() => {
+    if (materialRef.current) {
+      materialRef.current.uniforms.uIsLight.value = theme === 'light' ? 1.0 : 0.0
+    }
+  }, [theme])
+
   const vertexShader = `
     varying vec2 vUv;
     void main() {
@@ -41,6 +48,7 @@ function FogMesh() {
     precision highp float;
     varying vec2 vUv;
     uniform float uTime;
+    uniform float uIsLight;
 
     vec3 mod289(vec3 x) { return x - floor(x * (1.0/289.0)) * 289.0; }
     vec2 mod289(vec2 x) { return x - floor(x * (1.0/289.0)) * 289.0; }
@@ -94,11 +102,22 @@ function FogMesh() {
       vec2 r = vec2(q1, q2);
       float f = fbm(p + 1.6 * r + vec2(1.7, 9.2) + 0.15 * t);
 
-      // High-end black-grey-orange molten fire palette
-      vec3 fog1 = vec3(0.04, 0.04, 0.05);   // near black / dark grey
-      vec3 fog2 = vec3(0.24, 0.08, 0.01);   // deep glowing ember/brown-orange
-      vec3 fog3 = vec3(0.58, 0.16, 0.02);   // rich warm burnt orange
-      vec3 fog4 = vec3(0.92, 0.42, 0.06);   // bright glowing amber orange
+      // Dark Mode palette
+      vec3 darkFog1 = vec3(0.04, 0.04, 0.05);   // near black / dark grey
+      vec3 darkFog2 = vec3(0.24, 0.08, 0.01);   // deep glowing ember/brown-orange
+      vec3 darkFog3 = vec3(0.58, 0.16, 0.02);   // rich warm burnt orange
+      vec3 darkFog4 = vec3(0.92, 0.42, 0.06);   // bright glowing amber orange
+
+      // Light Mode palette (dreamy pastel orange/peach against white)
+      vec3 lightFog1 = vec3(0.97, 0.98, 0.99);  // very light grey
+      vec3 lightFog2 = vec3(0.99, 0.89, 0.82);  // soft pastel peach
+      vec3 lightFog3 = vec3(0.98, 0.76, 0.62);  // warm peach orange
+      vec3 lightFog4 = vec3(0.94, 0.54, 0.34);  // bright orange accent
+
+      vec3 fog1 = mix(darkFog1, lightFog1, uIsLight);
+      vec3 fog2 = mix(darkFog2, lightFog2, uIsLight);
+      vec3 fog3 = mix(darkFog3, lightFog3, uIsLight);
+      vec3 fog4 = mix(darkFog4, lightFog4, uIsLight);
 
       float fi = clamp(f * 1.2 + 0.25, 0.0, 1.0);
       vec3 color = mix(fog1, fog2, fi);
@@ -107,7 +126,7 @@ function FogMesh() {
 
       // Amber highlight glow
       float warmth = smoothstep(0.65, 0.0, length(uv - vec2(0.6, 0.4)));
-      color += vec3(0.14, 0.05, 0.0) * warmth;
+      color += mix(vec3(0.14, 0.05, 0.0), vec3(0.08, 0.03, 0.0), uIsLight) * warmth;
 
       // Vignette
       float vignette = uv.x * uv.y * (1.0-uv.x) * (1.0-uv.y);
@@ -127,7 +146,10 @@ function FogMesh() {
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
         transparent
-        uniforms={{ uTime: { value: 0 } }}
+        uniforms={{
+          uTime: { value: 0 },
+          uIsLight: { value: theme === 'light' ? 1.0 : 0.0 }
+        }}
         side={THREE.DoubleSide}
         depthWrite={false}
       />
@@ -136,7 +158,7 @@ function FogMesh() {
 }
 
 /* ── Slow drifting particles ── */
-function DriftParticles() {
+function DriftParticles({ theme }) {
   const pointsRef = useRef(null)
   const count = 120
 
@@ -154,6 +176,8 @@ function DriftParticles() {
     }
   })
 
+  const isLight = theme === 'light'
+
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
@@ -166,9 +190,9 @@ function DriftParticles() {
       </bufferGeometry>
       <pointsMaterial
         size={0.018}
-        color="#fb923c"
+        color={isLight ? "#ea580c" : "#fb923c"}
         transparent
-        opacity={0.65}
+        opacity={isLight ? 0.45 : 0.65}
         sizeAttenuation
       />
     </points>
@@ -176,7 +200,7 @@ function DriftParticles() {
 }
 
 /* ── Three.js scene ── */
-function Scene() {
+function Scene({ theme }) {
   const groupRef = useRef(null)
 
   useFrame(({ clock }) => {
@@ -185,16 +209,19 @@ function Scene() {
     }
   })
 
+  const isLight = theme === 'light'
+
   return (
     <>
-      <ambientLight intensity={0.12} />
-      <pointLight position={[2, 2, 3]} intensity={0.6} color="#fb923c" />
-      <pointLight position={[-3, -2, 1]} intensity={0.4} color="#ea580c" distance={7} />
+      <ambientLight intensity={isLight ? 0.45 : 0.12} />
+      <pointLight position={[2, 2, 3]} intensity={isLight ? 0.75 : 0.6} color={isLight ? "#ea580c" : "#fb923c"} />
+      <pointLight position={[-3, -2, 1]} intensity={isLight ? 0.35 : 0.4} color="#ea580c" distance={7} />
 
       <group ref={groupRef}>
-        <FogMesh />
-        <DriftParticles />
+        <FogMesh theme={theme} />
+        <DriftParticles theme={theme} />
       </group>
+
 
 
       {/* Distant star field */}
@@ -212,7 +239,7 @@ function Scene() {
 }
 
 /* ── Hero Component ── */
-export default function Hero() {
+export default function Hero({ theme }) {
   return (
     <section className="hero-full" id="home">
 
@@ -225,9 +252,10 @@ export default function Hero() {
           dpr={Math.min(window.devicePixelRatio, 1.5)}
           style={{ width: '100%', height: '100%' }}
         >
-          <Scene />
+          <Scene theme={theme} />
         </Canvas>
       </div>
+
 
       {/* ── Left Transparent Panel separating left and right ── */}
       <div className="hero-left-pane" />

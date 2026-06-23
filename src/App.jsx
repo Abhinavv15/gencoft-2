@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -31,7 +31,7 @@ function ScrollProgress() {
 }
 
 // Floating particles canvas
-function ParticlesBackground() {
+function ParticlesBackground({ theme }) {
   const canvasRef = useRef(null)
 
   useEffect(() => {
@@ -47,6 +47,8 @@ function ParticlesBackground() {
     resize()
     window.addEventListener('resize', resize)
 
+    const isLight = theme === 'light'
+
     class Particle {
       constructor() {
         this.reset()
@@ -57,10 +59,10 @@ function ParticlesBackground() {
         this.size = Math.random() * 1.5 + 0.5
         this.speedX = (Math.random() - 0.5) * 0.4
         this.speedY = (Math.random() - 0.5) * 0.4
-        this.opacity = Math.random() * 0.4 + 0.1
+        this.opacity = isLight ? Math.random() * 0.3 + 0.12 : Math.random() * 0.4 + 0.1
         this.color = Math.random() > 0.5
           ? `rgba(234,88,12,${this.opacity})`
-          : `rgba(251,146,60,${this.opacity})`
+          : isLight ? `rgba(234,88,12,${this.opacity * 0.6})` : `rgba(251,146,60,${this.opacity})`
         this.life = Math.random() * 200 + 100
         this.age = 0
       }
@@ -96,7 +98,10 @@ function ParticlesBackground() {
           const dist = Math.sqrt(dx * dx + dy * dy)
           if (dist < 100) {
             ctx.beginPath()
-            ctx.strokeStyle = `rgba(234,88,12,${0.06 * (1 - dist / 100)})`
+            const strokeColor = isLight
+              ? `rgba(234,88,12,${0.10 * (1 - dist / 100)})`
+              : `rgba(234,88,12,${0.06 * (1 - dist / 100)})`
+            ctx.strokeStyle = strokeColor
             ctx.lineWidth = 0.5
             ctx.moveTo(particles[i].x, particles[i].y)
             ctx.lineTo(particles[j].x, particles[j].y)
@@ -113,7 +118,7 @@ function ParticlesBackground() {
       window.removeEventListener('resize', resize)
       cancelAnimationFrame(animationId)
     }
-  }, [])
+  }, [theme])
 
   return (
     <canvas
@@ -123,20 +128,38 @@ function ParticlesBackground() {
         inset: 0,
         pointerEvents: 'none',
         zIndex: 0,
-        opacity: 0.6,
+        opacity: theme === 'light' ? 0.8 : 0.6,
       }}
     />
   )
 }
 
 export default function App() {
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('gencoft-theme') || 'dark'
+  })
+
+  useEffect(() => {
+    localStorage.setItem('gencoft-theme', theme)
+    const root = document.documentElement
+    if (theme === 'light') {
+      root.classList.add('light-mode')
+    } else {
+      root.classList.remove('light-mode')
+    }
+  }, [theme])
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark')
+  }
+
   return (
     <div style={{ position: 'relative', zIndex: 1 }}>
       <ScrollProgress />
-      <ParticlesBackground />
-      <Navbar />
+      <ParticlesBackground theme={theme} />
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
       <main>
-        <Hero />
+        <Hero theme={theme} />
         <Services />
         <Projects />
         <Contact />
@@ -145,3 +168,4 @@ export default function App() {
     </div>
   )
 }
+

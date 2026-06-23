@@ -56,7 +56,7 @@ const Logo = () => (
       fontSize: '1.25rem',
       fontWeight: 800,
       letterSpacing: '-0.02em',
-      color: '#f8fafc',
+      color: 'var(--text-primary)',
     }}>
       Gencoft
     </span>
