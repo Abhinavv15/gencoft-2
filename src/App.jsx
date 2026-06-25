@@ -20,11 +20,11 @@ function ScrollProgress() {
         left: 0,
         right: 0,
         height: '3px',
-        background: 'linear-gradient(90deg, #ea580c, #fb923c)',
+        background: 'linear-gradient(90deg, #c2bb4a, #d4cc60)',
         transformOrigin: '0%',
         scaleX,
         zIndex: 9999,
-        boxShadow: '0 0 12px rgba(234,88,12,0.6)',
+        boxShadow: '0 0 12px rgba(194,187,74,0.6)',
       }}
     />
   )
@@ -61,8 +61,8 @@ function ParticlesBackground({ theme }) {
         this.speedY = (Math.random() - 0.5) * 0.4
         this.opacity = isLight ? Math.random() * 0.3 + 0.12 : Math.random() * 0.4 + 0.1
         this.color = Math.random() > 0.5
-          ? `rgba(234,88,12,${this.opacity})`
-          : isLight ? `rgba(234,88,12,${this.opacity * 0.6})` : `rgba(251,146,60,${this.opacity})`
+          ? `rgba(194,187,74,${this.opacity})`
+          : isLight ? `rgba(194,187,74,${this.opacity * 0.6})` : `rgba(212,204,96,${this.opacity})`
         this.life = Math.random() * 200 + 100
         this.age = 0
       }
@@ -99,8 +99,8 @@ function ParticlesBackground({ theme }) {
           if (dist < 100) {
             ctx.beginPath()
             const strokeColor = isLight
-              ? `rgba(234,88,12,${0.10 * (1 - dist / 100)})`
-              : `rgba(234,88,12,${0.06 * (1 - dist / 100)})`
+              ? `rgba(194,187,74,${0.10 * (1 - dist / 100)})`
+              : `rgba(194,187,74,${0.06 * (1 - dist / 100)})`
             ctx.strokeStyle = strokeColor
             ctx.lineWidth = 0.5
             ctx.moveTo(particles[i].x, particles[i].y)

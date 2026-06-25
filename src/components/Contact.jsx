@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { onScrollClick } from '../utils/scroll'
 
 /* ── Icons ── */
 const XIcon = () => (
@@ -39,22 +40,22 @@ const SpinIcon = () => (
 )
 
 const socials = [
-  { icon: XIcon,        name: 'X',        href: '#' },
-  { icon: LinkedInIcon, name: 'LinkedIn', href: '#' },
-  { icon: GitHubIcon,   name: 'GitHub',   href: '#' },
+  { icon: XIcon,        name: 'X',        href: 'https://x.com/gencoft' },
+  { icon: LinkedInIcon, name: 'LinkedIn', href: 'https://linkedin.com/company/gencoft' },
+  { icon: GitHubIcon,   name: 'GitHub',   href: 'https://github.com/gencoft' },
 ]
 
 const navLinks = [
-  { label: 'Services', href: '#services' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact',  href: '#contact'  },
+  { label: 'Services', id: 'services' },
+  { label: 'Projects', id: 'projects' },
+  { label: 'Contact',  id: 'contact'  },
 ]
 
 const companyLinks = [
-  { label: 'About Us',   href: '#' },
-  { label: 'Careers',    href: '#' },
-  { label: 'Blog',       href: '#' },
-  { label: 'Privacy',    href: '#' },
+  { label: 'About Us',   id: 'home'     },
+  { label: 'Careers',    id: 'contact'  },
+  { label: 'Blog',       id: null       },
+  { label: 'Privacy',    id: null       },
 ]
 
 export default function Contact() {
@@ -98,12 +99,12 @@ export default function Contact() {
             <div className="cf-logo-icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                 <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#cf-logo-g)"/>
-                <path d="M2 17L12 22L22 17" stroke="#fb923c" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M2 12L12 17L22 12" stroke="#ea580c" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.8"/>
+                <path d="M2 17L12 22L22 17" stroke="#d4cc60" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M2 12L12 17L22 12" stroke="#c2bb4a" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.8"/>
                 <defs>
                   <linearGradient id="cf-logo-g" x1="2" y1="2" x2="22" y2="12" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#ea580c"/>
-                    <stop offset="1" stopColor="#fb923c"/>
+                    <stop stopColor="#c2bb4a"/>
+                    <stop offset="1" stopColor="#d4cc60"/>
                   </linearGradient>
                 </defs>
               </svg>
@@ -128,8 +129,10 @@ export default function Contact() {
                   key={name}
                   href={href}
                   aria-label={name}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="cf-social-btn"
-                  whileHover={{ scale: 1.15, background: 'rgba(234,88,12,0.25)' }}
+                  whileHover={{ scale: 1.15, background: 'rgba(194,187,74,0.22)' }}
                   whileTap={{ scale: 0.9 }}
                 >
                   <Icon />
@@ -151,9 +154,15 @@ export default function Contact() {
             <div className="cf-nav-col">
               <h4 className="cf-col-heading">Navigation</h4>
               <ul className="cf-col-links">
-                {navLinks.map(({ label, href }) => (
+                {navLinks.map(({ label, id }) => (
                   <li key={label}>
-                    <a href={href} className="cf-nav-link">{label}</a>
+                    <a
+                      href={`#${id}`}
+                      className="cf-nav-link"
+                      onClick={onScrollClick(id)}
+                    >
+                      {label}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -162,9 +171,15 @@ export default function Contact() {
             <div className="cf-nav-col">
               <h4 className="cf-col-heading">Company</h4>
               <ul className="cf-col-links">
-                {companyLinks.map(({ label, href }) => (
+                {companyLinks.map(({ label, id }) => (
                   <li key={label}>
-                    <a href={href} className="cf-nav-link">{label}</a>
+                    <a
+                      href={id ? `#${id}` : '#'}
+                      className="cf-nav-link"
+                      onClick={id ? onScrollClick(id) : (e) => e.preventDefault()}
+                    >
+                      {label}
+                    </a>
                   </li>
                 ))}
               </ul>

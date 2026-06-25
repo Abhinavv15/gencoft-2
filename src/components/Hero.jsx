@@ -1,120 +1,114 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { onScrollClick } from '../utils/scroll'
+import findMeCourtLogo from '../assets/activepass logo findmecourt.png'
+import bracketoroLogo from '../assets/bracketoro logo.svg'
+import quizWizardLogo from '../assets/quizwizard logo.png'
+import strawketLogo from '../assets/strawket logo.png'
+import brandFlyersLogo from '../assets/brandflyers logo.png'
 
-/* ── animation variants ── */
 const containerV = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
+  visible: { transition: { staggerChildren: 0.14, delayChildren: 0.2 } },
 }
 const itemV = {
-  hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 36 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.95, ease: [0.22, 1, 0.36, 1] } },
 }
 
-export default function Hero({ theme }) {
+export default function Hero() {
   return (
-    <section className="hero-split-container" id="home">
-      
-      {/* ── Fullscreen looping video background ── */}
+    <section className="hero-cinematic" id="home">
+
+      {/* Fullscreen video background */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        style={{
-          position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          zIndex: 0,
-          userSelect: 'none',
-          pointerEvents: 'none',
-        }}
+        className="hero-cinema-video"
         src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4"
       />
 
-      {/* ── Left Column: Text & Content ── */}
-      <div className="hero-left-col">
-        <motion.div
-          className="hero-left-content-inner"
-          variants={containerV}
-          initial="hidden"
-          animate="visible"
-        >
-          {/* Main heading GENCOFT */}
-          <motion.h1 className="hero-title-left" variants={itemV}>
-            GENCOFT
-          </motion.h1>
+      {/* Dark cinematic overlay */}
+      <div className="hero-cinema-overlay" />
 
-          {/* Eyebrow tag */}
-          <motion.p className="hero-eyebrow-new" variants={itemV}>
-            <span className="hero-eyebrow-dot" />
-            Innovative Software Agency
-          </motion.p>
+      {/* Centered content */}
+      <motion.div
+        className="hero-cinema-content"
+        variants={containerV}
+        initial="hidden"
+        animate="visible"
+      >
 
-          {/* Description */}
-          <motion.p className="hero-desc-new" variants={itemV}>
-            We shape striking digital identities through bold contrasts and
-            meaningful motion. Our development process transforms ideas into
-            powerful, scalable products.
-          </motion.p>
-
-          {/* CTA buttons */}
-          <motion.div className="hero-ctas-new" variants={itemV}>
-            <motion.a
-              href="#contact"
-              className="hero-btn-primary-new"
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              Contact Us
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </motion.a>
-
-            <motion.a
-              href="#services"
-              className="hero-btn-ghost-new"
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              Our Services
-            </motion.a>
-          </motion.div>
-
-          {/* Bottom meta row */}
-          <motion.div className="hero-bottom-meta-new" variants={itemV}>
-            <a href="#projects" className="hero-meta-link-new">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M7 17L17 7M17 7H7M17 7v10"/>
-              </svg>
-              Explore our work
-            </a>
-            <span className="hero-meta-sep-new" />
-            <a href="mailto:hello@gencoft.com" className="hero-meta-link-new">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="4" width="20" height="16" rx="2"/>
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-              </svg>
-              Contact
-            </a>
-          </motion.div>
+        {/* Top badge pill */}
+        <motion.div className="hero-cinema-badge" variants={itemV}>
+          <span className="hero-cinema-badge-pill">NEW</span>
+          <span>Introducing AI-Powered Web Design</span>
         </motion.div>
-      </div>
 
-      {/* ── Right Column: 3D Visual & Technologies Title ── */}
-      <div className="hero-right-col">
-        {/* Canvas overlay gradient */}
-        <div className="hero-canvas-overlay-new" />
+        {/* Main heading */}
+        <motion.h1 className="hero-cinema-heading" variants={itemV}>
+          GENCOFT<br/>
+          <span className="hero-cinema-heading-sub">TECHNOLOGIES</span>
+        </motion.h1>
 
-        {/* Big heading TECHNOLOGIES overlapping bottom */}
-        <h2 className="hero-title-right">
-          TECHNOLOGIES
-        </h2>
-      </div>
+        {/* Description */}
+        <motion.p className="hero-cinema-desc" variants={itemV}>
+          Stunning design. Blazing performance. Built by AI, refined by experts.
+          We shape striking digital identities through bold contrasts and meaningful motion.
+          This is web design, wildly reimagined.
+        </motion.p>
 
+        {/* CTA buttons */}
+        <motion.div className="hero-cinema-ctas" variants={itemV}>
+          <motion.a
+            href="#contact"
+            className="hero-cinema-btn-primary"
+            onClick={onScrollClick('contact')}
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            Contact Us
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </motion.a>
+
+          <motion.a
+            href="#services"
+            className="hero-cinema-btn-ghost"
+            onClick={onScrollClick('services')}
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+            Our Services
+          </motion.a>
+        </motion.div>
+
+        {/* Trust strip */}
+        <motion.div className="hero-cinema-trust" variants={itemV}>
+          <span className="hero-cinema-trust-label">Trusted by the teams behind</span>
+          <div className="hero-cinema-logos">
+            {[
+              { src: findMeCourtLogo,  name: 'FindMeCourt' },
+              { src: bracketoroLogo,   name: 'Bracketoro'  },
+              { src: quizWizardLogo,   name: 'QuizWizard'  },
+              { src: strawketLogo,     name: 'Strawket'    },
+              { src: brandFlyersLogo,  name: 'BrandFlyers' },
+            ].map(({ src, name }) => (
+              <div key={name} className="hero-trust-pill">
+                <img src={src} alt={name} className="hero-trust-logo" />
+                <span className="hero-trust-name">{name}</span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+      </motion.div>
     </section>
   )
 }

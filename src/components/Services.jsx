@@ -1,5 +1,6 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { onScrollClick } from '../utils/scroll'
 
 import mobileSrc  from '../assets/service_mobile.png'
 import webSrc     from '../assets/service_web.png'
@@ -77,10 +78,28 @@ const imgVariants = {
 export default function Services() {
   const [index, setIndex]     = useState(0)
   const [direction, setDir]   = useState(1)
+  const timerRef              = useRef(null)
 
   const go = useCallback((delta) => {
     setDir(delta)
     setIndex(prev => (prev + delta + services.length) % services.length)
+    // reset auto-advance timer on manual interaction
+    if (timerRef.current) {
+      clearInterval(timerRef.current)
+      timerRef.current = setInterval(() => {
+        setDir(1)
+        setIndex(prev => (prev + 1) % services.length)
+      }, 4000)
+    }
+  }, [])
+
+  // Auto-advance every 4 seconds
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+      setDir(1)
+      setIndex(prev => (prev + 1) % services.length)
+    }, 4000)
+    return () => clearInterval(timerRef.current)
   }, [])
 
   const current = services[index]
@@ -132,7 +151,7 @@ export default function Services() {
                 <span className="svc-service-badge">SERVICE {current.num}</span>
                 <h2 className="svc-service-title">{current.name}</h2>
                 <p className="svc-service-desc">{current.desc}</p>
-                <a href="#contact" className="svc-view-btn">
+                <a href="#contact" className="svc-view-btn" onClick={onScrollClick('contact')}>
                   GET IN TOUCH <DiagonalArrow />
                 </a>
               </div>

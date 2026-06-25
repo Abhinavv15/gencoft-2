@@ -18,7 +18,7 @@ const projects = [
     desc: 'A user-friendly platform that allows you to quickly locate and book nearby tennis, pickleball, badminton courts, soccer turfs, and sports events in just three clicks.',
     tags: ['React', 'JavaScript', 'jQuery', 'Amazon S3', 'AWS'],
     link: '#',
-    accent: '#ea580c',
+    accent: '#c2bb4a',
     logo: findMeCourtsLogo,
   },
   {
@@ -29,7 +29,7 @@ const projects = [
     desc: 'An online platform that enables users to create, share, and participate in interactive quizzes across various subjects with real-time leaderboards.',
     tags: ['React', 'Emotion', 'core-js', 'jQuery', 'Amazon S3', 'AWS'],
     link: '#',
-    accent: '#ea580c',
+    accent: '#c2bb4a',
     logo: quizWizardLogo,
   },
   {
@@ -40,7 +40,7 @@ const projects = [
     desc: 'An extra-curricular learning platform connecting coaches and kids worldwide, enabling skill development beyond the classroom through live and async sessions.',
     tags: ['JavaScript', 'React', 'Bootstrap', 'AWS'],
     link: '#',
-    accent: '#ea580c',
+    accent: '#c2bb4a',
     logo: strawketLogo,
   },
   {
@@ -51,7 +51,7 @@ const projects = [
     desc: 'A platform providing tools and resources for managing software updates and maintenance modes, with Flutter package support and customizable UI components.',
     tags: ['React.js', 'Next.js', 'Tailwind', 'MongoDB'],
     link: '#',
-    accent: '#ea580c',
+    accent: '#c2bb4a',
     logo: manageUpgradesLogo,
   },
   {
@@ -62,7 +62,7 @@ const projects = [
     desc: 'A comprehensive tournament bracket generator and management system, helping organizers host leagues, track brackets, and manage real-time game results.',
     tags: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Tailwind'],
     link: '#',
-    accent: '#ea580c',
+    accent: '#c2bb4a',
     logo: bracketoroLogo,
   },
   {
@@ -73,7 +73,7 @@ const projects = [
     desc: 'An automated flyer and marketing asset generator tailored for brands, connecting businesses with design templates to boost their social media presence.',
     tags: ['React', 'Next.js', 'Tailwind CSS', 'AWS Lambda', 'DynamoDB'],
     link: '#',
-    accent: '#ea580c',
+    accent: '#c2bb4a',
     logo: brandflyersLogo,
   },
 ]
@@ -209,6 +209,7 @@ export default function Projects() {
   const isInView = useInView(headerRef, { once: true, margin: '-80px' })
   const [[idx, dir], setIdx] = useState([0, 0])
   const [isMobile, setIsMobile] = useState(false)
+  const timerRef = useRef(null)
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 900)
@@ -217,10 +218,25 @@ export default function Projects() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
+  // Auto-advance every 5 seconds, loops back to start
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+      setIdx(([currIdx]) => [(currIdx + 1) % projects.length, 1])
+    }, 5000)
+    return () => clearInterval(timerRef.current)
+  }, [])
+
   const go = (newDir) => {
     const next = idx + newDir
     if (next < 0 || next >= projects.length) return
     setIdx([next, newDir])
+    // reset auto-advance on manual click
+    if (timerRef.current) {
+      clearInterval(timerRef.current)
+      timerRef.current = setInterval(() => {
+        setIdx(([currIdx]) => [(currIdx + 1) % projects.length, 1])
+      }, 5000)
+    }
   }
 
   const project = projects[idx]
@@ -299,15 +315,17 @@ export default function Projects() {
 
                   <motion.div className="pj-tags" variants={rowV}>
                     {project.tags.map((t) => (
-                      <span key={t} className="pj-tag">{t}</span>
+                      <span key={t} className="pj-tag-item">{t}</span>
                     ))}
                   </motion.div>
 
                   <motion.a
-                    href={project.link}
+                    href={project.link !== '#' ? project.link : undefined}
                     className="pj-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    {...(project.link !== '#'
+                      ? { target: '_blank', rel: 'noopener noreferrer' }
+                      : { onClick: (e) => e.preventDefault() }
+                    )}
                     variants={rowV}
                     whileHover={{ scale: 1.04, y: -2 }}
                     whileTap={{ scale: 0.96 }}
