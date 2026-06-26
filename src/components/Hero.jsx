@@ -1,114 +1,88 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { onScrollClick } from '../utils/scroll'
-import findMeCourtLogo from '../assets/activepass logo findmecourt.png'
-import bracketoroLogo from '../assets/bracketoro logo.svg'
-import quizWizardLogo from '../assets/quizwizard logo.png'
-import strawketLogo from '../assets/strawket logo.png'
-import brandFlyersLogo from '../assets/brandflyers logo.png'
-
-const containerV = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.14, delayChildren: 0.2 } },
-}
-const itemV = {
-  hidden: { opacity: 0, y: 36 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.95, ease: [0.22, 1, 0.36, 1] } },
-}
+import './Hero.css'
+import DarkVeil from './DarkVeil'
 
 export default function Hero() {
   return (
-    <section className="hero-cinematic" id="home">
+    <section className="hero-ellion" id="home">
+      {/* Background and Light Effects */}
+      <div className="hero-ellion-bg">
+        <DarkVeil noiseIntensity={0.08} speed={0.3} warpAmount={0.3} scanlineIntensity={0.3} scanlineFrequency={200} />
+        {/* Subtle radial gradients acting as light effects */}
+        <div className="hero-ellion-light light-left"></div>
+        <div className="hero-ellion-light light-right"></div>
+      </div>
 
-      {/* Fullscreen video background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="hero-cinema-video"
-        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4"
-      />
+      {/* Grid Lines */}
+      <div className="hero-ellion-grid">
+        <div className="grid-line"></div>
+        <div className="grid-line"></div>
+        <div className="grid-line"></div>
+        <div className="grid-line"></div>
+      </div>
 
-      {/* Dark cinematic overlay */}
-      <div className="hero-cinema-overlay" />
+      {/* Main Image Overlay */}
+      <div className="hero-ellion-image-wrapper">
+        <img src="/hero copy.png" alt="Professional Software Engineer" className="hero-ellion-image" />
+        <div className="hero-ellion-image-fade"></div>
+      </div>
 
-      {/* Centered content */}
-      <motion.div
-        className="hero-cinema-content"
-        variants={containerV}
-        initial="hidden"
-        animate="visible"
-      >
+      {/* Main Content Container */}
+      <div className="hero-ellion-content">
+        
+        {/* Floating Labels */}
+        <div className="ellion-floating-label label-left">[ DIGITAL FUTURE ]</div>
+        <div className="ellion-floating-label label-center">ENTERPRISE SOFTWARE</div>
+        <div className="ellion-floating-label label-right">[ SCALE BEYOND ]</div>
 
-        {/* Top badge pill */}
-        <motion.div className="hero-cinema-badge" variants={itemV}>
-          <span className="hero-cinema-badge-pill">NEW</span>
-          <span>Introducing AI-Powered Web Design</span>
-        </motion.div>
+        {/* Huge Left-Aligned Typography */}
+        <div className="ellion-typography-container">
+          <h1 className="ellion-huge-title">
+            <span className="text-white">ENGINEER</span><br/>
+            <span className="text-yellow">ROBUST TECH</span><br/>
+            <span className="text-white">SOLUTIONS<span className="ellion-registered-mark">&reg;</span></span>
+          </h1>
+        </div>
 
-        {/* Main heading */}
-        <motion.h1 className="hero-cinema-heading" variants={itemV}>
-          GENCOFT<br/>
-          <span className="hero-cinema-heading-sub">TECHNOLOGIES</span>
-        </motion.h1>
+        {/* Lower Content Block */}
+        <div className="ellion-lower-block">
+          <p className="ellion-mission-text">
+            Our mission is to elevate your business through high-performance<br/>
+            software engineering, combining robust architecture with scalable<br/>
+            code to create digital infrastructure that dominates the market.
+          </p>
 
-        {/* Description */}
-        <motion.p className="hero-cinema-desc" variants={itemV}>
-          Stunning design. Blazing performance. Built by AI, refined by experts.
-          We shape striking digital identities through bold contrasts and meaningful motion.
-          This is web design, wildly reimagined.
-        </motion.p>
-
-        {/* CTA buttons */}
-        <motion.div className="hero-cinema-ctas" variants={itemV}>
-          <motion.a
-            href="#contact"
-            className="hero-cinema-btn-primary"
-            onClick={onScrollClick('contact')}
-            whileHover={{ scale: 1.04, y: -2 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            Contact Us
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </motion.a>
-
-          <motion.a
-            href="#services"
-            className="hero-cinema-btn-ghost"
-            onClick={onScrollClick('services')}
-            whileHover={{ scale: 1.04, y: -2 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-              <polygon points="5 3 19 12 5 21 5 3"/>
-            </svg>
-            Our Services
-          </motion.a>
-        </motion.div>
-
-        {/* Trust strip */}
-        <motion.div className="hero-cinema-trust" variants={itemV}>
-          <span className="hero-cinema-trust-label">Trusted by the teams behind</span>
-          <div className="hero-cinema-logos">
-            {[
-              { src: findMeCourtLogo,  name: 'FindMeCourt' },
-              { src: bracketoroLogo,   name: 'Bracketoro'  },
-              { src: quizWizardLogo,   name: 'QuizWizard'  },
-              { src: strawketLogo,     name: 'Strawket'    },
-              { src: brandFlyersLogo,  name: 'BrandFlyers' },
-            ].map(({ src, name }) => (
-              <div key={name} className="hero-trust-pill">
-                <img src={src} alt={name} className="hero-trust-logo" />
-                <span className="hero-trust-name">{name}</span>
-              </div>
-            ))}
+          <div className="ellion-button-group">
+            <a href="#contact" className="ellion-btn-white" onClick={onScrollClick('contact')}>
+              START PROJECT
+            </a>
+            <a href="#contact" className="ellion-btn-arrow" onClick={onScrollClick('contact')}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
           </div>
-        </motion.div>
+        </div>
 
-      </motion.div>
+        {/* Rotating Stamp */}
+        <div className="ellion-stamp">
+          <svg viewBox="0 0 100 100" width="120" height="120">
+            <defs>
+              <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" />
+            </defs>
+            <text fill="#fff" fontSize="8" fontWeight="600" letterSpacing="2">
+              <textPath href="#circlePath">
+                GENCOFT TECH &bull; SCALE FAST &bull; 
+              </textPath>
+            </text>
+            <path d="M50 38 L50 62 M45 55 L50 62 L55 55" stroke="#c2bb4a" strokeWidth="2" fill="none" />
+          </svg>
+        </div>
+
+      </div>
     </section>
   )
 }
