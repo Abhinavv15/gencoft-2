@@ -19,7 +19,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Light mode */
+/* Light mode — only apply frosted bg once scrolled (hero is always dark) */
 .navbar-ellion.light.scrolled {
   background: rgba(255, 255, 255, 0.92);
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -46,7 +46,8 @@
   transition: color 0.2s;
 }
 
-.navbar-ellion.light .navbar-ellion-logo {
+/* Logo stays white over the dark hero; goes dark only once scrolled into light sections */
+.navbar-ellion.light.scrolled .navbar-ellion-logo {
   color: #0f172a;
 }
 
@@ -74,11 +75,12 @@
   color: #c2bb4a;
 }
 
-.navbar-ellion.light .navbar-ellion-links a {
-  color: rgba(15, 23, 42, 0.6);
+/* Links stay white over the dark hero; go dark only once scrolled */
+.navbar-ellion.light.scrolled .navbar-ellion-links a {
+  color: rgba(15, 23, 42, 0.65);
 }
 
-.navbar-ellion.light .navbar-ellion-links a:hover {
+.navbar-ellion.light.scrolled .navbar-ellion-links a:hover {
   color: #8a8330;
 }
 
@@ -103,6 +105,9 @@
   justify-content: center;
   cursor: pointer;
   padding: 0;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
   transition: background 0.2s, border-color 0.2s, color 0.2s;
   flex-shrink: 0;
 }
@@ -113,13 +118,14 @@
   color: #c2bb4a;
 }
 
-.navbar-ellion.light .navbar-theme-btn {
+/* Theme button: always visible over dark hero; shifts to dark-on-light once scrolled */
+.navbar-ellion.light.scrolled .navbar-theme-btn {
   background: rgba(15, 23, 42, 0.06);
   border-color: rgba(15, 23, 42, 0.12);
   color: rgba(15, 23, 42, 0.7);
 }
 
-.navbar-ellion.light .navbar-theme-btn:hover {
+.navbar-ellion.light.scrolled .navbar-theme-btn:hover {
   background: rgba(194, 187, 74, 0.15);
   border-color: rgba(194, 187, 74, 0.4);
   color: #8a8330;
@@ -136,6 +142,7 @@
   border: none;
   cursor: pointer;
   padding: 0;
+  outline: none;
   flex-shrink: 0;
 }
 
@@ -149,7 +156,8 @@
   transform-origin: center;
 }
 
-.navbar-ellion.light .ham-line {
+/* Hamburger lines stay white over hero; go dark once scrolled into light bg */
+.navbar-ellion.light.scrolled .ham-line {
   background: rgba(15, 23, 42, 0.8);
 }
 
