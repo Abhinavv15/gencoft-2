@@ -1,18 +1,22 @@
+/* ===== HERO ROOT ===== */
 .hero-ellion {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   width: 100%;
   background-color: #050505;
   color: #fff;
   overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-style: normal;
 }
 
 .hero-ellion * {
   font-style: normal;
+  box-sizing: border-box;
 }
 
+/* ===== BACKGROUND / FX ===== */
 .hero-ellion-bg {
   position: absolute;
   inset: 0;
@@ -42,6 +46,7 @@
   background: radial-gradient(circle, rgba(194, 187, 74, 0.9) 0%, transparent 70%);
 }
 
+/* ===== GRID LINES ===== */
 .hero-ellion-grid {
   position: absolute;
   inset: 0;
@@ -57,12 +62,13 @@
   background: rgba(255, 255, 255, 0.04);
 }
 
+/* ===== HERO IMAGE ===== */
 .hero-ellion-image-wrapper {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -71,60 +77,62 @@
 }
 
 @keyframes floatImage {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-18px); }
   100% { transform: translateY(0px); }
 }
 
 .hero-ellion-image {
-  height: 85vh;
+  height: 82vh;
+  max-height: 820px;
   object-fit: contain;
-  opacity: 0.8;
+  opacity: 0.82;
   mix-blend-mode: hard-light;
   animation: floatImage 6s ease-in-out infinite;
+  flex-shrink: 0;
 }
 
 .hero-ellion-image-fade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, #050505 0%, transparent 30%, transparent 70%, #050505 100%);
+  background: linear-gradient(
+    to top,
+    #050505 0%,
+    transparent 28%,
+    transparent 68%,
+    #050505 100%
+  );
 }
 
+/* ===== CONTENT WRAPPER ===== */
 .hero-ellion-content {
   position: relative;
   z-index: 3;
   width: 100%;
   max-width: 1400px;
   height: 100vh;
+  height: 100dvh;
   margin: 0 auto;
   padding: 0 40px;
   display: flex;
   flex-direction: column;
 }
 
+/* ===== FLOATING LABELS ===== */
 .ellion-floating-label {
   position: absolute;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
-.label-left {
-  top: 20%;
-  left: 40px;
-}
+.label-left   { top: 22%; left: 40px; }
+.label-center { top: 20%; left: 50%; transform: translateX(-50%); }
+.label-right  { top: 24%; right: 14%; }
 
-.label-center {
-  top: 18%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.label-right {
-  top: 22%;
-  right: 15%;
-}
-
+/* ===== TYPOGRAPHY ===== */
 .ellion-typography-container {
   position: absolute;
   bottom: 80px;
@@ -134,109 +142,202 @@
 }
 
 .ellion-huge-title {
-  font-size: clamp(3.5rem, 8vw, 8.5rem);
+  font-size: clamp(3rem, 7.5vw, 8.5rem);
   font-weight: 900;
-  line-height: 0.95;
+  line-height: 0.93;
   letter-spacing: -0.05em;
   text-transform: uppercase;
   margin: 0;
 }
 
-.text-white {
-  color: #fff;
-}
-
-.text-yellow {
-  color: #c2bb4a;
-}
+.text-white  { color: #fff; }
+.text-yellow { color: #c2bb4a; }
 
 .ellion-registered-mark {
-  font-size: clamp(1rem, 2vw, 2rem);
+  font-size: clamp(0.9rem, 2vw, 2rem);
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.75);
   vertical-align: super;
-  margin-left: 10px;
+  margin-left: 8px;
 }
 
+/* ===== LOWER BLOCK ===== */
 .ellion-lower-block {
   position: absolute;
   bottom: 80px;
   left: 55%;
-  max-width: 450px;
+  max-width: 420px;
   z-index: 10;
 }
 
 .ellion-mission-text {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 30px;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.58);
+  margin-bottom: 28px;
 }
 
 .ellion-button-group {
   display: flex;
   gap: 10px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .ellion-btn-white {
   background: #fff;
   color: #050505;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  padding: 14px 28px;
+  padding: 13px 26px;
   border-radius: 4px;
   text-decoration: none;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   transition: background 0.2s;
+  white-space: nowrap;
 }
 
-.ellion-btn-white:hover {
-  background: #e4e4e7;
-}
+.ellion-btn-white:hover { background: #e4e4e7; }
 
 .ellion-btn-arrow {
   background: #c2bb4a;
   color: #050505;
-  width: 46px;
-  height: 46px;
+  width: 44px;
+  height: 44px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 4px;
+  flex-shrink: 0;
   transition: background 0.2s;
+  text-decoration: none;
 }
 
-.ellion-btn-arrow:hover {
-  background: #d4cc60;
-}
+.ellion-btn-arrow:hover { background: #d4cc60; }
 
+/* ===== ROTATING STAMP ===== */
 .ellion-stamp {
   position: absolute;
-  bottom: 60px;
-  right: 60px;
+  bottom: 56px;
+  right: 56px;
   animation: rotateStamp 20s linear infinite;
   opacity: 0.8;
+  z-index: 10;
 }
 
 @keyframes rotateStamp {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
+/* ===== RESPONSIVE ===== */
+
+/* Large desktop: slightly less padding */
+@media (min-width: 1400px) {
+  .hero-ellion-content { padding: 0 60px; }
+  .ellion-typography-container { left: 60px; }
+  .label-left { left: 60px; }
+}
+
+/* Tablet landscape (993–1200px): tighten positions */
+@media (max-width: 1200px) {
+  .ellion-lower-block { max-width: 360px; }
+  .ellion-huge-title  { font-size: clamp(2.8rem, 6.5vw, 7rem); }
+}
+
+/* Tablet (769–992px): stamp hidden, labels gone, tighten layout */
 @media (max-width: 992px) {
-  .ellion-lower-block {
-    margin-left: 0;
+  .ellion-stamp { display: none; }
+  .label-right  { display: none; }
+  .label-left   { display: none; }
+  .label-center { top: 14%; font-size: 0.68rem; }
+  .hero-ellion-image { height: 70vh; opacity: 0.6; }
+  .ellion-typography-container { max-width: 55%; bottom: 60px; }
+  .ellion-lower-block { left: 56%; bottom: 60px; max-width: 380px; }
+  .ellion-huge-title { font-size: clamp(2.4rem, 5.5vw, 5.5rem); }
+}
+
+/* Mobile (≤768px): stack layout vertically */
+@media (max-width: 768px) {
+  .hero-ellion-content {
+    padding: 100px 24px 40px;
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    justify-content: flex-end;
+    gap: 0;
   }
-  .ellion-registered-mark {
+
+  /* Image pushed right and made semi-transparent on mobile */
+  .hero-ellion-image-wrapper {
+    align-items: flex-start;
+    padding-top: 60px;
+  }
+
+  .hero-ellion-image {
+    height: 55vh;
+    opacity: 0.35;
+    mix-blend-mode: normal;
+  }
+
+  /* Float labels hidden */
+  .ellion-floating-label { display: none; }
+
+  /* Typography — full-width, bottom-anchored */
+  .ellion-typography-container {
     position: static;
-    font-size: 1rem;
-    vertical-align: super;
+    max-width: 100%;
+    margin-bottom: 24px;
   }
-  .ellion-stamp {
-    display: none;
+
+  .ellion-huge-title {
+    font-size: clamp(2.6rem, 12vw, 5rem);
+    line-height: 0.95;
   }
-  .label-right, .label-left {
-    display: none;
+
+  /* Lower block — full-width below title */
+  .ellion-lower-block {
+    position: static;
+    max-width: 100%;
+    margin-bottom: 40px;
   }
+
+  .ellion-mission-text {
+    font-size: 0.88rem;
+    margin-bottom: 22px;
+  }
+
+  .ellion-stamp { display: none; }
+}
+
+/* Mobile small (≤480px) */
+@media (max-width: 480px) {
+  .hero-ellion-content { padding: 88px 20px 36px; }
+  .ellion-huge-title   { font-size: clamp(2.2rem, 13vw, 3.8rem); }
+  .ellion-mission-text { font-size: 0.84rem; }
+  .ellion-btn-white    { font-size: 0.78rem; padding: 12px 20px; }
+  .hero-ellion-image   { height: 48vh; }
+}
+
+/* Very small (≤375px) */
+@media (max-width: 375px) {
+  .hero-ellion-content { padding: 80px 16px 32px; }
+  .ellion-huge-title   { font-size: clamp(1.9rem, 14vw, 3.2rem); }
+  .ellion-mission-text { font-size: 0.82rem; }
+  .ellion-btn-white    { padding: 10px 16px; }
+  .ellion-btn-arrow    { width: 40px; height: 40px; }
+}
+
+/* Landscape mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-ellion-content {
+    padding-top: 70px;
+    padding-bottom: 24px;
+    justify-content: center;
+  }
+  .ellion-huge-title   { font-size: clamp(1.8rem, 7vw, 3.5rem); line-height: 1; }
+  .ellion-mission-text { display: none; }
+  .ellion-lower-block  { margin-bottom: 0; }
+  .hero-ellion-image   { height: 40vh; opacity: 0.25; }
 }
