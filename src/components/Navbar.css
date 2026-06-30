@@ -55,6 +55,7 @@
   text-shadow: 0 0 14px rgba(194,187,74,0.4);
   line-height: 1;
   letter-spacing: 0;
+  text-transform: none;
 }
 
 /* When scrolled into light sections */
