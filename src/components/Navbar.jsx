@@ -62,8 +62,8 @@ export default function Navbar({ theme, toggleTheme }) {
     <>
       <nav className={`navbar-ellion ${scrolled ? 'scrolled' : ''} ${isLight ? 'light' : ''}`}>
         <div className="navbar-ellion-container">
-          {/* Logo */}
-          <a href="#home" className="navbar-ellion-logo" onClick={onScrollClick('home')}>
+          {/* Cursive signature logo */}
+          <a href="#home" className="navbar-ellion-logo navbar-sig-logo" onClick={onScrollClick('home')}>
             gencoft
           </a>
 

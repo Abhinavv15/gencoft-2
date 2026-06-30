@@ -6,9 +6,6 @@ import DarkVeil from './DarkVeil'
 export default function Hero() {
   return (
     <section className="hero-ellion" id="home">
-      {/* Signature Logo */}
-      <div className="hero-signature-logo">gencoft</div>
-
       {/* Background FX */}
       <div className="hero-ellion-bg">
         <DarkVeil noiseIntensity={0.08} speed={0.3} warpAmount={0.3} scanlineIntensity={0.3} scanlineFrequency={200} />
@@ -151,22 +148,23 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Bottom Right — logo */}
-          <div className="bento-card bento-card-br bg-glass flex-center bento-br-card">
+          {/* Bottom Right — CTA card */}
+          <div className="bento-card bento-card-br bento-cta-card">
             <div className="fireflies-container">
               <div className="firefly"></div>
               <div className="firefly"></div>
               <div className="firefly"></div>
-              <div className="firefly"></div>
-              <div className="firefly"></div>
             </div>
-            <div className="bento-logo-icon">
-              <svg viewBox="0 0 100 100" width="56" height="56">
-                <circle cx="50" cy="30" r="15" stroke="#c2bb4a" strokeWidth="3" fill="none" />
-                <circle cx="35" cy="60" r="15" stroke="#c2bb4a" strokeWidth="3" fill="none" />
-                <circle cx="65" cy="60" r="15" stroke="#c2bb4a" strokeWidth="3" fill="none" />
-              </svg>
-              <h3 className="bento-logo-text">GENCOFT</h3>
+            <div className="bento-cta-content">
+              <p className="bento-cta-label">READY TO BUILD?</p>
+              <h3 className="bento-cta-heading">Let's Start<br/>a Project</h3>
+              <a href="#contact" className="bento-cta-btn" onClick={onScrollClick('contact')}>
+                Get in Touch
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                  <polyline points="12 5 19 12 12 19"/>
+                </svg>
+              </a>
             </div>
           </div>
 

@@ -43,21 +43,67 @@
 .light-right { top: 10%; right: -10%; background: radial-gradient(circle, rgba(194,187,74,0.9) 0%, transparent 70%); }
 
 /* ===================================================================
-   SIGNATURE LOGO (centered, above the grid)
+   BOTTOM-RIGHT CTA CARD
    =================================================================== */
-.hero-signature-logo {
-  position: absolute;
-  top: max(44px, env(safe-area-inset-top, 44px));
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
+.bento-cta-card {
+  background: linear-gradient(135deg, #111108 0%, #1a1a08 60%, #0a0a0a 100%);
+  border: 1px solid rgba(194,187,74,0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0;
+  overflow: hidden;
+}
+
+.bento-cta-content {
+  position: relative;
+  z-index: 2;
+  padding: 22px 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bento-cta-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
   color: #c2bb4a;
-  z-index: 100;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  user-select: none;
-  white-space: nowrap;
-  pointer-events: none;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.bento-cta-heading {
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
+  font-weight: 900;
+  color: #fff;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.bento-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  padding: 9px 18px;
+  background: #c2bb4a;
+  color: #0a0a0a;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 50px;
+  width: fit-content;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.bento-cta-btn:hover {
+  background: #d4cc60;
+  transform: translateY(-2px);
 }
 
 /* ===================================================================
@@ -661,7 +707,7 @@
   .bento-card-br { min-height: 120px; }
 
   /* Signature logo smaller on phone */
-  .hero-signature-logo { font-size: clamp(1.8rem, 9vw, 2.6rem); }
+  .bento-cta-heading { font-size: 1.3rem; }
 }
 
 /* ===================================================================
@@ -676,7 +722,7 @@
   .callout-text-main { font-size: 0.85rem; }
   .bento-metric    { font-size: 1.5rem; }
   .bl-heading-massive { font-size: 1.1rem; }
-  .hero-signature-logo { font-size: clamp(1.6rem, 8vw, 2.2rem); }
+  .bento-cta-btn { padding: 8px 14px; font-size: 0.7rem; }
 }
 
 /* ===================================================================
@@ -688,5 +734,5 @@
   .callout-card    { height: 130px; }
   .bento-center-image-wrapper { height: 180px; }
   .bento-center-image { transform: scale(1.4) translateY(-6px); }
-  .hero-signature-logo { font-size: 1.8rem; top: 10px; }
+  .bento-cta-content { padding: 16px 14px; gap: 6px; }
 }

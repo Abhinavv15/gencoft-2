@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
 /* ===== BASE NAVBAR ===== */
 .navbar-ellion {
   position: fixed;
@@ -38,18 +40,27 @@
 
 /* ===== LOGO ===== */
 .navbar-ellion-logo {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #fff;
   text-decoration: none;
-  letter-spacing: -0.02em;
   flex-shrink: 0;
-  transition: color 0.2s;
+  transition: opacity 0.2s;
+}
+.navbar-ellion-logo:hover { opacity: 0.82; }
+
+/* Cursive Great Vibes signature */
+.navbar-sig-logo {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  font-weight: 400;
+  color: #c2bb4a;
+  text-shadow: 0 0 14px rgba(194,187,74,0.4);
+  line-height: 1;
+  letter-spacing: 0;
 }
 
-/* Logo stays white over the dark hero; goes dark only once scrolled into light sections */
-.navbar-ellion.light.scrolled .navbar-ellion-logo {
-  color: #0f172a;
+/* When scrolled into light sections */
+.navbar-ellion.light.scrolled .navbar-sig-logo {
+  color: #8a8330;
+  text-shadow: none;
 }
 
 /* ===== DESKTOP LINKS ===== */
@@ -269,7 +280,7 @@
 @media (max-width: 480px) {
   .navbar-ellion { padding: 14px 16px; }
   .navbar-ellion.scrolled { padding: 10px 16px; }
-  .navbar-ellion-logo { font-size: 1.2rem; }
+  .navbar-sig-logo { font-size: 1.9rem; }
   .navbar-theme-btn { width: 32px; height: 32px; }
   .drawer-links a { font-size: 1.4rem; gap: 20px; }
   .navbar-ellion-drawer { gap: 28px; }
@@ -277,7 +288,7 @@
 
 @media (max-width: 375px) {
   .navbar-ellion { padding: 12px 14px; }
-  .navbar-ellion-logo { font-size: 1.1rem; }
+  .navbar-sig-logo { font-size: 1.7rem; }
   .drawer-links a { font-size: 1.2rem; }
   .drawer-links { gap: 22px; }
 }
