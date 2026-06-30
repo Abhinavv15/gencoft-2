@@ -135,22 +135,25 @@ function ParticlesBackground({ theme }) {
 }
 
 export default function App() {
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('gencoft-theme') || 'dark'
-  })
+  const [theme, setTheme] = useState('dark')
 
   useEffect(() => {
-    localStorage.setItem('gencoft-theme', theme)
-    const root = document.documentElement
-    if (theme === 'light') {
-      root.classList.add('light-mode')
-    } else {
-      root.classList.remove('light-mode')
-    }
-  }, [theme])
+    // Always start dark — new Hero/Navbar are hardcoded dark; clear any stale 'light' from localStorage
+    localStorage.setItem('gencoft-theme', 'dark')
+    document.documentElement.classList.remove('light-mode')
+  }, [])
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark')
+    setTheme(prev => {
+      const next = prev === 'dark' ? 'light' : 'dark'
+      localStorage.setItem('gencoft-theme', next)
+      if (next === 'light') {
+        document.documentElement.classList.add('light-mode')
+      } else {
+        document.documentElement.classList.remove('light-mode')
+      }
+      return next
+    })
   }
 
   return (

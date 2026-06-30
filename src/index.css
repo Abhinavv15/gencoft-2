@@ -1844,12 +1844,12 @@ body::before {
   .cf-nav-col  { min-width: 90px; flex: 1 1 calc(50% - 10px); }
   .cf-form-row { flex-direction: column; }
   .cf-brand-card { flex-direction: column; align-items: flex-start; }
-  .cf-brand-logo { flex-direction: row; align-items: center; gap: 14px; }
-  .cf-brand-tagline { font-size: 1rem; max-width: 100%; }
+  .cf-card-logo { flex-direction: row; align-items: center; gap: 14px; }
+  .cf-tagline { font-size: 1rem; max-width: 100%; }
   .cf-form-headline { font-size: 1.8rem; }
   .cf-form-sub { font-size: 0.8rem; }
   .cf-footer-watermark { font-size: clamp(4rem, 20vw, 10rem); }
-  .cf-bottom-bar { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .cf-copyright { flex-direction: column; align-items: flex-start; gap: 12px; font-size: 0.78rem; }
 }
 
 @media (max-width: 400px) {
