@@ -25,10 +25,9 @@ const MoonIcon = () => (
 
 const navItems = [
   { label: 'HOME',     id: 'home' },
-  { label: 'ABOUT',   id: 'about' },
-  { label: 'WORK',    id: 'work' },
-  { label: 'SERVICES',id: 'services' },
-  { label: 'CONTACT', id: 'contact' },
+  { label: 'SERVICES', id: 'services' },
+  { label: 'WORK',     id: 'projects' },
+  { label: 'CONTACT',  id: 'contact' },
 ]
 
 export default function Navbar({ theme, toggleTheme }) {
