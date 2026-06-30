@@ -88,14 +88,23 @@ export default function DarkVeil({
   const ref = useRef(null);
   useEffect(() => {
     const canvas = ref.current;
+    if (!canvas) return;
     const parent = canvas.parentElement;
 
-    const renderer = new Renderer({
-      dpr: Math.min(window.devicePixelRatio, 2),
-      canvas
-    });
+    let renderer;
+    try {
+      renderer = new Renderer({
+        dpr: Math.min(window.devicePixelRatio, 2),
+        canvas
+      });
+    } catch (error) {
+      console.error("WebGL initialization failed:", error);
+      return;
+    }
 
     const gl = renderer.gl;
+    if (!gl) return;
+
     const geometry = new Triangle(gl);
 
     const program = new Program(gl, {
