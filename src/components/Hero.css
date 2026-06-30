@@ -603,8 +603,8 @@
     gap: 12px;
   }
 
-  .bento-center-image-wrapper { height: 280px; }
-  .bento-center-image { transform: scale(1.8) translateY(-10px); }
+  .bento-center-image-wrapper { height: 280px; overflow: hidden; }
+  .bento-center-image { transform: scale(1.6) translateY(-8px); }
 
   .bento-bm-layout {
     flex-direction: row;
@@ -657,17 +657,27 @@
   .bento-stat-right { text-align: left; }
   .bento-metric     { font-size: 1.7rem; }
 
-  /* TR card: let height expand to fit all text — no min-height clipping */
-  .bento-card-tr    { min-height: 0; height: auto; overflow: visible; }
-  /* Still clip the bg glow/dots but not the text */
-  .tr-bg-glow, .tr-bg-dots { border-radius: 16px; }
-  .tr-custom-card   { overflow: hidden; border-radius: 16px; min-height: 180px; }
-  .tr-title         { font-size: 1.35rem; line-height: 1.05; }
-  .tr-content       { padding: 18px 16px; }
+  /* TR card — let content determine height, no clipping */
+  .bento-card-tr  { min-height: 0; height: auto; }
+  .tr-custom-card { min-height: 0; overflow: hidden; }
+  .tr-title       { font-size: 1.25rem; line-height: 1.1; letter-spacing: 0; }
+  .tr-content     { padding: 16px 14px; }
+  .tr-subtitle    { font-size: 0.6rem; letter-spacing: 1px; margin-bottom: 5px; }
 
-  /* Center image */
-  .bento-center-image-wrapper { height: 200px; }
-  .bento-center-image         { transform: scale(1.4) translateY(-6px); }
+  /* Center image — MUST be clipped to its own cell on mobile so it doesn't
+     bleed into the TR card above (scale > 1 causes upward overflow) */
+  .bento-center-image-wrapper {
+    height: 200px;
+    overflow: hidden;      /* prevent image spilling into adjacent cards */
+    border-radius: 12px;
+  }
+  .bento-center-image {
+    position: relative;    /* switch from absolute so it stays inside */
+    width: 100%;
+    height: 100%;
+    transform: scale(1.05); /* minimal scale — no bleed */
+    object-fit: contain;
+  }
 
   /* Bottom left */
   .bento-card-bl { min-height: 150px; }
@@ -732,7 +742,7 @@
   .bento-container { padding: 72px 20px 20px; }
   .bento-grid      { gap: 8px; }
   .callout-card    { height: 130px; }
-  .bento-center-image-wrapper { height: 180px; }
-  .bento-center-image { transform: scale(1.4) translateY(-6px); }
+  .bento-center-image-wrapper { height: 160px; overflow: hidden; }
+  .bento-center-image { position: relative; transform: scale(1.05); }
   .bento-cta-content { padding: 16px 14px; gap: 6px; }
 }
