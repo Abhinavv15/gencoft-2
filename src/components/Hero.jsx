@@ -16,37 +16,40 @@ export default function Hero() {
       <div className="bento-container">
         <div className="bento-grid">
 
-          {/* Top Left — lines image */}
-          <div className="bento-card bento-card-tl bento-card-lines">
-            <img src="/lines.png" alt="Lines of Code" className="bento-lines-img" />
+          {/* Top Left — activity widget */}
+          <div className="bento-card bento-card-tl tl-widget-card">
+            <div className="tl-widget-header">
+              <div>
+                <span className="tl-widget-num">10k</span>
+                <p className="tl-widget-label">active users</p>
+              </div>
+              <span className="tl-widget-badge">6.2% ↑</span>
+            </div>
+            <div className="tl-widget-bars">
+              {[60,80,45,72,90,55,78].map((h, i) => (
+                <div key={i} className="tl-bar-col">
+                  <div className="tl-bar-track">
+                    <div className="tl-bar-fill" style={{ height: `${h}%` }} />
+                  </div>
+                  <span className="tl-bar-day">{['M','T','W','T','F','S','S'][i]}</span>
+                </div>
+              ))}
+            </div>
+            <div className="tl-widget-footer">
+              <span className="tl-footer-label">AI-Aided Dev</span>
+              <span className="tl-footer-arrow">→</span>
+            </div>
           </div>
 
-          {/* Top Center — stats */}
-          <div className="bento-card bento-card-tm bg-glass">
-            <div className="tm-icon-row">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="tm-icon">
-                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
-                <line x1="6" y1="6" x2="6.01" y2="6"></line>
-                <line x1="6" y1="18" x2="6.01" y2="18"></line>
-              </svg>
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="tm-icon">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          {/* Top Center — Gencoft Technologies branding */}
+          <div className="bento-card bento-card-tm bg-glass tm-brand-card">
+            <div className="tm-brand-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
               </svg>
             </div>
-            <div className="bento-stats-row">
-              <div className="bento-stat">
-                <h3 className="bento-title">Successful Deployments</h3>
-                <div className="bento-metric">4,875 <span className="text-yellow bento-heart">♥</span></div>
-              </div>
-              <div className="bento-stat bento-stat-right">
-                <h3 className="bento-title">Active Managed Users</h3>
-                <div className="bento-metric">57K <span className="bento-trend">+10%</span></div>
-              </div>
-            </div>
+            <h2 className="tm-brand-name">Gencoft Technologies</h2>
+            <p className="tm-brand-tagline">Comprehensive software solutions<br/>for your business needs</p>
           </div>
 
           {/* Top Right — glowing copy */}
@@ -54,9 +57,9 @@ export default function Hero() {
             <div className="tr-bg-glow"></div>
             <div className="tr-bg-dots"></div>
             <div className="tr-content">
-              <p className="tr-subtitle">EXPERT ENGINEERING</p>
+              <p className="tr-subtitle">FULL-STACK SOLUTIONS</p>
               <h3 className="tr-title">
-                Overtaking<br />the human<br />brain <span className="tr-donut"></span>
+                Web, Mobile<br />&amp; Cloud<br />Built Right <span className="tr-donut"></span>
               </h3>
             </div>
           </div>
@@ -66,83 +69,87 @@ export default function Hero() {
             <img src="/back2.png" alt="Professional IT Expert" className="bento-center-image" />
           </div>
 
-          {/* Bottom Left — headline */}
-          <div className="bento-card bento-card-bl custom-bl-card-v2">
-            <div className="bl-globe-bg">
-              <svg viewBox="0 0 100 100" stroke="rgba(255,255,255,0.8)" strokeWidth="1.2" fill="none">
-                <circle cx="50" cy="50" r="45" />
-                <ellipse cx="50" cy="50" rx="20" ry="45" />
-                <ellipse cx="50" cy="50" rx="45" ry="15" />
-                <line x1="5" y1="50" x2="95" y2="50" />
-                <line x1="50" y1="5" x2="50" y2="95" />
-              </svg>
+          {/* Bottom Left — key metrics stats */}
+          <div className="bento-card bento-card-bl bl-stats-card bg-glass">
+            <p className="bl-stats-eyebrow">BY THE NUMBERS</p>
+            <div className="bl-stats-grid">
+              <div className="bl-stat-item">
+                <span className="bl-stat-num">10+</span>
+                <span className="bl-stat-label">Active Projects</span>
+              </div>
+              <div className="bl-stat-item">
+                <span className="bl-stat-num">10k+</span>
+                <span className="bl-stat-label">Users Reached</span>
+              </div>
+              <div className="bl-stat-item">
+                <span className="bl-stat-num">5k+</span>
+                <span className="bl-stat-label">Deployments</span>
+              </div>
+              <div className="bl-stat-item">
+                <span className="bl-stat-num">10+</span>
+                <span className="bl-stat-label">Projects Delivered</span>
+              </div>
             </div>
-            <h2 className="bl-heading-massive">
-              Smart<br/>
-              Digital<br/>
-              Infrastructure<br/>
-              For Your<br/>
-              Business
-            </h2>
+            <div className="bl-ai-badge">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+              AI-Aided Development
+            </div>
           </div>
 
-          {/* Bottom Center — future of tech + callout cards */}
+          {/* Bottom Center — future of tech + all 6 service callout cards */}
           <div className="bento-card bento-card-bm bg-glass bento-bm-layout">
             <div className="bm-text-block">
               <h2 className="bento-heading-medium">We Build the Future of Tech</h2>
               <p className="bento-subtitle">Crafting Scalable Enterprise Solutions</p>
             </div>
             <div className="callout-container">
+              {/* Card 1: Mobile + Web */}
               <div className="callout-card">
                 <div className="callout-icon-wrapper">
                   <div className="callout-icon-inner">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
-                      <rect x="9" y="9" width="6" height="6"></rect>
-                      <line x1="9" y1="1" x2="9" y2="4"></line>
-                      <line x1="15" y1="1" x2="15" y2="4"></line>
-                      <line x1="9" y1="20" x2="9" y2="23"></line>
-                      <line x1="15" y1="20" x2="15" y2="23"></line>
-                      <line x1="20" y1="9" x2="23" y2="9"></line>
-                      <line x1="20" y1="14" x2="23" y2="14"></line>
-                      <line x1="1" y1="9" x2="4" y2="9"></line>
-                      <line x1="1" y1="14" x2="4" y2="14"></line>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
                     </svg>
                   </div>
                 </div>
                 <div className="callout-text-content">
-                  <p className="callout-text-sub">AI Integration</p>
-                  <p className="callout-text-main">Active</p>
+                  <p className="callout-text-sub">Mobile Apps</p>
+                  <p className="callout-text-amp">&amp;</p>
+                  <p className="callout-text-main">Web Apps</p>
                 </div>
               </div>
 
+              {/* Card 2: Cloud + DevOps */}
               <div className="callout-card">
                 <div className="callout-icon-wrapper">
                   <div className="callout-icon-inner">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
                     </svg>
                   </div>
                 </div>
                 <div className="callout-text-content">
-                  <p className="callout-text-sub">Cloud Infra</p>
-                  <p className="callout-text-main">Enterprise</p>
+                  <p className="callout-text-sub">Cloud Solutions</p>
+                  <p className="callout-text-amp">&amp;</p>
+                  <p className="callout-text-main">DevOps</p>
                 </div>
               </div>
 
+              {/* Card 3: SRE + AI Agents */}
               <div className="callout-card">
                 <div className="callout-icon-wrapper">
                   <div className="callout-icon-inner">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                      <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                      <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/><line x1="12" y1="2" x2="12" y2="4"/>
                     </svg>
                   </div>
                 </div>
                 <div className="callout-text-content">
-                  <p className="callout-text-sub">Web3 Security</p>
-                  <p className="callout-text-main">Deployed</p>
+                  <p className="callout-text-sub">SRE</p>
+                  <p className="callout-text-amp">&amp;</p>
+                  <p className="callout-text-main">AI Agents</p>
                 </div>
               </div>
             </div>

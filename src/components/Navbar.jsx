@@ -26,7 +26,7 @@ const MoonIcon = () => (
 const navItems = [
   { label: 'HOME',     id: 'home' },
   { label: 'SERVICES', id: 'services' },
-  { label: 'WORK',     id: 'projects' },
+  { label: 'PROJECTS', id: 'projects' },
   { label: 'CONTACT',  id: 'contact' },
 ]
 

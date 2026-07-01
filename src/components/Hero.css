@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+/* All fonts use system-ui stack */
 
 /* ===================================================================
    HERO ROOT
@@ -130,10 +128,10 @@
 .bento-grid {
   display: grid;
   grid-template-columns: 1fr 1.6fr 1.6fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 0.65fr 0.65fr;
   grid-template-areas:
     "tl tm tm tr"
-    "tl c  c  tr"
+    "bl c  c  tr"
     "bl bm bm br";
   gap: 14px;
   width: 100%;
@@ -154,13 +152,13 @@
   flex-direction: column;
   overflow: hidden;
   position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid transparent;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .bento-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
-  border: 1px solid rgba(194,187,74,0.3);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+  border-color: rgba(194,187,74,0.25);
 }
 
 .bg-glass {
@@ -182,20 +180,135 @@
 /* ===================================================================
    TOP LEFT — lines image
    =================================================================== */
-.bento-card-lines {
-  padding: 0;
-  background: transparent;
-  border: none;
-  box-shadow: none;
+/* ===================================================================
+   TOP LEFT — activity widget (replaces lines.png)
+   =================================================================== */
+.tl-widget-card {
+  background: #0e0e08;
+  border: 1px solid rgba(194,187,74,0.2) !important;
+  justify-content: space-between;
+  padding: 18px 16px 14px;
+  gap: 0;
+  transition: none;
+}
+.tl-widget-card:hover {
+  border-color: rgba(194,187,74,0.35) !important;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.35) !important;
 }
 
-.bento-lines-img {
+.tl-widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.tl-widget-num {
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 900;
+  color: #c2bb4a;
+  line-height: 1;
+  display: block;
+}
+.tl-widget-label {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.55);
+  margin: 3px 0 0;
+  font-weight: 400;
+}
+.tl-widget-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #c2bb4a;
+  background: rgba(194,187,74,0.12);
+  border: 1px solid rgba(194,187,74,0.25);
+  border-radius: 20px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+.tl-widget-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  flex: 1;
+  padding: 6px 0;
+}
+.tl-bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+.tl-bar-track {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 16px;
-  transform: scale(1.8);
-  transform-origin: center;
+  height: 70px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 6px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.tl-bar-fill {
+  width: 100%;
+  background: linear-gradient(to top, #c2bb4a, #e0d870);
+  border-radius: 6px;
+  transition: height 0.6s ease;
+}
+.tl-bar-day {
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.4);
+  font-weight: 500;
+}
+
+.tl-widget-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  margin-top: 4px;
+}
+.tl-footer-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #c2bb4a;
+  letter-spacing: 0.02em;
+}
+.tl-footer-arrow {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ===================================================================
+   TOP CENTER — Gencoft Technologies branding
+   =================================================================== */
+.tm-brand-card {
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 20px;
+  gap: 8px;
+}
+.tm-brand-icon {
+  color: #c2bb4a;
+  filter: drop-shadow(0 0 8px rgba(194,187,74,0.5));
+  margin-bottom: 2px;
+}
+.tm-brand-name {
+  font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+  font-weight: 900;
+  font-style: italic;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+.tm-brand-tagline {
+  font-size: clamp(0.75rem, 1.1vw, 0.9rem);
+  color: rgba(255,255,255,0.5);
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 400;
 }
 
 /* ===================================================================
@@ -255,7 +368,7 @@
   color: rgba(255,255,255,0.5);
   margin: 4px 0 0;
   font-weight: 300;
-  font-family: 'Outfit', sans-serif;
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 /* ===================================================================
@@ -268,6 +381,14 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  /* completely static — no hover lift */
+  transition: none;
+}
+
+.tr-custom-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 .tr-bg-glow {
@@ -349,44 +470,64 @@
 }
 
 /* ===================================================================
-   BOTTOM LEFT — headline card
+   BOTTOM LEFT — stats card (replaces Smart Digital Infrastructure)
    =================================================================== */
-.custom-bl-card-v2 {
-  padding: 24px 20px;
-  border: none;
-  background: #c2bb4a;
+.bl-stats-card {
+  justify-content: space-between;
+  padding: 20px 18px 16px;
+}
+
+.bl-stats-eyebrow {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #c2bb4a;
+  margin: 0 0 12px;
+  text-transform: uppercase;
+}
+
+.bl-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 10px;
+  flex: 1;
+}
+
+.bl-stat-item {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 2px;
 }
 
-.bl-globe-bg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 140%;
-  height: 140%;
-  z-index: 1;
-  opacity: 0.9;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.bl-stat-num {
+  font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
-.bl-globe-bg svg { width: 100%; height: 100%; }
-
-.bl-heading-massive {
-  position: relative;
-  z-index: 2;
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+.bl-stat-label {
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.5);
   font-weight: 500;
-  line-height: 1.15;
-  color: #111;
-  margin: 0;
-  letter-spacing: -0.3px;
+  line-height: 1.3;
+}
+
+.bl-ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 12px;
+  padding: 5px 12px;
+  background: rgba(194,187,74,0.14);
+  border: 1px solid rgba(194,187,74,0.3);
+  border-radius: 20px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #c2bb4a;
+  letter-spacing: 0.02em;
+  align-self: flex-start;
 }
 
 /* ===================================================================
@@ -405,12 +546,51 @@
   min-width: 0;
 }
 
+/* ── 6 service pills ── */
+.svc-pill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+}
+
+.svc-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: rgba(194,187,74,0.12);
+  border: 1px solid rgba(194,187,74,0.28);
+  color: #c2bb4a;
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.svc-pill:hover {
+  background: rgba(194,187,74,0.22);
+  border-color: rgba(194,187,74,0.5);
+}
+
+.svc-pill-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.svc-pill-label {
+  line-height: 1;
+}
+
 .bento-heading-medium {
   font-size: clamp(1rem, 1.8vw, 1.4rem);
   font-weight: 800;
+  font-style: italic;
   color: #fff;
   margin: 0 0 4px;
-  font-family: 'Outfit', sans-serif;
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.25;
 }
 
@@ -475,21 +655,15 @@
   z-index: 2;
 }
 
-.callout-text-sub {
-  font-family: 'Outfit', sans-serif;
-  font-weight: 500;
-  font-size: 0.78rem;
-  color: rgba(17,17,17,0.7);
-  margin: 0 0 3px;
-}
-
+.callout-text-sub,
 .callout-text-main {
-  font-family: 'Outfit', sans-serif;
-  font-weight: 800;
-  font-size: 1.2rem;
-  color: #111;
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  color: rgba(17,17,17,0.7);
   margin: 0;
-  line-height: 1.1;
 }
 
 /* ===================================================================
@@ -543,7 +717,7 @@
 }
 
 .bento-logo-text {
-  font-family: 'Russo One', sans-serif;
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   letter-spacing: 2px;
   font-size: clamp(1.1rem, 2vw, 1.5rem);
   margin-top: 8px;
@@ -574,7 +748,7 @@
   }
   .callout-card { width: 110px; height: 150px; padding: 14px; }
   .callout-icon-wrapper { width: 64px; height: 64px; top: -16px; right: -16px; border-radius: 18px; }
-  .callout-text-main { font-size: 1rem; }
+  .callout-text-main { font-size: 12px; }
   .bento-metric { font-size: 1.7rem; }
   .tr-title { font-size: 1.6rem; }
 }
@@ -636,8 +810,8 @@
   .bento-grid {
     grid-template-columns: 1fr;
     grid-template-areas:
-      "tl"
       "tm"
+      "tl"
       "tr"
       "c"
       "bl"
@@ -649,8 +823,8 @@
   }
 
   /* Keep lines image reasonable */
-  .bento-card-lines { min-height: 110px; max-height: 140px; }
-  .bento-lines-img  { transform: scale(1.3); }
+  .bento-card-lines { min-height: 110px; max-height: 140px; overflow: visible; border-radius: 0 !important; }
+  .bento-lines-img  { object-fit: contain; object-position: center top; transform: scale(1.2); transform-origin: center top; }
 
   /* Stats row stacks */
   .bento-stats-row  { flex-direction: column; align-items: flex-start; gap: 12px; }
@@ -710,8 +884,8 @@
   }
 
   .callout-icon-wrapper { width: 54px; height: 54px; top: -12px; right: -12px; border-radius: 15px; }
-  .callout-text-sub  { font-size: 0.7rem; }
-  .callout-text-main { font-size: 0.9rem; }
+  .callout-text-sub  { font-size: 12px; }
+  .callout-text-main { font-size: 12px; }
 
   /* Bottom right */
   .bento-card-br { min-height: 120px; }
@@ -729,7 +903,7 @@
   .callout-card    { height: 120px; padding: 10px; min-width: 80px; }
   .callout-icon-wrapper { width: 48px; height: 48px; top: -10px; right: -10px; border-radius: 14px; }
   .callout-icon-inner { transform: rotate(-45deg) translate(-3px, 3px); }
-  .callout-text-main { font-size: 0.85rem; }
+  .callout-text-main { font-size: 12px; }
   .bento-metric    { font-size: 1.5rem; }
   .bl-heading-massive { font-size: 1.1rem; }
   .bento-cta-btn { padding: 8px 14px; font-size: 0.7rem; }
@@ -746,3 +920,171 @@
   .bento-center-image { position: relative; transform: scale(1.05); }
   .bento-cta-content { padding: 16px 14px; gap: 6px; }
 }
+
+/* ===================================================================
+   LIGHT MODE — HERO BENTO
+   =================================================================== */
+.light-mode .hero-ellion {
+  background: linear-gradient(145deg, #f7f6ee 0%, #eeecdb 35%, #f3f2e8 65%, #eceadb 100%);
+}
+
+/* Very subtle noise texture in light mode */
+.light-mode .hero-ellion canvas {
+  opacity: 0.045;
+  mix-blend-mode: multiply;
+}
+
+/* Rich warm-gold glows matching dark mode energy */
+.light-mode .hero-ellion-light.light-left {
+  background: radial-gradient(ellipse at 15% 45%, rgba(194,187,74,0.35) 0%, rgba(212,204,96,0.15) 38%, transparent 65%);
+  filter: blur(2px);
+}
+.light-mode .hero-ellion-light.light-right {
+  background: radial-gradient(ellipse at 85% 45%, rgba(194,187,74,0.28) 0%, rgba(160,152,40,0.1) 38%, transparent 60%);
+  filter: blur(2px);
+}
+
+/* Base bento cards → light glass */
+.light-mode .bento-card {
+  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(194,187,74,0.18);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+}
+.light-mode .bento-card:hover {
+  border-color: rgba(194,187,74,0.45);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+}
+
+/* Glass cards */
+.light-mode .bg-glass {
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(194,187,74,0.2);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+}
+
+/* ── Center image — lighten and warm up for light mode ── */
+.light-mode .bento-center-image-wrapper {
+  background: radial-gradient(ellipse at 50% 60%, rgba(194,187,74,0.12) 0%, transparent 70%);
+}
+.light-mode .bento-center-image {
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.18)) brightness(1.08) saturate(0.88) contrast(0.96);
+}
+
+/* ── Stats card (TM) — warm light glass ── */
+.light-mode .bento-card-tm.bg-glass {
+  background: rgba(255,253,240,0.82) !important;
+  border: 1px solid rgba(194,187,74,0.28) !important;
+}
+.light-mode .bento-title  { color: rgba(15,23,42,0.55); }
+.light-mode .bento-metric { color: #0f172a; }
+
+/* ── TR card text — identical to dark mode, prevent soft-wrap ── */
+.light-mode .tr-title {
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  white-space: nowrap;
+  overflow: visible;
+  transform: scale(0.92);
+  transform-origin: bottom left;
+}
+
+/* ── TR card — warm cream in light mode ── */
+.light-mode .tr-custom-card {
+  background: linear-gradient(145deg, #f5f3e6, #eceadb);
+  border: 1px solid rgba(194,187,74,0.3) !important;
+}
+.light-mode .tr-bg-glow {
+  background: radial-gradient(ellipse at 30% 45%, rgba(194,187,74,0.45) 0%, rgba(150,140,40,0.15) 45%, transparent 75%);
+}
+.light-mode .tr-bg-dots {
+  background-image: radial-gradient(rgba(30,28,5,0.12) 1px, transparent 1px);
+  opacity: 0.8;
+}
+.light-mode .tr-content {
+  background: linear-gradient(to top, rgba(238,236,218,0.9) 0%, rgba(238,236,218,0.3) 60%, transparent 100%);
+}
+.light-mode .tr-subtitle { color: rgba(30,28,5,0.6); }
+.light-mode .tr-title    { color: #1a1800; }
+
+/* ── TL widget — light mode ── */
+.light-mode .tl-widget-card {
+  background: linear-gradient(145deg, #f5f3e6, #eceadb) !important;
+  border: 1px solid rgba(194,187,74,0.35) !important;
+}
+.light-mode .tl-widget-num   { color: #0a0a0a; }
+.light-mode .tl-widget-label { color: rgba(0,0,0,0.6); }
+.light-mode .tl-widget-badge { color: #0a0a0a; background: rgba(194,187,74,0.18); border-color: rgba(194,187,74,0.35); }
+.light-mode .tl-bar-track    { background: rgba(0,0,0,0.06); }
+.light-mode .tl-bar-fill     { background: linear-gradient(to top, #c2bb4a, #d4cc60); }
+.light-mode .tl-bar-day      { color: rgba(30,28,5,0.45); }
+.light-mode .tl-widget-footer { border-top-color: rgba(0,0,0,0.1); }
+.light-mode .tl-footer-label { color: #8a8330; }
+.light-mode .tl-footer-arrow { color: rgba(30,28,5,0.4); }
+
+/* ── TM brand card — light mode ── */
+.light-mode .tm-brand-card.bg-glass {
+  background: rgba(255,253,240,0.82) !important;
+  border: 1px solid rgba(194,187,74,0.28) !important;
+}
+.light-mode .tm-brand-icon    { color: #8a8330; }
+.light-mode .tm-brand-name    { color: #1a1800; }
+.light-mode .tm-brand-tagline { color: rgba(30,28,5,0.5); }
+
+/* ── BL stats card — light mode ── */
+.light-mode .bl-stats-card {
+  background: rgba(255,253,240,0.82) !important;
+  border: 1px solid rgba(194,187,74,0.28) !important;
+}
+.light-mode .bl-stats-eyebrow { color: #8a8330; }
+.light-mode .bl-stat-num      { color: #1a1800; }
+.light-mode .bl-stat-label    { color: rgba(30,28,5,0.55); }
+.light-mode .bl-ai-badge      { color: #8a8330; background: rgba(194,187,74,0.12); border-color: rgba(194,187,74,0.28); }
+
+/* ── Service pills — light mode ── */
+.light-mode .svc-pill {
+  background: rgba(194,187,74,0.1);
+  border-color: rgba(194,187,74,0.35);
+  color: #8a8330;
+}
+.light-mode .svc-pill:hover {
+  background: rgba(194,187,74,0.2);
+}
+
+/* ── BM card — warm light glass ── */
+.light-mode .bento-card-bm.bg-glass {
+  background: rgba(255,253,240,0.82) !important;
+  border: 1px solid rgba(194,187,74,0.28) !important;
+}
+.light-mode .bento-heading-medium { color: #1a1a08; }
+.light-mode .bento-subtitle       { color: rgba(15,23,42,0.5); }
+
+/* Callout cards — warm cream with gold border */
+.light-mode .callout-card {
+  background: linear-gradient(145deg, rgba(255,252,230,0.95), rgba(245,242,210,0.9));
+  border: 1px solid rgba(194,187,74,0.35);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+.light-mode .callout-card::before { opacity: 0; }
+.light-mode .callout-text-sub,
+.light-mode .callout-text-main { color: rgba(17,17,17,0.7); }
+.light-mode .callout-icon-wrapper {
+  background: #fff;
+  box-shadow: -3px 3px 12px rgba(0,0,0,0.1);
+}
+
+/* ── CTA card (BR) — warm cream in light mode ── */
+.light-mode .bento-cta-card {
+  background: linear-gradient(145deg, #f2f0e0, #e8e5cc);
+  border: 1px solid rgba(194,187,74,0.35) !important;
+}
+.light-mode .bento-cta-content {
+  background: linear-gradient(to top, rgba(235,232,210,0.95) 0%, rgba(235,232,210,0.4) 60%, transparent 100%);
+}
+.light-mode .bento-cta-label   { color: #8a8330; }
+.light-mode .bento-cta-heading { color: #1a1800; }
+.light-mode .bento-cta-btn {
+  background: #c2bb4a;
+  color: #1a1800;
+}
+.light-mode .bento-cta-btn:hover { background: #b0aa40; }

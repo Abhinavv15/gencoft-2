@@ -39,23 +39,12 @@ const SpinIcon = () => (
   </svg>
 )
 
-const socials = [
-  { icon: XIcon,        name: 'X',        href: 'https://x.com/gencoft' },
-  { icon: LinkedInIcon, name: 'LinkedIn', href: 'https://linkedin.com/company/gencoft' },
-  { icon: GitHubIcon,   name: 'GitHub',   href: 'https://github.com/gencoft' },
-]
 
 const navLinks = [
+  { label: 'Home',     id: 'home'     },
   { label: 'Services', id: 'services' },
   { label: 'Projects', id: 'projects' },
   { label: 'Contact',  id: 'contact'  },
-]
-
-const companyLinks = [
-  { label: 'About Us',   id: 'home'     },
-  { label: 'Careers',    id: 'contact'  },
-  { label: 'Blog',       id: null       },
-  { label: 'Privacy',    id: null       },
 ]
 
 export default function Contact() {
@@ -72,11 +61,31 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setSending(true)
-    await new Promise(r => setTimeout(r, 1400))
-    setSending(false)
-    setSent(true)
-    setTimeout(() => setSent(false), 4000)
-    setFormState({ name: '', email: '', message: '' })
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/support@gencoft.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: `New message from ${formState.name} — Gencoft Website`,
+          _captcha: 'false',
+          name: formState.name,
+          email: formState.email,
+          message: formState.message,
+        }),
+      })
+      const data = await res.json()
+      if (data.success === 'true' || data.success === true) {
+        setSent(true)
+        setFormState({ name: '', email: '', message: '' })
+        setTimeout(() => setSent(false), 5000)
+      } else {
+        alert('Something went wrong. Please email us directly at support@gencoft.com')
+      }
+    } catch {
+      alert('Network error. Please email us directly at support@gencoft.com')
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -120,26 +129,6 @@ export default function Contact() {
             </p>
           </div>
 
-          {/* Social links label + icons */}
-          <div className="cf-card-footer">
-            <span className="cf-stay-label">Stay in touch!</span>
-            <div className="cf-socials">
-              {socials.map(({ icon: Icon, name, href }) => (
-                <motion.a
-                  key={name}
-                  href={href}
-                  aria-label={name}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cf-social-btn"
-                  whileHover={{ scale: 1.15, background: 'rgba(194,187,74,0.22)' }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <Icon />
-                </motion.a>
-              ))}
-            </div>
-          </div>
         </motion.div>
 
         {/* ══════════════ RIGHT PANEL ══════════════ */}
@@ -160,23 +149,6 @@ export default function Contact() {
                       href={`#${id}`}
                       className="cf-nav-link"
                       onClick={onScrollClick(id)}
-                    >
-                      {label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="cf-nav-col">
-              <h4 className="cf-col-heading">Company</h4>
-              <ul className="cf-col-links">
-                {companyLinks.map(({ label, id }) => (
-                  <li key={label}>
-                    <a
-                      href={id ? `#${id}` : '#'}
-                      className="cf-nav-link"
-                      onClick={id ? onScrollClick(id) : (e) => e.preventDefault()}
                     >
                       {label}
                     </a>

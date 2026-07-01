@@ -6,6 +6,8 @@ import mobileSrc  from '../assets/service_mobile.png'
 import webSrc     from '../assets/service_web.png'
 import secSrc     from '../assets/service_security.png'
 import cloudSrc   from '../assets/service_cloud.png'
+import aiSrc      from '../assets/service_ai.png'
+import sreSrc     from '../assets/service_sre.png'
 
 /* ── Arrow icons ─────────────────────────────── */
 const ArrowLeft = () => (
@@ -31,35 +33,51 @@ const DiagonalArrow = () => (
 const services = [
   {
     num:   '01',
-    name:  'MOBILE DEVELOPMENT',
+    name:  'MOBILE APP DEVELOPMENT',
     short: 'Mobile Apps',
-    desc:  'At Gencoft, we craft high-performance Android & iOS apps built with the latest technologies, delivering seamless user experiences that users love and businesses rely on.',
+    desc:  'High-performance Android & iOS apps built with the latest technologies.',
     image: mobileSrc,
     watermark: 'MOBILE',
   },
   {
     num:   '02',
-    name:  'WEB APPLICATIONS',
+    name:  'WEB APP DEVELOPMENT',
     short: 'Web Apps',
-    desc:  'At Gencoft, we build responsive and scalable web applications for modern businesses — engineered to grow with your needs and impress every visitor from first load.',
+    desc:  'Responsive and scalable web applications for modern businesses.',
     image: webSrc,
     watermark: 'WEB',
   },
   {
     num:   '03',
-    name:  'SECURITY SOLUTIONS',
-    short: 'Security',
-    desc:  'At Gencoft, we implement robust security frameworks to protect your digital assets, prevent breaches, and keep your users — and their data — completely safe.',
-    image: secSrc,
-    watermark: 'SECURE',
+    name:  'CLOUD SOLUTIONS',
+    short: 'Cloud',
+    desc:  'Scalable cloud infrastructure and deployment strategies built on AWS and leading platforms.',
+    image: cloudSrc,
+    watermark: 'CLOUD',
   },
   {
     num:   '04',
-    name:  'CLOUD SOLUTIONS',
-    short: 'Cloud',
-    desc:  'At Gencoft, we architect and deploy scalable cloud infrastructure using leading platforms, powering modern applications with reliability, speed, and zero downtime.',
-    image: cloudSrc,
-    watermark: 'CLOUD',
+    name:  'DEVOPS',
+    short: 'DevOps',
+    desc:  'Streamlined CI/CD pipelines, infrastructure-as-code, and automated delivery workflows for faster, reliable releases.',
+    image: secSrc,
+    watermark: 'DEVOPS',
+  },
+  {
+    num:   '05',
+    name:  'SRE — SITE RELIABILITY ENGINEERING',
+    short: 'SRE',
+    desc:  'Robust reliability frameworks, on-call runbooks, SLO/SLA monitoring, and incident management to keep your systems at 99.9%+ uptime.',
+    image: sreSrc,
+    watermark: 'SRE',
+  },
+  {
+    num:   '06',
+    name:  'AI AGENTS',
+    short: 'AI Agents',
+    desc:  'Custom AI agents and LLM-powered automation that handle complex workflows, cut operational overhead, and unlock new product capabilities.',
+    image: aiSrc,
+    watermark: 'AI',
   },
 ]
 
