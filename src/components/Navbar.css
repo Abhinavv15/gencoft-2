@@ -282,9 +282,9 @@
 @media (max-width: 480px) {
   .navbar-ellion { padding: 14px 16px; }
   .navbar-ellion.scrolled { padding: 10px 16px; }
-  .navbar-sig-logo { font-size: 1.9rem; }
+  .navbar-sig-logo { font-size: clamp(1.2rem, 4.5vw, 1.6rem); }
   .navbar-theme-btn { width: 32px; height: 32px; }
-  .drawer-links a { font-size: 1.4rem; gap: 20px; }
+  .drawer-links a { font-size: 1.4rem; }
   .navbar-ellion-drawer { gap: 28px; }
 }
 

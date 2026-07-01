@@ -116,7 +116,6 @@ export default function Hero() {
                 </div>
                 <div className="callout-text-content">
                   <p className="callout-text-sub">Mobile Apps</p>
-                  <p className="callout-text-amp">&amp;</p>
                   <p className="callout-text-main">Web Apps</p>
                 </div>
               </div>
@@ -132,7 +131,6 @@ export default function Hero() {
                 </div>
                 <div className="callout-text-content">
                   <p className="callout-text-sub">Cloud Solutions</p>
-                  <p className="callout-text-amp">&amp;</p>
                   <p className="callout-text-main">DevOps</p>
                 </div>
               </div>
@@ -148,7 +146,6 @@ export default function Hero() {
                 </div>
                 <div className="callout-text-content">
                   <p className="callout-text-sub">SRE</p>
-                  <p className="callout-text-amp">&amp;</p>
                   <p className="callout-text-main">AI Agents</p>
                 </div>
               </div>

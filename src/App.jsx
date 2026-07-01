@@ -5,7 +5,6 @@ import Hero from './components/Hero'
 import Services from './components/Services'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
-import Footer from './components/Footer'
 
 // Scroll progress bar at top
 function ScrollProgress() {
@@ -167,7 +166,6 @@ export default function App() {
         <Projects />
         <Contact />
       </main>
-      <Footer />
     </div>
   )
 }

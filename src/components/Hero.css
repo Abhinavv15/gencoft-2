@@ -658,7 +658,7 @@
 .callout-text-sub,
 .callout-text-main {
   font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-style: normal;
+  font-style: italic;
   font-weight: 500;
   font-size: 12px;
   line-height: 20px;
@@ -783,12 +783,14 @@
   .bento-bm-layout {
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 16px;
+    align-items: flex-start;
+    gap: 14px;
     padding: 20px;
   }
 
-  .callout-container { gap: 10px; }
-  .callout-card { width: 110px; height: 150px; padding: 14px; }
+  .bm-text-block { min-width: 160px; }
+  .callout-container { gap: 8px; flex-shrink: 1; }
+  .callout-card { width: 100px; height: 140px; padding: 12px; }
   .callout-icon-wrapper { width: 62px; height: 62px; top: -14px; right: -14px; border-radius: 18px; }
 
   .bento-card-tl { min-height: 160px; }
@@ -796,6 +798,45 @@
   .bento-card-bl { min-height: 160px; }
   .bento-card-br { min-height: 130px; }
   .bento-card-tm { min-height: 130px; }
+}
+
+/* ===================================================================
+   RESPONSIVE — SMALL TABLET (641–768px): 2-col, tighter
+   =================================================================== */
+@media (max-width: 768px) and (min-width: 641px) {
+  .bento-container { padding: 90px 16px 28px; }
+  .bento-grid { gap: 10px; }
+
+  .bento-card-tl { min-height: 150px; }
+  .bento-card-tr { min-height: 170px; }
+  .bento-card-bl { min-height: 150px; }
+  .bento-card-br { min-height: 120px; }
+  .bento-card-tm { min-height: 120px; }
+
+  .tm-brand-name { font-size: 1.4rem; }
+
+  .bento-bm-layout {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 14px;
+    gap: 12px;
+  }
+  .bm-text-block { width: 100%; }
+  .callout-container {
+    width: 100%;
+    gap: 8px;
+    justify-content: flex-start;
+  }
+  .callout-card {
+    flex: 1 1 0;
+    width: 0;
+    min-width: 88px;
+    height: 138px;
+    padding: 12px;
+  }
+
+  .bento-center-image-wrapper { height: 240px; overflow: hidden; }
+  .bento-center-image { transform: scale(1.3) translateY(-4px); }
 }
 
 /* ===================================================================
@@ -980,13 +1021,15 @@
 .light-mode .bento-title  { color: rgba(15,23,42,0.55); }
 .light-mode .bento-metric { color: #0f172a; }
 
-/* ── TR card text — identical to dark mode, prevent soft-wrap ── */
-.light-mode .tr-title {
-  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
-  white-space: nowrap;
-  overflow: visible;
-  transform: scale(0.92);
-  transform-origin: bottom left;
+/* ── TR card text — prevent soft-wrap only on desktop ── */
+@media (min-width: 641px) {
+  .light-mode .tr-title {
+    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+    white-space: nowrap;
+    overflow: visible;
+    transform: scale(0.92);
+    transform-origin: bottom left;
+  }
 }
 
 /* ── TR card — warm cream in light mode ── */

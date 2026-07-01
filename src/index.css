@@ -90,7 +90,7 @@ html {
 
 /* Section */
 .section {
-  padding: 100px 0;
+  padding: clamp(60px, 8vw, 100px) 0;
   position: relative;
 }
 
@@ -1017,14 +1017,14 @@ body::before {
   background: rgba(15,23,42,0.15);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .svc-slide { flex-direction: column; height: auto; overflow: visible; }
-  .svc-info-card { width: 85%; margin: 0 auto; margin-bottom: -32px; margin-top: 0; padding: 36px 32px; border-radius: 14px; gap: 16px; z-index: 4; }
-  .svc-img-panel { height: 320px; border-radius: 14px; margin-top: 0; }
-  .svc-arrow-left  { margin-right: 12px; }
-  .svc-arrow-right { margin-left:  12px; }
+  .svc-info-card { width: 90%; margin: 0 auto; margin-bottom: -32px; margin-top: 0; padding: 36px 28px; border-radius: 14px; gap: 16px; z-index: 4; }
+  .svc-img-panel { height: 300px; border-radius: 14px; margin-top: 0; }
+  .svc-arrow-left  { margin-right: 10px; }
+  .svc-arrow-right { margin-left:  10px; }
   .svc-arrow { width: 42px; height: 42px; }
-  .svc-stage { padding: 0 12px; }
+  .svc-stage { padding: 0 10px; }
 }
 
 @media (max-width: 600px) {
@@ -1414,14 +1414,14 @@ body::before {
 }
 
 .pj-counter {
-  position: absolute;
-  right: 0;
+  position: static;
   font-family: var(--font-primary);
   font-size: 0.78rem;
   font-style: normal;
   color: rgba(255, 255, 255, 0.5);
   letter-spacing: 0.06em;
   white-space: nowrap;
+  margin-left: auto;
 }
 
 /* ===================== CONTACT + FOOTER ===================== */
@@ -1521,11 +1521,13 @@ body::before {
 }
 
 .cf-logo-text {
-  font-family: var(--font-primary);
-  font-size: 1.1rem;
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
   letter-spacing: -0.02em;
-  color: #f8fafc;
+  color: rgb(248, 250, 252);
 }
 
 .cf-card-body {
@@ -1799,7 +1801,7 @@ body::before {
 .cf-footer-watermark {
   font-family: var(--font-primary);
   font-size: clamp(6rem, 18vw, 18rem);
-  font-style: normal;
+  font-style: italic;
   line-height: 0.85;
   color: rgba(255,255,255,0.045);
   user-select: none;
