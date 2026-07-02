@@ -315,34 +315,60 @@
    RESPONSIVE
    ================================================================ */
 @media (max-width: 1024px) {
-  .hcv-orb { width: 58px; height: 58px; }
-  .hcv-orbit-1 { width: 130px; height: 130px; margin: -65px 0 0 -65px; }
-  .hcv-orbit-2 { width: 170px; height: 170px; margin: -85px 0 0 -85px; }
-  .hcv-orbit-3 { width: 210px; height: 210px; margin: -105px 0 0 -105px; }
-  .hcv-card { padding: 7px 10px; gap: 6px; min-width: 68px; border-radius: 12px; }
+  .hcv-orb { width: 56px; height: 56px; }
+  .hcv-orbit-1 { width: 120px; height: 120px; margin: -60px 0 0 -60px; }
+  .hcv-orbit-2 { width: 160px; height: 160px; margin: -80px 0 0 -80px; }
+  .hcv-orbit-3 { width: 200px; height: 200px; margin: -100px 0 0 -100px; }
+  .hcv-card { padding: 7px 10px; gap: 6px; min-width: 64px; border-radius: 11px; }
   .hcv-card-icon { width: 26px; height: 26px; border-radius: 7px; }
-  .hcv-card-icon svg { width: 15px; height: 15px; }
-  .hcv-card-title { font-size: 0.65rem; }
-  .hcv-card-sub   { font-size: 0.55rem; }
+  .hcv-card-icon svg { width: 14px; height: 14px; }
+  .hcv-card-title { font-size: 0.63rem; }
+  .hcv-card-sub   { font-size: 0.53rem; }
 }
 
 @media (max-width: 768px) {
-  .hcv-card-tc { display: none; }
-  .hcv-card-tl { top: 8%; left: 4%; }
-  .hcv-card-tr { top: 8%; right: 4%; }
-  .hcv-card-bl { bottom: 8%; left: 4%; }
-  .hcv-card-br { bottom: 8%; right: 4%; }
+  .hcv-scene { min-height: 220px; }
+  .hcv-orb { width: 48px; height: 48px; }
+  .hcv-orbit-1 { width: 100px; height: 100px; margin: -50px 0 0 -50px; }
+  .hcv-orbit-2 { width: 138px; height: 138px; margin: -69px 0 0 -69px; }
+  .hcv-orbit-3 { display: none; }
+  /* Keep all 5 cards visible */
+  .hcv-card-tc { display: flex; }
+  .hcv-card-tl { top: 6%; left: 3%; }
+  .hcv-card-tc { top: 2%; left: 50%; transform: translateX(-50%); }
+  .hcv-card-tr { top: 6%; right: 3%; }
+  .hcv-card-bl { bottom: 6%; left: 3%; }
+  .hcv-card-br { bottom: 6%; right: 3%; }
+  .hcv-card { padding: 5px 8px; gap: 5px; min-width: 52px; border-radius: 10px; }
+  .hcv-card-icon { width: 22px; height: 22px; }
+  .hcv-card-icon svg { width: 12px; height: 12px; }
+  .hcv-card-sub { display: none; }
 }
 
-@media (max-width: 640px) {
-  .hcv-scene   { min-height: 200px; }
-  .hcv-orb     { width: 48px; height: 48px; }
-  .hcv-orbit-1 { width: 100px; height: 100px; margin: -50px 0 0 -50px; }
-  .hcv-orbit-2 { width: 135px; height: 135px; margin: -67px 0 0 -67px; }
-  .hcv-orbit-3 { display: none; }
-  .hcv-card-bl, .hcv-card-br { display: none; }
-  .hcv-card { padding: 6px 9px; gap: 5px; }
-  .hcv-card-icon { width: 22px; height: 22px; }
-  .hcv-card-icon svg { width: 13px; height: 13px; }
+@media (max-width: 480px) {
+  .hcv-scene { min-height: 200px; }
+  .hcv-orb { width: 38px; height: 38px; }
+  .hcv-orbit-1 { width: 78px; height: 78px; margin: -39px 0 0 -39px; }
+  .hcv-orbit-2 { width: 108px; height: 108px; margin: -54px 0 0 -54px; }
+
+  /* Show all 5 cards, compact style */
+  .hcv-card-bl, .hcv-card-br, .hcv-card-tc { display: flex; }
+
+  .hcv-card {
+    padding: 4px 6px;
+    gap: 4px;
+    min-width: 44px;
+    border-radius: 8px;
+  }
+  .hcv-card-icon { width: 18px; height: 18px; border-radius: 5px; }
+  .hcv-card-icon svg { width: 10px; height: 10px; }
+  .hcv-card-title { font-size: 0.52rem; }
   .hcv-card-sub { display: none; }
+
+  /* Reposition all 5 for small screens */
+  .hcv-card-tl { top: 5%; left: 2%; }
+  .hcv-card-tc { top: 2%; left: 50%; transform: translateX(-50%); }
+  .hcv-card-tr { top: 5%; right: 2%; }
+  .hcv-card-bl { bottom: 5%; left: 2%; }
+  .hcv-card-br { bottom: 5%; right: 2%; }
 }
