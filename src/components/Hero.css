@@ -48,7 +48,8 @@
   border: 1px solid rgba(194,187,74,0.2);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
   padding: 0;
   overflow: hidden;
 }
@@ -57,8 +58,10 @@
   position: relative;
   z-index: 2;
   padding: 22px 20px;
-  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+  background: none;
   display: flex;
+  width: 100%;
+  align-items: center;
   flex-direction: column;
   gap: 8px;
 }
@@ -413,6 +416,94 @@
   background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
 }
 
+/* ── TR status widget ── */
+.tr-status-widget {
+  position: absolute;
+  top: 18px;
+  left: 16px;
+  right: 16px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tr-status-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.tr-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: tr-dot-pulse 2s ease-in-out infinite;
+}
+.tr-dot-green { background: #4ade80; box-shadow: 0 0 8px rgba(74,222,128,0.6); }
+
+@keyframes tr-dot-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(0.85); }
+}
+
+.tr-status-label {
+  font-family: -apple-system, "system-ui", sans-serif;
+  font-size: 0.6rem;
+  font-weight: 500;
+  font-style: normal;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.tr-status-metrics {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 8px 12px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.tr-metric-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  gap: 2px;
+}
+
+.tr-metric-val {
+  font-family: -apple-system, "system-ui", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-style: normal;
+  color: #c2bb4a;
+  line-height: 1;
+}
+
+.tr-metric-key {
+  font-family: -apple-system, "system-ui", sans-serif;
+  font-size: 0.55rem;
+  font-weight: 400;
+  font-style: normal;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.tr-metric-divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+
 .tr-subtitle {
   font-size: 0.65rem;
   font-weight: 800;
@@ -455,11 +546,13 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  min-height: 140px;
+  min-height: 260px;
   z-index: 10;
-  pointer-events: none;
+  overflow: hidden;
+  border-radius: 16px;
 }
 
+/* legacy img rule kept but unused */
 .bento-center-image {
   position: absolute;
   width: 120%;
@@ -597,13 +690,17 @@
 /* Callout cards container */
 .callout-container {
   display: flex;
-  gap: 12px;
-  flex-shrink: 0;
+  gap: 10px;
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 .callout-card {
-  width: 130px;
-  height: 170px;
+  flex: 1 1 100px;
+  min-width: 88px;
+  max-width: 140px;
+  aspect-ratio: 3 / 4;
+  height: auto;
   border-radius: 14px;
   overflow: hidden;
   position: relative;
@@ -612,8 +709,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 18px;
-  flex-shrink: 0;
+  padding: 14px;
 }
 
 .callout-card::before {
@@ -629,14 +725,13 @@
 
 .callout-icon-wrapper {
   position: absolute;
-  top: -18px;
-  right: -18px;
-  width: 76px;
-  height: 76px;
-  background: #fff;
-  border-radius: 22px;
-  transform: rotate(45deg);
-  box-shadow: -3px 3px 12px rgba(0,0,0,0.12);
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  background: rgba(255,255,255,0.92);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -644,7 +739,6 @@
 }
 
 .callout-icon-inner {
-  transform: rotate(-45deg) translate(-4px, 4px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -660,10 +754,11 @@
   font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-style: italic;
   font-weight: 500;
-  font-size: 12px;
-  line-height: 20px;
-  color: rgba(17,17,17,0.7);
+  font-size: 11px;
+  line-height: 18px;
+  color: rgba(17,17,17,0.75);
   margin: 0;
+  white-space: nowrap;
 }
 
 /* ===================================================================
@@ -735,7 +830,7 @@
    =================================================================== */
 @media (min-width: 1400px) {
   .bento-container { padding: 120px 60px 50px; }
-  .callout-card { width: 150px; height: 190px; }
+  .callout-card { min-width: 120px; max-width: 160px; }
 }
 
 /* ===================================================================
@@ -746,8 +841,8 @@
     grid-template-columns: 1fr 1.4fr 1.4fr 1fr;
     gap: 12px;
   }
-  .callout-card { width: 110px; height: 150px; padding: 14px; }
-  .callout-icon-wrapper { width: 64px; height: 64px; top: -16px; right: -16px; border-radius: 18px; }
+  .callout-card { min-width: 82px; max-width: 118px; padding: 12px; }
+  .callout-icon-wrapper { width: 34px; height: 34px; top: 12px; right: 12px; border-radius: 9px; }
   .callout-text-main { font-size: 12px; }
   .bento-metric { font-size: 1.7rem; }
   .tr-title { font-size: 1.6rem; }
@@ -777,8 +872,7 @@
     gap: 12px;
   }
 
-  .bento-center-image-wrapper { height: 280px; overflow: hidden; }
-  .bento-center-image { transform: scale(1.6) translateY(-8px); }
+  .bento-center-image-wrapper { height: 280px; min-height: 280px; }
 
   .bento-bm-layout {
     flex-direction: row;
@@ -789,9 +883,9 @@
   }
 
   .bm-text-block { min-width: 160px; }
-  .callout-container { gap: 8px; flex-shrink: 1; }
-  .callout-card { width: 100px; height: 140px; padding: 12px; }
-  .callout-icon-wrapper { width: 62px; height: 62px; top: -14px; right: -14px; border-radius: 18px; }
+  .callout-container { gap: 8px; }
+  .callout-card { min-width: 80px; max-width: 120px; padding: 12px; }
+  .callout-icon-wrapper { width: 34px; height: 34px; top: 12px; right: 12px; border-radius: 9px; }
 
   .bento-card-tl { min-height: 160px; }
   .bento-card-tr { min-height: 190px; } /* enough for 3-line tr-title */
@@ -829,14 +923,13 @@
   }
   .callout-card {
     flex: 1 1 0;
-    width: 0;
-    min-width: 88px;
-    height: 138px;
+    min-width: 80px;
+    max-width: none;
+    aspect-ratio: 3 / 4;
     padding: 12px;
   }
 
-  .bento-center-image-wrapper { height: 240px; overflow: hidden; }
-  .bento-center-image { transform: scale(1.3) translateY(-4px); }
+  .bento-center-image-wrapper { height: 240px; min-height: 240px; }
 }
 
 /* ===================================================================
@@ -878,20 +971,16 @@
   .tr-title       { font-size: 1.25rem; line-height: 1.1; letter-spacing: 0; }
   .tr-content     { padding: 16px 14px; }
   .tr-subtitle    { font-size: 0.6rem; letter-spacing: 1px; margin-bottom: 5px; }
+  .tr-status-widget { top: 12px; left: 12px; right: 12px; gap: 7px; }
+  .tr-metric-val    { font-size: 0.75rem; }
+  .tr-metric-key    { font-size: 0.5rem; }
+  .tr-status-metrics { padding: 6px 10px; }
 
   /* Center image — MUST be clipped to its own cell on mobile so it doesn't
      bleed into the TR card above (scale > 1 causes upward overflow) */
   .bento-center-image-wrapper {
     height: 200px;
-    overflow: hidden;      /* prevent image spilling into adjacent cards */
-    border-radius: 12px;
-  }
-  .bento-center-image {
-    position: relative;    /* switch from absolute so it stays inside */
-    width: 100%;
-    height: 100%;
-    transform: scale(1.05); /* minimal scale — no bleed */
-    object-fit: contain;
+    min-height: 200px;
   }
 
   /* Bottom left */
@@ -917,14 +1006,14 @@
 
   .callout-card {
     flex: 1 1 0;
-    width: 0;
-    min-width: 88px;
-    height: 138px;
+    min-width: 80px;
+    max-width: none;
+    aspect-ratio: 3 / 4;
     padding: 12px;
     border-radius: 12px;
   }
 
-  .callout-icon-wrapper { width: 54px; height: 54px; top: -12px; right: -12px; border-radius: 15px; }
+  .callout-icon-wrapper { width: 30px; height: 30px; top: 10px; right: 10px; border-radius: 8px; }
   .callout-text-sub  { font-size: 12px; }
   .callout-text-main { font-size: 12px; }
 
@@ -941,9 +1030,8 @@
 @media (max-width: 400px) {
   .bento-container { padding: 84px 12px 24px; }
   .bento-grid      { gap: 8px; }
-  .callout-card    { height: 120px; padding: 10px; min-width: 80px; }
-  .callout-icon-wrapper { width: 48px; height: 48px; top: -10px; right: -10px; border-radius: 14px; }
-  .callout-icon-inner { transform: rotate(-45deg) translate(-3px, 3px); }
+  .callout-card    { min-width: 72px; padding: 10px; }
+  .callout-icon-wrapper { width: 28px; height: 28px; top: 8px; right: 8px; border-radius: 7px; }
   .callout-text-main { font-size: 12px; }
   .bento-metric    { font-size: 1.5rem; }
   .bl-heading-massive { font-size: 1.1rem; }
@@ -956,9 +1044,8 @@
 @media (max-height: 500px) and (orientation: landscape) {
   .bento-container { padding: 72px 20px 20px; }
   .bento-grid      { gap: 8px; }
-  .callout-card    { height: 130px; }
-  .bento-center-image-wrapper { height: 160px; overflow: hidden; }
-  .bento-center-image { position: relative; transform: scale(1.05); }
+  .callout-card    { aspect-ratio: 1 / 1; }
+  .bento-center-image-wrapper { height: 160px; min-height: 160px; }
   .bento-cta-content { padding: 16px 14px; gap: 6px; }
 }
 
@@ -966,57 +1053,54 @@
    LIGHT MODE — HERO BENTO
    =================================================================== */
 .light-mode .hero-ellion {
-  background: linear-gradient(145deg, #f7f6ee 0%, #eeecdb 35%, #f3f2e8 65%, #eceadb 100%);
+  background: linear-gradient(155deg, #faf8ed 0%, #f0edda 30%, #f6f3e4 60%, #e9e6d0 100%);
 }
 
-/* Very subtle noise texture in light mode */
 .light-mode .hero-ellion canvas {
-  opacity: 0.045;
+  opacity: 0.06;
   mix-blend-mode: multiply;
 }
 
-/* Rich warm-gold glows matching dark mode energy */
+/* Stronger, richer glows */
 .light-mode .hero-ellion-light.light-left {
-  background: radial-gradient(ellipse at 15% 45%, rgba(194,187,74,0.35) 0%, rgba(212,204,96,0.15) 38%, transparent 65%);
-  filter: blur(2px);
+  background: radial-gradient(ellipse at 10% 50%, rgba(194,187,74,0.55) 0%, rgba(212,204,96,0.25) 40%, transparent 68%);
+  filter: blur(0px);
 }
 .light-mode .hero-ellion-light.light-right {
-  background: radial-gradient(ellipse at 85% 45%, rgba(194,187,74,0.28) 0%, rgba(160,152,40,0.1) 38%, transparent 60%);
-  filter: blur(2px);
+  background: radial-gradient(ellipse at 90% 50%, rgba(194,187,74,0.45) 0%, rgba(160,152,40,0.2) 40%, transparent 65%);
+  filter: blur(0px);
 }
 
-/* Base bento cards → light glass */
+/* Base bento cards */
 .light-mode .bento-card {
-  background: rgba(255,255,255,0.72);
-  border: 1px solid rgba(194,187,74,0.18);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  background: rgba(255,253,238,0.9);
+  border: 1px solid rgba(194,187,74,0.28);
+  box-shadow: 0 2px 12px rgba(130,120,0,0.08), 0 8px 32px rgba(0,0,0,0.06);
 }
 .light-mode .bento-card:hover {
-  border-color: rgba(194,187,74,0.45);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+  border-color: rgba(194,187,74,0.55);
+  box-shadow: 0 4px 20px rgba(130,120,0,0.14), 0 12px 40px rgba(0,0,0,0.09);
 }
 
 /* Glass cards */
 .light-mode .bg-glass {
-  background: rgba(255,255,255,0.8);
-  border: 1px solid rgba(194,187,74,0.2);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  background: rgba(255,253,238,0.92);
+  border: 1px solid rgba(194,187,74,0.3);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 2px 12px rgba(130,120,0,0.08), 0 8px 32px rgba(0,0,0,0.06);
 }
 
-/* ── Center image — lighten and warm up for light mode ── */
+/* ── Center viz wrapper ── */
 .light-mode .bento-center-image-wrapper {
-  background: radial-gradient(ellipse at 50% 60%, rgba(194,187,74,0.12) 0%, transparent 70%);
-}
-.light-mode .bento-center-image {
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.18)) brightness(1.08) saturate(0.88) contrast(0.96);
+  background: radial-gradient(ellipse at 50% 55%, rgba(194,187,74,0.18) 0%, transparent 65%);
 }
 
-/* ── Stats card (TM) — warm light glass ── */
+/* ── TM brand card ── */
 .light-mode .bento-card-tm.bg-glass {
-  background: rgba(255,253,240,0.82) !important;
-  border: 1px solid rgba(194,187,74,0.28) !important;
+  background: linear-gradient(145deg, #fffde8, #f5f1d0) !important;
+  border: 1px solid rgba(194,187,74,0.4) !important;
+  box-shadow: 0 4px 24px rgba(194,187,74,0.18), 0 1px 4px rgba(0,0,0,0.06) !important;
 }
 .light-mode .bento-title  { color: rgba(15,23,42,0.55); }
 .light-mode .bento-metric { color: #0f172a; }
@@ -1032,57 +1116,69 @@
   }
 }
 
-/* ── TR card — warm cream in light mode ── */
+/* ── TR card — rich deep gold in light mode ── */
 .light-mode .tr-custom-card {
-  background: linear-gradient(145deg, #f5f3e6, #eceadb);
-  border: 1px solid rgba(194,187,74,0.3) !important;
+  background: linear-gradient(155deg, #2a2600 0%, #3d3800 40%, #1e1b00 100%);
+  border: 1px solid rgba(194,187,74,0.4) !important;
+  box-shadow: 0 8px 32px rgba(80,75,0,0.25) !important;
 }
 .light-mode .tr-bg-glow {
-  background: radial-gradient(ellipse at 30% 45%, rgba(194,187,74,0.45) 0%, rgba(150,140,40,0.15) 45%, transparent 75%);
+  background: radial-gradient(ellipse at 30% 40%, rgba(194,187,74,0.55) 0%, rgba(150,140,40,0.2) 50%, transparent 78%);
 }
 .light-mode .tr-bg-dots {
-  background-image: radial-gradient(rgba(30,28,5,0.12) 1px, transparent 1px);
-  opacity: 0.8;
+  background-image: radial-gradient(rgba(194,187,74,0.18) 1px, transparent 1px);
+  opacity: 1;
 }
 .light-mode .tr-content {
-  background: linear-gradient(to top, rgba(238,236,218,0.9) 0%, rgba(238,236,218,0.3) 60%, transparent 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 55%, transparent 100%);
 }
-.light-mode .tr-subtitle { color: rgba(30,28,5,0.6); }
-.light-mode .tr-title    { color: #1a1800; }
+.light-mode .tr-subtitle { color: rgba(194,187,74,0.7); }
+.light-mode .tr-title    { color: #fff; }
+.light-mode .tr-status-metrics {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.12);
+}
+.light-mode .tr-metric-val  { color: #e8dc60; }
+.light-mode .tr-metric-key  { color: rgba(255,255,255,0.45); }
+.light-mode .tr-metric-divider { background: rgba(255,255,255,0.12); }
+.light-mode .tr-status-label   { color: rgba(255,255,255,0.5); }
 
 /* ── TL widget — light mode ── */
 .light-mode .tl-widget-card {
-  background: linear-gradient(145deg, #f5f3e6, #eceadb) !important;
+  background: linear-gradient(145deg, #1a1800, #2e2b00, #0f0e00) !important;
   border: 1px solid rgba(194,187,74,0.35) !important;
+  box-shadow: 0 8px 32px rgba(80,75,0,0.2) !important;
 }
-.light-mode .tl-widget-num   { color: #0a0a0a; }
-.light-mode .tl-widget-label { color: rgba(0,0,0,0.6); }
-.light-mode .tl-widget-badge { color: #0a0a0a; background: rgba(194,187,74,0.18); border-color: rgba(194,187,74,0.35); }
-.light-mode .tl-bar-track    { background: rgba(0,0,0,0.06); }
-.light-mode .tl-bar-fill     { background: linear-gradient(to top, #c2bb4a, #d4cc60); }
-.light-mode .tl-bar-day      { color: rgba(30,28,5,0.45); }
-.light-mode .tl-widget-footer { border-top-color: rgba(0,0,0,0.1); }
-.light-mode .tl-footer-label { color: #8a8330; }
-.light-mode .tl-footer-arrow { color: rgba(30,28,5,0.4); }
+.light-mode .tl-widget-num   { color: #e8dc60; }
+.light-mode .tl-widget-label { color: rgba(194,187,74,0.65); }
+.light-mode .tl-widget-badge { color: #e8dc60; background: rgba(194,187,74,0.15); border-color: rgba(194,187,74,0.35); }
+.light-mode .tl-bar-track    { background: rgba(255,255,255,0.08); }
+.light-mode .tl-bar-fill     { background: linear-gradient(to top, #c2bb4a, #e8dc60); }
+.light-mode .tl-bar-day      { color: rgba(194,187,74,0.45); }
+.light-mode .tl-widget-footer { border-top-color: rgba(194,187,74,0.15); }
+.light-mode .tl-footer-label { color: #c2bb4a; }
+.light-mode .tl-footer-arrow { color: rgba(194,187,74,0.4); }
 
 /* ── TM brand card — light mode ── */
 .light-mode .tm-brand-card.bg-glass {
-  background: rgba(255,253,240,0.82) !important;
-  border: 1px solid rgba(194,187,74,0.28) !important;
+  background: linear-gradient(155deg, #fffde8 0%, #f2eecc 60%, #e8e4b8 100%) !important;
+  border: 1px solid rgba(194,187,74,0.45) !important;
+  box-shadow: 0 4px 24px rgba(194,187,74,0.2), 0 1px 4px rgba(0,0,0,0.05) !important;
 }
 .light-mode .tm-brand-icon    { color: #8a8330; }
 .light-mode .tm-brand-name    { color: #1a1800; }
-.light-mode .tm-brand-tagline { color: rgba(30,28,5,0.5); }
+.light-mode .tm-brand-tagline { color: rgba(30,28,5,0.55); }
 
 /* ── BL stats card — light mode ── */
 .light-mode .bl-stats-card {
-  background: rgba(255,253,240,0.82) !important;
-  border: 1px solid rgba(194,187,74,0.28) !important;
+  background: linear-gradient(145deg, #fffde8 0%, #f5f1d0 60%, #edeab8 100%) !important;
+  border: 1px solid rgba(194,187,74,0.45) !important;
+  box-shadow: 0 4px 24px rgba(194,187,74,0.15), 0 1px 4px rgba(0,0,0,0.05) !important;
 }
-.light-mode .bl-stats-eyebrow { color: #8a8330; }
-.light-mode .bl-stat-num      { color: #1a1800; }
-.light-mode .bl-stat-label    { color: rgba(30,28,5,0.55); }
-.light-mode .bl-ai-badge      { color: #8a8330; background: rgba(194,187,74,0.12); border-color: rgba(194,187,74,0.28); }
+.light-mode .bl-stats-eyebrow { color: #8a8330; letter-spacing: 0.1em; }
+.light-mode .bl-stat-num      { color: #1a1800; font-weight: 900; }
+.light-mode .bl-stat-label    { color: rgba(30,28,5,0.6); }
+.light-mode .bl-ai-badge      { color: #7a7320; background: rgba(194,187,74,0.2); border-color: rgba(194,187,74,0.4); }
 
 /* ── Service pills — light mode ── */
 .light-mode .svc-pill {
@@ -1096,38 +1192,41 @@
 
 /* ── BM card — warm light glass ── */
 .light-mode .bento-card-bm.bg-glass {
-  background: rgba(255,253,240,0.82) !important;
-  border: 1px solid rgba(194,187,74,0.28) !important;
+  background: linear-gradient(155deg, #fffde8 0%, #f2eecc 70%, #eae6b5 100%) !important;
+  border: 1px solid rgba(194,187,74,0.4) !important;
+  box-shadow: 0 4px 24px rgba(194,187,74,0.15), 0 1px 4px rgba(0,0,0,0.05) !important;
 }
-.light-mode .bento-heading-medium { color: #1a1a08; }
-.light-mode .bento-subtitle       { color: rgba(15,23,42,0.5); }
+.light-mode .bento-heading-medium { color: #1a1800; }
+.light-mode .bento-subtitle       { color: rgba(30,28,5,0.55); }
 
 /* Callout cards — warm cream with gold border */
 .light-mode .callout-card {
-  background: linear-gradient(145deg, rgba(255,252,230,0.95), rgba(245,242,210,0.9));
-  border: 1px solid rgba(194,187,74,0.35);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  background: linear-gradient(155deg, #f3eb6c 0%, #c2bb4a 100%);
+  border: 1px solid rgba(150,140,20,0.35);
+  box-shadow: 0 8px 24px rgba(100,95,0,0.22), 0 2px 6px rgba(0,0,0,0.1);
 }
-.light-mode .callout-card::before { opacity: 0; }
+.light-mode .callout-card::before { opacity: 0.08; }
 .light-mode .callout-text-sub,
-.light-mode .callout-text-main { color: rgba(17,17,17,0.7); }
+.light-mode .callout-text-main { color: rgba(30,28,0,0.8); font-weight: 600; }
 .light-mode .callout-icon-wrapper {
-  background: #fff;
-  box-shadow: -3px 3px 12px rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 /* ── CTA card (BR) — warm cream in light mode ── */
 .light-mode .bento-cta-card {
-  background: linear-gradient(145deg, #f2f0e0, #e8e5cc);
-  border: 1px solid rgba(194,187,74,0.35) !important;
+  background: linear-gradient(155deg, #1a1800 0%, #2e2b00 50%, #0f0e00 100%);
+  border: 1px solid rgba(194,187,74,0.4) !important;
+  box-shadow: 0 8px 32px rgba(80,75,0,0.25) !important;
 }
 .light-mode .bento-cta-content {
-  background: linear-gradient(to top, rgba(235,232,210,0.95) 0%, rgba(235,232,210,0.4) 60%, transparent 100%);
+  background: none;
 }
-.light-mode .bento-cta-label   { color: #8a8330; }
-.light-mode .bento-cta-heading { color: #1a1800; }
+.light-mode .bento-cta-label   { color: #c2bb4a; }
+.light-mode .bento-cta-heading { color: #fff; }
 .light-mode .bento-cta-btn {
   background: #c2bb4a;
   color: #1a1800;
+  font-weight: 800;
 }
-.light-mode .bento-cta-btn:hover { background: #b0aa40; }
+.light-mode .bento-cta-btn:hover { background: #d4cc60; }

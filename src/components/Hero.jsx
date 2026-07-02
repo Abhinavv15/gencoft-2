@@ -2,6 +2,7 @@ import React from 'react'
 import { onScrollClick } from '../utils/scroll'
 import './Hero.css'
 import DarkVeil from './DarkVeil'
+import HeroCenterViz from './HeroCenterViz'
 
 export default function Hero() {
   return (
@@ -20,8 +21,8 @@ export default function Hero() {
           <div className="bento-card bento-card-tl tl-widget-card">
             <div className="tl-widget-header">
               <div>
-                <span className="tl-widget-num">10k</span>
-                <p className="tl-widget-label">active users</p>
+                <span className="tl-widget-num">10k+</span>
+                <p className="tl-widget-label">lines coded daily</p>
               </div>
               <span className="tl-widget-badge">6.2% ↑</span>
             </div>
@@ -56,6 +57,28 @@ export default function Hero() {
           <div className="bento-card bento-card-tr tr-custom-card">
             <div className="tr-bg-glow"></div>
             <div className="tr-bg-dots"></div>
+            <div className="tr-status-widget">
+              <div className="tr-status-row">
+                <span className="tr-status-dot tr-dot-green"/>
+                <span className="tr-status-label">All systems operational</span>
+              </div>
+              <div className="tr-status-metrics">
+                <div className="tr-metric-item">
+                  <span className="tr-metric-val">99.9%</span>
+                  <span className="tr-metric-key">Uptime</span>
+                </div>
+                <div className="tr-metric-divider"/>
+                <div className="tr-metric-item">
+                  <span className="tr-metric-val">24/7</span>
+                  <span className="tr-metric-key">Support</span>
+                </div>
+                <div className="tr-metric-divider"/>
+                <div className="tr-metric-item">
+                  <span className="tr-metric-val">&lt;1s</span>
+                  <span className="tr-metric-key">Response</span>
+                </div>
+              </div>
+            </div>
             <div className="tr-content">
               <p className="tr-subtitle">FULL-STACK SOLUTIONS</p>
               <h3 className="tr-title">
@@ -64,9 +87,9 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Center breakout image */}
+          {/* Center breakout — 3D animated viz */}
           <div className="bento-center-image-wrapper">
-            <img src="/back2.png" alt="Professional IT Expert" className="bento-center-image" />
+            <HeroCenterViz />
           </div>
 
           {/* Bottom Left — key metrics stats */}
@@ -109,7 +132,7 @@ export default function Hero() {
               <div className="callout-card">
                 <div className="callout-icon-wrapper">
                   <div className="callout-icon-inner">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
                     </svg>
                   </div>
@@ -124,7 +147,7 @@ export default function Hero() {
               <div className="callout-card">
                 <div className="callout-icon-wrapper">
                   <div className="callout-icon-inner">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
                     </svg>
                   </div>
@@ -139,7 +162,7 @@ export default function Hero() {
               <div className="callout-card">
                 <div className="callout-icon-wrapper">
                   <div className="callout-icon-inner">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/><line x1="12" y1="2" x2="12" y2="4"/>
                     </svg>
                   </div>
