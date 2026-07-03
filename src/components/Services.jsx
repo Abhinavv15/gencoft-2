@@ -1,13 +1,8 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { onScrollClick } from '../utils/scroll'
-
-import mobileSrc  from '../assets/service_mobile.png'
-import webSrc     from '../assets/service_web.png'
-import secSrc     from '../assets/service_security.png'
-import cloudSrc   from '../assets/service_cloud.png'
-import aiSrc      from '../assets/service_ai.png'
-import sreSrc     from '../assets/service_sre.png'
+import ImageWithLoader from './ImageWithLoader'
+import { services } from '../data/services'
 
 /* ── Arrow icons ─────────────────────────────── */
 const ArrowLeft = () => (
@@ -28,58 +23,6 @@ const DiagonalArrow = () => (
     <path d="M7 17L17 7M17 7H7M17 7v10"/>
   </svg>
 )
-
-/* ── Service Data ─────────────────────────────── */
-const services = [
-  {
-    num:   '01',
-    name:  'MOBILE APP DEVELOPMENT',
-    short: 'Mobile Apps',
-    desc:  'High-performance Android & iOS apps built with the latest technologies.',
-    image: mobileSrc,
-    watermark: 'MOBILE',
-  },
-  {
-    num:   '02',
-    name:  'WEB APP DEVELOPMENT',
-    short: 'Web Apps',
-    desc:  'Responsive and scalable web applications for modern businesses.',
-    image: webSrc,
-    watermark: 'WEB',
-  },
-  {
-    num:   '03',
-    name:  'CLOUD SOLUTIONS',
-    short: 'Cloud',
-    desc:  'Scalable cloud infrastructure and deployment strategies built on AWS and leading platforms.',
-    image: cloudSrc,
-    watermark: 'CLOUD',
-  },
-  {
-    num:   '04',
-    name:  'DEVOPS',
-    short: 'DevOps',
-    desc:  'Streamlined CI/CD pipelines, infrastructure-as-code, and automated delivery workflows for faster, reliable releases.',
-    image: secSrc,
-    watermark: 'DEVOPS',
-  },
-  {
-    num:   '05',
-    name:  'SRE — SITE RELIABILITY ENGINEERING',
-    short: 'SRE',
-    desc:  'Robust reliability frameworks, on-call runbooks, SLO/SLA monitoring, and incident management to keep your systems at 99.9%+ uptime.',
-    image: sreSrc,
-    watermark: 'SRE',
-  },
-  {
-    num:   '06',
-    name:  'AI AGENTS',
-    short: 'AI Agents',
-    desc:  'Custom AI agents and LLM-powered automation that handle complex workflows, cut operational overhead, and unlock new product capabilities.',
-    image: aiSrc,
-    watermark: 'AI',
-  },
-]
 
 /* ── Animation Variants ──────────────────────── */
 const cardVariants = {
@@ -130,18 +73,19 @@ export default function Services() {
         {current.watermark}
       </div>
 
-      {/* ── Section label (top-center) ── */}
-      <div className="svc-top-label">
-        <span className="svc-top-dot" />
-        What We Do
-      </div>
+      <div className="site-shell svc-inner">
+        {/* ── Section label (top-center) ── */}
+        <div className="svc-top-label">
+          <span className="svc-top-dot" />
+          What We Do
+        </div>
 
-      <h2 className="svc-main-title">
-        Our <span className="svc-title-accent">Services</span>
-      </h2>
+        <h2 className="svc-main-title">
+          Our <span className="svc-title-accent">Services</span>
+        </h2>
 
-      {/* ── Main stage ── */}
-      <div className="svc-stage">
+        {/* ── Main stage ── */}
+        <div className="svc-stage">
 
         {/* Left arrow */}
         <button
@@ -183,10 +127,12 @@ export default function Services() {
                 animate="center"
                 exit="exit"
               >
-                <img
+                <ImageWithLoader
                   src={current.image}
                   alt={current.name}
                   className="svc-img"
+                  variant="fill"
+                  wrapClassName="svc-img-loader"
                   draggable={false}
                 />
                 {/* Gradient overlay to blend with dark bg */}
@@ -206,16 +152,17 @@ export default function Services() {
         </button>
       </div>
 
-      {/* ── Dot indicators ── */}
-      <div className="svc-dots">
-        {services.map((_, i) => (
-          <button
-            key={i}
-            className={`svc-dot ${i === index ? 'active' : ''}`}
-            onClick={() => { setDir(i > index ? 1 : -1); setIndex(i) }}
-            aria-label={`Go to service ${i + 1}`}
-          />
-        ))}
+        {/* ── Dot indicators ── */}
+        <div className="svc-dots">
+          {services.map((_, i) => (
+            <button
+              key={i}
+              className={`svc-dot ${i === index ? 'active' : ''}`}
+              onClick={() => { setDir(i > index ? 1 : -1); setIndex(i) }}
+              aria-label={`Go to service ${i + 1}`}
+            />
+          ))}
+        </div>
       </div>
 
     </section>

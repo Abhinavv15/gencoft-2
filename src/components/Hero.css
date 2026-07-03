@@ -8,7 +8,7 @@
   min-height: 100vh;
   min-height: 100dvh;
   width: 100%;
-  background-color: #050505;
+  background-color: var(--section-bg-hero);
   color: #fff;
   overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -114,10 +114,9 @@
   position: relative;
   z-index: 5;
   width: 100%;
-  max-width: 1600px;
   margin: 0 auto;
   /* top padding clears navbar + signature logo */
-  padding: 110px 40px 40px;
+  padding: 110px var(--site-padding-x) 40px;
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
@@ -141,7 +140,7 @@
   height: calc(100vh - 150px);
   height: calc(100dvh - 150px);
   min-height: 600px;
-  max-height: 900px;
+  max-height: none;
   position: relative;
 }
 
@@ -173,7 +172,7 @@
 }
 
 /* Grid area assignments */
-.bento-card-tl { grid-area: tl; }
+.bento-card-tl { grid-area: tl; min-height: 190px; }
 .bento-card-tm { grid-area: tm; }
 .bento-card-tr { grid-area: tr; }
 .bento-card-bl { grid-area: bl; }
@@ -184,15 +183,33 @@
    TOP LEFT — lines image
    =================================================================== */
 /* ===================================================================
-   TOP LEFT — activity widget (replaces lines.png)
+   TOP LEFT — product logo carousel
+   =================================================================== */
+.tl-logos-card {
+  background: #0e0e08;
+  border: 1px solid rgba(194,187,74,0.2) !important;
+  justify-content: space-between;
+  padding: 16px 14px 14px;
+  gap: 0;
+  transition: none;
+  overflow: hidden;
+}
+.tl-logos-card:hover {
+  border-color: rgba(194,187,74,0.35) !important;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.35) !important;
+}
+
+/* ===================================================================
+   TOP LEFT — activity widget (legacy)
    =================================================================== */
 .tl-widget-card {
   background: #0e0e08;
   border: 1px solid rgba(194,187,74,0.2) !important;
   justify-content: space-between;
-  padding: 18px 16px 14px;
+  padding: 16px 14px 16px;
   gap: 0;
   transition: none;
+  overflow: visible;
 }
 .tl-widget-card:hover {
   border-color: rgba(194,187,74,0.35) !important;
@@ -203,7 +220,8 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
 }
 .tl-widget-num {
   font-size: clamp(1.6rem, 2.8vw, 2.2rem);
@@ -233,8 +251,10 @@
   display: flex;
   align-items: flex-end;
   gap: 5px;
-  flex: 1;
-  padding: 6px 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 72px;
+  padding: 4px 0;
 }
 .tl-bar-col {
   display: flex;
@@ -245,7 +265,7 @@
 }
 .tl-bar-track {
   width: 100%;
-  height: 70px;
+  height: clamp(44px, 10vw, 62px);
   background: rgba(255,255,255,0.06);
   border-radius: 6px;
   display: flex;
@@ -268,15 +288,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-shrink: 0;
   padding-top: 10px;
+  padding-bottom: 2px;
   border-top: 1px solid rgba(255,255,255,0.07);
-  margin-top: 4px;
+  margin-top: 6px;
 }
 .tl-footer-label {
   font-size: 0.72rem;
   font-weight: 700;
   color: #c2bb4a;
   letter-spacing: 0.02em;
+  line-height: 1.2;
 }
 .tl-footer-arrow {
   font-size: 0.9rem;
@@ -287,18 +310,26 @@
    TOP CENTER — Gencoft Technologies branding
    =================================================================== */
 .tm-brand-card {
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding-top: 20px;
-  gap: 8px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  overflow: hidden;
+}
+.tm-brand-left {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .tm-brand-icon {
   color: #c2bb4a;
   filter: drop-shadow(0 0 8px rgba(194,187,74,0.5));
-  margin-bottom: 2px;
 }
 .tm-brand-name {
-  font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+  font-size: clamp(1.65rem, 3.2vw, 2.65rem);
   font-weight: 900;
   font-style: italic;
   color: #fff;
@@ -307,11 +338,51 @@
   line-height: 1.05;
 }
 .tm-brand-tagline {
-  font-size: clamp(0.75rem, 1.1vw, 0.9rem);
-  color: rgba(255,255,255,0.5);
+  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+  color: rgba(255,255,255,0.55);
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.45;
   font-weight: 400;
+  max-width: 420px;
+}
+.tm-brand-right {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 10px;
+  min-width: 0;
+}
+.tm-brand-watermark {
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -0.04em;
+  color: rgba(194,187,74,0.1);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.tm-brand-chips {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.tm-brand-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: clamp(0.58rem, 1vw, 0.68rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #c2bb4a;
+  background: rgba(194,187,74,0.1);
+  border: 1px solid rgba(194,187,74,0.25);
+  white-space: nowrap;
 }
 
 /* ===================================================================
@@ -379,41 +450,226 @@
    =================================================================== */
 .tr-custom-card {
   padding: 0;
-  border: none;
-  background: #0a0a0a;
+  border: 1px solid rgba(194, 187, 74, 0.4) !important;
+  background: linear-gradient(155deg, #2a2600 0%, #3d3800 40%, #1e1b00 100%);
+  box-shadow: 0 8px 32px rgba(80, 75, 0, 0.25) !important;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  /* completely static — no hover lift */
+  justify-content: stretch;
+  overflow: hidden;
   transition: none;
 }
 
 .tr-custom-card:hover {
   transform: none !important;
-  box-shadow: none !important;
-  border: none !important;
+  border: 1px solid rgba(194, 187, 74, 0.4) !important;
+  box-shadow: 0 8px 32px rgba(80, 75, 0, 0.25) !important;
 }
 
 .tr-bg-glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 30% 45%, rgba(220,200,100,0.9) 0%, rgba(150,120,40,0.5) 40%, rgba(10,10,10,1) 75%);
+  background: radial-gradient(ellipse at 30% 40%, rgba(194, 187, 74, 0.55) 0%, rgba(150, 140, 40, 0.2) 50%, transparent 78%);
   filter: blur(8px);
 }
 
 .tr-bg-dots {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(255,255,255,0.25) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(194, 187, 74, 0.18) 1px, transparent 1px);
   background-size: 12px 12px;
+  opacity: 1;
+}
+
+/* ── Tech tags — 3D orb + scattered pills ── */
+.tr-tags-area {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.tr-tags-scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 520px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tr-orb-wrap {
+  position: relative;
+  width: clamp(64px, 11vw, 108px);
+  height: clamp(64px, 11vw, 108px);
+  transform-style: preserve-3d;
+  animation: tr-orb-tumble 22s linear infinite;
+}
+
+.tr-orb-halo {
+  position: absolute;
+  inset: -28%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232, 220, 96, 0.2) 0%, transparent 68%);
+  animation: tr-orb-halo 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.tr-orb-core {
+  position: absolute;
+  inset: 18%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(232, 220, 96, 0.55) 0%, rgba(194, 187, 74, 0.2) 38%, rgba(20, 18, 0, 0.55) 72%);
+  box-shadow:
+    0 0 36px rgba(194, 187, 74, 0.28),
+    inset 0 0 24px rgba(232, 220, 96, 0.12);
+  animation: tr-orb-pulse 4s ease-in-out infinite;
+}
+
+.tr-orb-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(194, 187, 74, 0.32);
+  transform-style: preserve-3d;
+}
+
+.tr-orb-ring-1 {
+  transform: rotateX(68deg);
+  animation: tr-ring-wobble-1 7s ease-in-out infinite;
+}
+.tr-orb-ring-2 {
+  transform: rotateY(74deg);
+  opacity: 0.85;
+  animation: tr-ring-wobble-2 9s ease-in-out infinite;
+}
+.tr-orb-ring-3 {
+  transform: rotateX(38deg) rotateY(-42deg);
+  border-style: dashed;
+  border-color: rgba(194, 187, 74, 0.22);
   opacity: 0.6;
+  animation: tr-ring-wobble-3 11s ease-in-out infinite;
+}
+
+@keyframes tr-orb-tumble {
+  from { transform: rotateX(18deg) rotateY(0deg); }
+  to   { transform: rotateX(18deg) rotateY(360deg); }
+}
+
+@keyframes tr-orb-halo {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+@keyframes tr-orb-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 36px rgba(194, 187, 74, 0.28),
+      inset 0 0 24px rgba(232, 220, 96, 0.12);
+  }
+  50% {
+    box-shadow:
+      0 0 54px rgba(232, 220, 96, 0.48),
+      inset 0 0 34px rgba(255, 245, 180, 0.22);
+  }
+}
+
+@keyframes tr-ring-wobble-1 {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+@keyframes tr-ring-wobble-2 {
+  0%, 100% { opacity: 0.75; }
+  50% { opacity: 0.95; }
+}
+
+@keyframes tr-ring-wobble-3 {
+  0%, 100% { opacity: 0.45; border-color: rgba(194, 187, 74, 0.18); }
+  50% { opacity: 0.75; border-color: rgba(232, 220, 96, 0.38); }
+}
+
+.tr-float-tags {
+  position: absolute;
+  inset: clamp(2px, 0.5vw, 8px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tr-tag {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(0.46rem, 0.36vw + 0.32rem, 0.72rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: clamp(3px, 0.45vw, 5px) clamp(5px, 0.6vw, 9px);
+  border-radius: 20px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.38);
+  border: 1px solid rgba(232, 220, 96, 0.42);
+  white-space: nowrap;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  min-width: clamp(38px, 9vw, 56px);
+  max-width: min(42%, 88px);
+  box-sizing: border-box;
+  animation:
+    tr-tag-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) backwards,
+    tr-tag-bob 3.8s ease-in-out infinite,
+    tr-tag-spotlight 13s ease-in-out infinite;
+  animation-delay:
+    calc(var(--slot) * 0.07s),
+    calc(var(--slot) * 0.32s + 0.55s),
+    calc(var(--slot) * 1.3s);
+}
+
+@keyframes tr-tag-in {
+  from { opacity: 0; transform: scale(0.88); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes tr-tag-bob {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(calc(-1 * clamp(2px, 0.35vw, 4px))) scale(1); }
+}
+
+@keyframes tr-tag-spotlight {
+  0%, 82%, 100% {
+    border-color: rgba(232, 220, 96, 0.42);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.22);
+    background: rgba(0, 0, 0, 0.38);
+  }
+  10% {
+    border-color: rgba(255, 245, 170, 0.95);
+    box-shadow: 0 0 18px rgba(194, 187, 74, 0.5), 0 2px 12px rgba(0, 0, 0, 0.22);
+    background: rgba(0, 0, 0, 0.52);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tr-orb-wrap,
+  .tr-orb-core,
+  .tr-orb-halo,
+  .tr-orb-ring,
+  .tr-tag {
+    animation: none !important;
+  }
 }
 
 .tr-content {
   position: relative;
   z-index: 2;
-  padding: 24px 20px;
-  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+  flex-shrink: 0;
+  margin-top: auto;
+  padding: clamp(14px, 1.6vw, 24px) clamp(12px, 1.4vw, 20px);
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 55%, transparent 100%);
 }
 
 /* ── TR status widget ── */
@@ -509,7 +765,7 @@
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  color: #fff;
+  color: rgba(194, 187, 74, 0.7);
   margin: 0 0 6px;
 }
 
@@ -550,6 +806,14 @@
   z-index: 10;
   overflow: hidden;
   border-radius: 16px;
+}
+
+.bento-center-services {
+  background: rgba(20, 20, 12, 0.72);
+  border: 1px solid rgba(194, 187, 74, 0.22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
 
 /* legacy img rule kept but unused */
@@ -691,14 +955,14 @@
 .callout-container {
   display: flex;
   gap: 10px;
-  flex-shrink: 1;
+  flex: 1;
   min-width: 0;
 }
 
 .callout-card {
   flex: 1 1 100px;
   min-width: 88px;
-  max-width: 140px;
+  max-width: none;
   aspect-ratio: 3 / 4;
   height: auto;
   border-radius: 14px;
@@ -829,8 +1093,25 @@
    RESPONSIVE — LARGE (≥1400px)
    =================================================================== */
 @media (min-width: 1400px) {
-  .bento-container { padding: 120px 60px 50px; }
-  .callout-card { min-width: 120px; max-width: 160px; }
+  .bento-container { padding: 120px var(--site-padding-x) 50px; }
+  .bento-grid { gap: 16px; }
+  .callout-card { min-width: 120px; max-width: none; flex: 1 1 120px; }
+}
+
+@media (min-width: 1920px) {
+  .bento-grid { gap: 18px; min-height: 680px; }
+  .callout-card { min-width: 130px; padding: 16px; }
+  .callout-container { gap: 12px; }
+  .tr-orb-wrap { width: clamp(72px, 10vw, 120px); height: clamp(72px, 10vw, 120px); }
+  .tr-tag {
+    font-size: clamp(0.68rem, 0.35vw + 0.5rem, 0.82rem);
+    min-width: clamp(48px, 9vw, 68px);
+  }
+}
+
+@media (min-width: 2560px) {
+  .bento-grid { gap: 20px; min-height: 720px; }
+  .tr-orb-wrap { width: 120px; height: 120px; }
 }
 
 /* ===================================================================
@@ -853,7 +1134,7 @@
    =================================================================== */
 @media (max-width: 1024px) {
   .bento-container {
-    padding: 100px 20px 32px;
+    padding: 100px var(--site-padding-x) 32px;
     min-height: auto;
   }
 
@@ -875,7 +1156,7 @@
   .bento-center-image-wrapper { height: 260px; min-height: 260px; }
 
   .bento-card-tm { min-height: 120px; }
-  .bento-card-tl { min-height: 180px; }
+  .bento-card-tl { min-height: 185px; }
   .bento-card-tr { min-height: 220px; }
   .bento-card-bl { min-height: 170px; }
   .bento-card-br { min-height: 140px; }
@@ -901,7 +1182,7 @@
    RESPONSIVE — MOBILE LANDSCAPE + SMALL TABLET (481–768px)
    =================================================================== */
 @media (max-width: 768px) {
-  .bento-container { padding: 86px 14px 24px; }
+  .bento-container { padding: 86px var(--site-padding-x) 24px; }
 
   .bento-grid {
     grid-template-columns: 1fr 1fr;
@@ -917,15 +1198,18 @@
     gap: 9px;
   }
 
-  .bento-center-image-wrapper { height: 220px; min-height: 220px; }
+  .bento-center-image-wrapper { height: 260px; min-height: 260px; }
 
   .bento-card-tm { min-height: 110px; }
-  .bento-card-tl { min-height: 170px; }
+  .bento-card-tl { min-height: 180px; }
   .bento-card-tr { min-height: 200px; }
   .bento-card-bl { min-height: 160px; }
   .bento-card-br { min-height: 130px; }
 
-  .tm-brand-name { font-size: clamp(1.2rem, 4vw, 1.6rem); }
+  .tm-brand-name { font-size: clamp(1.3rem, 4vw, 1.75rem); }
+  .tm-brand-tagline { font-size: 0.78rem; }
+  .tm-brand-watermark { font-size: 1.8rem; }
+  .tm-brand-chips { gap: 5px; }
 
   .bento-bm-layout {
     flex-direction: column;
@@ -956,13 +1240,28 @@
   .tr-title { font-size: 1.1rem; }
   .tr-content { padding: 14px 12px; }
   .tr-subtitle { font-size: 0.55rem; letter-spacing: 1px; }
+
+  /* TR card — smaller orb + tags on mobile */
+  .tr-orb-wrap { width: clamp(44px, 13vw, 60px); height: clamp(44px, 13vw, 60px); }
+  .tr-tag {
+    font-size: clamp(0.42rem, 2vw, 0.5rem);
+    padding: 3px 5px;
+    min-width: clamp(36px, 12vw, 48px);
+    max-width: 48%;
+  }
+  .tr-content {
+    position: relative;
+    z-index: 3;
+    margin-top: auto;
+    background: linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.82) 100%);
+  }
 }
 
 /* ===================================================================
    RESPONSIVE — MOBILE PORTRAIT (≤480px): 2-col compact
    =================================================================== */
 @media (max-width: 480px) {
-  .bento-container { padding: 80px 12px 20px; }
+  .bento-container { padding: 80px var(--site-padding-x) 20px; }
 
   .bento-grid {
     grid-template-columns: 1fr 1fr;
@@ -975,21 +1274,30 @@
     gap: 8px;
   }
 
-  .bento-center-image-wrapper { height: 180px; min-height: 180px; }
+  .bento-center-image-wrapper { height: 240px; min-height: 240px; }
 
   .bento-card-tm { min-height: 100px; }
-  .bento-card-tl { min-height: 160px; }
   .bento-card-tr { min-height: 180px; }
   .bento-card-bl { min-height: 150px; }
   .bento-card-br { min-height: 120px; }
 
   .bento-card { border-radius: 14px; padding: 14px; }
+  .bento-card.tl-logos-card { padding: 12px 10px 12px; }
+  .bento-card.tl-widget-card { padding: 12px 10px 14px; }
 
-  .tm-brand-name { font-size: clamp(1.1rem, 5vw, 1.4rem); }
-  .tm-brand-tagline { font-size: 0.65rem; }
+  .tm-brand-card { flex-direction: column; align-items: flex-start; padding: 16px 18px; gap: 12px; }
+  .tm-brand-right { align-items: flex-start; width: 100%; }
+  .tm-brand-watermark { font-size: 1.6rem; }
+  .tm-brand-name { font-size: clamp(1.15rem, 5vw, 1.45rem); }
+  .tm-brand-tagline { font-size: 0.72rem; }
+  .tm-brand-chips { grid-template-columns: repeat(4, 1fr); width: 100%; }
+  .tm-brand-chip { font-size: 0.55rem; padding: 4px 8px; }
 
   .tl-widget-num { font-size: 1.5rem; }
-  .tl-bar-track { height: 50px; }
+  .tl-bar-track { height: clamp(40px, 12vw, 52px); }
+  .tl-widget-footer { padding-top: 8px; padding-bottom: 4px; margin-top: 4px; }
+  .tl-footer-label { font-size: 0.68rem; }
+  .bento-card-tl { min-height: 175px; }
 
   .tr-status-widget { top: 10px; left: 10px; right: 10px; gap: 5px; }
   .tr-status-row { gap: 5px; }
@@ -999,8 +1307,17 @@
   .tr-metric-key { font-size: 0.44rem; }
   .tr-metric-divider { height: 20px; }
   .tr-title { font-size: 1rem; line-height: 1.05; }
-  .tr-content { padding: 12px 10px; }
+  .tr-content { padding: 10px 10px 12px; }
   .tr-subtitle { font-size: 0.52rem; letter-spacing: 0.8px; margin-bottom: 4px; }
+
+  .tr-orb-wrap { width: 40px; height: 40px; }
+  .tr-tag {
+    font-size: clamp(0.4rem, 1.85vw, 0.46rem);
+    padding: 2px 4px;
+    min-width: clamp(32px, 13vw, 42px);
+    max-width: 46%;
+  }
+  .bento-card-tr { min-height: 200px; }
 
   .bl-stat-num { font-size: 1.2rem; }
   .bl-stat-label { font-size: 0.6rem; }
@@ -1027,12 +1344,13 @@
    RESPONSIVE — VERY SMALL (≤360px)
    =================================================================== */
 @media (max-width: 360px) {
-  .bento-container { padding: 76px 10px 16px; }
+  .bento-container { padding: 76px var(--site-padding-x) 16px; }
   .bento-grid { gap: 6px; }
   .bento-card { border-radius: 12px; padding: 12px; }
   .tm-brand-name { font-size: 1rem; }
   .tr-title { font-size: 0.9rem; }
-  .tr-status-metrics { display: none; }
+  .tr-tag { font-size: 0.38rem; padding: 2px 4px; min-width: 32px; }
+  .bento-card-tr { min-height: 190px; }
   .bl-stat-num { font-size: 1.1rem; }
   .bento-heading-medium { font-size: 0.82rem; }
   .callout-text-sub,
@@ -1043,7 +1361,7 @@
    RESPONSIVE — LANDSCAPE MOBILE (short screens)
    =================================================================== */
 @media (max-height: 500px) and (orientation: landscape) {
-  .bento-container { padding: 68px 16px 16px; }
+  .bento-container { padding: 68px var(--site-padding-x) 16px; }
   .bento-grid { gap: 7px; }
   .bento-center-image-wrapper { height: 150px; min-height: 150px; }
   .callout-card { aspect-ratio: 1 / 1; max-height: 100px; }
@@ -1055,7 +1373,7 @@
    LIGHT MODE — HERO BENTO
    =================================================================== */
 .light-mode .hero-ellion {
-  background: linear-gradient(155deg, #faf8ed 0%, #f0edda 30%, #f6f3e4 60%, #e9e6d0 100%);
+  background: var(--section-bg-hero);
 }
 
 .light-mode .hero-ellion canvas {
@@ -1098,6 +1416,12 @@
   background: radial-gradient(ellipse at 50% 55%, rgba(194,187,74,0.18) 0%, transparent 65%);
 }
 
+.light-mode .bento-center-services {
+  background: rgba(255, 253, 238, 0.92);
+  border: 1px solid rgba(194, 187, 74, 0.35);
+  box-shadow: 0 4px 24px rgba(194, 187, 74, 0.12);
+}
+
 /* ── TM brand card ── */
 .light-mode .bento-card-tm.bg-glass {
   background: linear-gradient(145deg, #fffde8, #f5f1d0) !important;
@@ -1106,6 +1430,65 @@
 }
 .light-mode .bento-title  { color: rgba(15,23,42,0.55); }
 .light-mode .bento-metric { color: #0f172a; }
+
+/* ── TR card — rich gold (override generic light bento-card washout) ── */
+.light-mode .bento-card.tr-custom-card {
+  background: linear-gradient(155deg, #3a3500 0%, #524a00 38%, #2e2a00 68%, #1a1800 100%) !important;
+  border: 1px solid rgba(194, 187, 74, 0.55) !important;
+  box-shadow:
+    0 8px 32px rgba(100, 90, 0, 0.32),
+    0 0 48px rgba(194, 187, 74, 0.12) !important;
+}
+.light-mode .bento-card.tr-custom-card:hover {
+  border: 1px solid rgba(194, 187, 74, 0.55) !important;
+  box-shadow:
+    0 8px 32px rgba(100, 90, 0, 0.32),
+    0 0 48px rgba(194, 187, 74, 0.12) !important;
+}
+.light-mode .tr-bg-glow {
+  background: radial-gradient(
+    ellipse at 32% 36%,
+    rgba(232, 220, 96, 0.72) 0%,
+    rgba(194, 187, 74, 0.38) 42%,
+    rgba(80, 72, 0, 0.15) 68%,
+    transparent 82%
+  );
+  filter: blur(5px);
+  opacity: 1;
+}
+.light-mode .tr-bg-dots {
+  background-image: radial-gradient(rgba(232, 220, 96, 0.32) 1px, transparent 1px);
+  opacity: 0.85;
+}
+.light-mode .tr-orb-core {
+  background: radial-gradient(
+    circle at 32% 28%,
+    rgba(255, 248, 190, 0.9) 0%,
+    rgba(232, 220, 96, 0.5) 38%,
+    rgba(80, 72, 0, 0.45) 72%
+  );
+  box-shadow:
+    0 0 44px rgba(232, 220, 96, 0.5),
+    inset 0 0 26px rgba(255, 250, 200, 0.25);
+}
+.light-mode .tr-orb-ring {
+  border-color: rgba(232, 220, 96, 0.5);
+}
+.light-mode .tr-orb-ring-3 {
+  border-color: rgba(232, 220, 96, 0.35);
+  opacity: 0.75;
+}
+.light-mode .tr-tag {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.58);
+  border-color: rgba(232, 220, 96, 0.72);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35), 0 0 10px rgba(194, 187, 74, 0.18);
+}
+.light-mode .tr-content {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.5) 52%, transparent 100%);
+}
+.light-mode .tr-subtitle { color: rgba(232, 220, 96, 0.92); }
+.light-mode .tr-title { color: #fff; }
 
 /* ── TR card text — prevent soft-wrap only on large desktop ── */
 @media (min-width: 1025px) {
@@ -1118,24 +1501,6 @@
   }
 }
 
-/* ── TR card — rich deep gold in light mode ── */
-.light-mode .tr-custom-card {
-  background: linear-gradient(155deg, #2a2600 0%, #3d3800 40%, #1e1b00 100%);
-  border: 1px solid rgba(194,187,74,0.4) !important;
-  box-shadow: 0 8px 32px rgba(80,75,0,0.25) !important;
-}
-.light-mode .tr-bg-glow {
-  background: radial-gradient(ellipse at 30% 40%, rgba(194,187,74,0.55) 0%, rgba(150,140,40,0.2) 50%, transparent 78%);
-}
-.light-mode .tr-bg-dots {
-  background-image: radial-gradient(rgba(194,187,74,0.18) 1px, transparent 1px);
-  opacity: 1;
-}
-.light-mode .tr-content {
-  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 55%, transparent 100%);
-}
-.light-mode .tr-subtitle { color: rgba(194,187,74,0.7); }
-.light-mode .tr-title    { color: #fff; }
 .light-mode .tr-status-metrics {
   background: rgba(255,255,255,0.08);
   border-color: rgba(255,255,255,0.12);
@@ -1146,6 +1511,10 @@
 .light-mode .tr-status-label   { color: rgba(255,255,255,0.5); }
 
 /* ── TL widget — light mode ── */
+.light-mode .tl-logos-card {
+  background: #fffef5;
+  border-color: rgba(194,187,74,0.35) !important;
+}
 .light-mode .tl-widget-card {
   background: linear-gradient(145deg, #1a1800, #2e2b00, #0f0e00) !important;
   border: 1px solid rgba(194,187,74,0.35) !important;
@@ -1170,6 +1539,12 @@
 .light-mode .tm-brand-icon    { color: #8a8330; }
 .light-mode .tm-brand-name    { color: #1a1800; }
 .light-mode .tm-brand-tagline { color: rgba(30,28,5,0.55); }
+.light-mode .tm-brand-watermark { color: rgba(130,120,0,0.12); }
+.light-mode .tm-brand-chip {
+  color: #8a8330;
+  background: rgba(194,187,74,0.12);
+  border-color: rgba(130,120,0,0.28);
+}
 
 /* ── BL stats card — light mode ── */
 .light-mode .bl-stats-card {

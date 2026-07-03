@@ -1,0 +1,150 @@
+.hero-pj-logos {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-sizing: border-box;
+}
+
+.hero-pj-logos-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.hero-pj-logos-label {
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #c2bb4a;
+  text-transform: uppercase;
+}
+
+.hero-pj-logos-count {
+  font-size: 0.58rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.06em;
+}
+
+.hero-pj-logos-stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-pj-logos-slide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-pj-logos-img-wrap {
+  width: 100%;
+  height: 100%;
+  max-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  box-sizing: border-box;
+}
+
+.hero-pj-logos-img-loader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-pj-logos-img {
+  max-width: 100%;
+  max-height: 72px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
+}
+
+.hero-pj-logos-dots {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.hero-pj-logos-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.hero-pj-logos-dot.active {
+  background: #c2bb4a;
+  transform: scale(1.25);
+}
+
+.hero-pj-logos-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  margin-top: 2px;
+}
+
+.hero-pj-logos-name {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #c2bb4a;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hero-pj-logos-link {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+
+.hero-pj-logos-link:hover {
+  color: #c2bb4a;
+}
+
+/* Light mode */
+.light-mode .hero-pj-logos-count { color: rgba(30, 28, 5, 0.45); }
+.light-mode .hero-pj-logos-name { color: #8a8330; }
+.light-mode .hero-pj-logos-link { color: rgba(30, 28, 5, 0.4); }
+.light-mode .hero-pj-logos-link:hover { color: #8a8330; }
+.light-mode .hero-pj-logos-dot { background: rgba(30, 28, 5, 0.15); }
+.light-mode .hero-pj-logos-dot.active { background: #8a8330; }
+.light-mode .hero-pj-logos-footer { border-top-color: rgba(194, 187, 74, 0.15); }
+
+@media (max-width: 768px) {
+  .hero-pj-logos-img-wrap { max-height: 76px; }
+  .hero-pj-logos-img { max-height: 64px; }
+}
+
+@media (max-width: 480px) {
+  .hero-pj-logos-img-wrap { max-height: 68px; }
+  .hero-pj-logos-img { max-height: 56px; }
+  .hero-pj-logos-name { font-size: 0.65rem; }
+}

@@ -2,7 +2,9 @@ import React from 'react'
 import { onScrollClick } from '../utils/scroll'
 import './Hero.css'
 import DarkVeil from './DarkVeil'
-import HeroCenterViz from './HeroCenterViz'
+import HeroServicesMini from './HeroServicesMini'
+import HeroProjectLogos from './HeroProjectLogos'
+import HeroFloatTags from './HeroFloatTags'
 
 export default function Hero() {
   return (
@@ -17,68 +19,40 @@ export default function Hero() {
       <div className="bento-container">
         <div className="bento-grid">
 
-          {/* Top Left — activity widget */}
-          <div className="bento-card bento-card-tl tl-widget-card">
-            <div className="tl-widget-header">
-              <div>
-                <span className="tl-widget-num">10k+</span>
-                <p className="tl-widget-label">lines coded daily</p>
-              </div>
-              <span className="tl-widget-badge">6.2% ↑</span>
-            </div>
-            <div className="tl-widget-bars">
-              {[60,80,45,72,90,55,78].map((h, i) => (
-                <div key={i} className="tl-bar-col">
-                  <div className="tl-bar-track">
-                    <div className="tl-bar-fill" style={{ height: `${h}%` }} />
-                  </div>
-                  <span className="tl-bar-day">{['M','T','W','T','F','S','S'][i]}</span>
-                </div>
-              ))}
-            </div>
-            <div className="tl-widget-footer">
-              <span className="tl-footer-label">AI-Aided Dev</span>
-              <span className="tl-footer-arrow">→</span>
-            </div>
+          {/* Top Left — product logo carousel */}
+          <div className="bento-card bento-card-tl tl-logos-card">
+            <HeroProjectLogos />
           </div>
 
           {/* Top Center — Gencoft Technologies branding */}
           <div className="bento-card bento-card-tm bg-glass tm-brand-card">
-            <div className="tm-brand-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-              </svg>
+            <div className="tm-brand-left">
+              <div className="tm-brand-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              </div>
+              <h2 className="tm-brand-name">Gencoft Technologies</h2>
+              <p className="tm-brand-tagline">Comprehensive software solutions for your business needs</p>
             </div>
-            <h2 className="tm-brand-name">Gencoft Technologies</h2>
-            <p className="tm-brand-tagline">Comprehensive software solutions<br/>for your business needs</p>
+            <div className="tm-brand-right">
+              <span className="tm-brand-watermark" aria-hidden="true">GENCOFT</span>
+              <div className="tm-brand-chips">
+                <span className="tm-brand-chip">Web Apps</span>
+                <span className="tm-brand-chip">Mobile</span>
+                <span className="tm-brand-chip">Cloud</span>
+                <span className="tm-brand-chip">AI Agents</span>
+              </div>
+            </div>
           </div>
 
           {/* Top Right — glowing copy */}
           <div className="bento-card bento-card-tr tr-custom-card">
             <div className="tr-bg-glow"></div>
             <div className="tr-bg-dots"></div>
-            <div className="tr-status-widget">
-              <div className="tr-status-row">
-                <span className="tr-status-dot tr-dot-green"/>
-                <span className="tr-status-label">All systems operational</span>
-              </div>
-              <div className="tr-status-metrics">
-                <div className="tr-metric-item">
-                  <span className="tr-metric-val">99.9%</span>
-                  <span className="tr-metric-key">Uptime</span>
-                </div>
-                <div className="tr-metric-divider"/>
-                <div className="tr-metric-item">
-                  <span className="tr-metric-val">24/7</span>
-                  <span className="tr-metric-key">Support</span>
-                </div>
-                <div className="tr-metric-divider"/>
-                <div className="tr-metric-item">
-                  <span className="tr-metric-val">&lt;1s</span>
-                  <span className="tr-metric-key">Response</span>
-                </div>
-              </div>
-            </div>
+
+            <HeroFloatTags />
+
             <div className="tr-content">
               <p className="tr-subtitle">FULL-STACK SOLUTIONS</p>
               <h3 className="tr-title">
@@ -87,9 +61,9 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Center breakout — 3D animated viz */}
-          <div className="bento-center-image-wrapper">
-            <HeroCenterViz />
+          {/* Center — mini services carousel */}
+          <div className="bento-center-image-wrapper bento-center-services">
+            <HeroServicesMini />
           </div>
 
           {/* Bottom Left — key metrics stats */}

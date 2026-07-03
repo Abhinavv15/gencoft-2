@@ -43,7 +43,7 @@ const SpinIcon = () => (
 const navLinks = [
   { label: 'Home',     id: 'home'     },
   { label: 'Services', id: 'services' },
-  { label: 'Projects', id: 'projects' },
+  { label: 'Products', id: 'projects' },
   { label: 'Contact',  id: 'contact'  },
 ]
 
@@ -131,40 +131,48 @@ export default function Contact() {
 
         </motion.div>
 
-        {/* ══════════════ RIGHT PANEL ══════════════ */}
+        {/* Nav columns — aligned with brand logo row */}
+        <motion.div
+          className="cf-nav-col cf-nav-col-nav"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
+        >
+          <h4 className="cf-col-heading">Navigation</h4>
+          <ul className="cf-col-links">
+            {navLinks.map(({ label, id }) => (
+              <li key={label}>
+                <a
+                  href={`#${id}`}
+                  className="cf-nav-link"
+                  onClick={onScrollClick(id)}
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+
+        <motion.div
+          className="cf-nav-col cf-contact-col cf-nav-col-contact"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+        >
+          <h4 className="cf-col-heading">Contact</h4>
+          <a href="mailto:support@gencoft.com" className="cf-email-link">
+            support@gencoft.com
+          </a>
+        </motion.div>
+
+        {/* Form panel */}
         <motion.div
           className="cf-right-panel"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         >
-          {/* Nav columns row */}
-          <div className="cf-nav-cols">
-            <div className="cf-nav-col">
-              <h4 className="cf-col-heading">Navigation</h4>
-              <ul className="cf-col-links">
-                {navLinks.map(({ label, id }) => (
-                  <li key={label}>
-                    <a
-                      href={`#${id}`}
-                      className="cf-nav-link"
-                      onClick={onScrollClick(id)}
-                    >
-                      {label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="cf-nav-col cf-contact-col">
-              <h4 className="cf-col-heading">Contact</h4>
-              <a href="mailto:support@gencoft.com" className="cf-email-link">
-                support@gencoft.com
-              </a>
-            </div>
-          </div>
-
           {/* Divider */}
           <div className="cf-divider" />
 
