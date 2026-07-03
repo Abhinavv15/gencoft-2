@@ -114,6 +114,7 @@
   position: relative;
   z-index: 5;
   width: 100%;
+  max-width: var(--content-max-width);
   margin: 0 auto;
   /* top padding clears navbar + signature logo */
   padding: 110px var(--site-padding-x) 40px;
@@ -122,6 +123,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 /* ===================================================================
@@ -137,10 +139,9 @@
     "bl bm bm br";
   gap: 14px;
   width: 100%;
-  height: calc(100vh - 150px);
-  height: calc(100dvh - 150px);
-  min-height: 600px;
-  max-height: none;
+  height: min(calc(100dvh - 150px), 680px);
+  min-height: 560px;
+  max-height: 680px;
   position: relative;
 }
 
@@ -955,14 +956,16 @@
 .callout-container {
   display: flex;
   gap: 10px;
-  flex: 1;
+  flex: 0 1 auto;
   min-width: 0;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .callout-card {
-  flex: 1 1 100px;
-  min-width: 88px;
-  max-width: none;
+  flex: 1 1 88px;
+  min-width: 72px;
+  max-width: 118px;
   aspect-ratio: 3 / 4;
   height: auto;
   border-radius: 14px;
@@ -1093,25 +1096,25 @@
    RESPONSIVE — LARGE (≥1400px)
    =================================================================== */
 @media (min-width: 1400px) {
-  .bento-container { padding: 120px var(--site-padding-x) 50px; }
+  .bento-container { padding: 120px var(--site-padding-x) 48px; }
   .bento-grid { gap: 16px; }
-  .callout-card { min-width: 120px; max-width: none; flex: 1 1 120px; }
+  .callout-card { min-width: 96px; max-width: 128px; flex: 0 1 128px; }
 }
 
 @media (min-width: 1920px) {
-  .bento-grid { gap: 18px; min-height: 680px; }
-  .callout-card { min-width: 130px; padding: 16px; }
-  .callout-container { gap: 12px; }
-  .tr-orb-wrap { width: clamp(72px, 10vw, 120px); height: clamp(72px, 10vw, 120px); }
+  .bento-grid { gap: 16px; }
+  .callout-card { min-width: 100px; max-width: 130px; padding: 14px; }
+  .callout-container { gap: 10px; }
+  .tr-orb-wrap { width: 96px; height: 96px; }
   .tr-tag {
-    font-size: clamp(0.68rem, 0.35vw + 0.5rem, 0.82rem);
-    min-width: clamp(48px, 9vw, 68px);
+    font-size: clamp(0.62rem, 0.35vw + 0.48rem, 0.76rem);
+    min-width: clamp(44px, 8vw, 60px);
   }
 }
 
 @media (min-width: 2560px) {
-  .bento-grid { gap: 20px; min-height: 720px; }
-  .tr-orb-wrap { width: 120px; height: 120px; }
+  .bento-grid { gap: 16px; max-height: 680px; }
+  .tr-orb-wrap { width: 96px; height: 96px; }
 }
 
 /* ===================================================================
@@ -1241,7 +1244,34 @@
   .tr-content { padding: 14px 12px; }
   .tr-subtitle { font-size: 0.55rem; letter-spacing: 1px; }
 
-  /* TR card — smaller orb + tags on mobile */
+  /* TR card — compact tags area on mobile */
+  .tr-tags-area--mobile {
+    flex: 1 1 auto;
+    min-height: 112px;
+  }
+
+  .tr-tags-area--mobile .tr-float-tags {
+    inset: 6px 3px;
+  }
+
+  .tr-tags-area--mobile .tr-orb-wrap {
+    width: 24px;
+    height: 24px;
+    opacity: 0.4;
+  }
+
+  .tr-tags-area--mobile .tr-orb-ring-3 {
+    display: none;
+  }
+
+  .tr-tags-area--mobile .tr-tag {
+    font-size: clamp(0.34rem, 1.55vw, 0.42rem);
+    padding: 2px 4px;
+    min-width: 0;
+    max-width: 52%;
+    letter-spacing: 0.02em;
+  }
+
   .tr-orb-wrap { width: clamp(44px, 13vw, 60px); height: clamp(44px, 13vw, 60px); }
   .tr-tag {
     font-size: clamp(0.42rem, 2vw, 0.5rem);
@@ -1310,6 +1340,22 @@
   .tr-content { padding: 10px 10px 12px; }
   .tr-subtitle { font-size: 0.52rem; letter-spacing: 0.8px; margin-bottom: 4px; }
 
+  .tr-tags-area--mobile {
+    min-height: 108px;
+  }
+
+  .tr-tags-area--mobile .tr-orb-wrap {
+    width: 22px;
+    height: 22px;
+  }
+
+  .tr-tags-area--mobile .tr-tag {
+    font-size: clamp(0.32rem, 1.45vw, 0.4rem);
+    padding: 2px 3px;
+    min-width: 0;
+    max-width: 52%;
+  }
+
   .tr-orb-wrap { width: 40px; height: 40px; }
   .tr-tag {
     font-size: clamp(0.4rem, 1.85vw, 0.46rem);
@@ -1317,7 +1363,7 @@
     min-width: clamp(32px, 13vw, 42px);
     max-width: 46%;
   }
-  .bento-card-tr { min-height: 200px; }
+  .bento-card-tr { min-height: 210px; }
 
   .bl-stat-num { font-size: 1.2rem; }
   .bl-stat-label { font-size: 0.6rem; }
@@ -1490,8 +1536,8 @@
 .light-mode .tr-subtitle { color: rgba(232, 220, 96, 0.92); }
 .light-mode .tr-title { color: #fff; }
 
-/* ── TR card text — prevent soft-wrap only on large desktop ── */
-@media (min-width: 1025px) {
+/* ── TR card text — single line only on wide desktop ── */
+@media (min-width: 1280px) {
   .light-mode .tr-title {
     font-size: clamp(1.4rem, 2.5vw, 2.2rem);
     white-space: nowrap;
