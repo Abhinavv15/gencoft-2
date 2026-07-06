@@ -3,53 +3,53 @@ import { useEffect, useState } from 'react'
 const TAGS = [
   {
     label: 'React',
-    desktop: { top: '5%', left: '32%' },
-    mobile: { top: '0%', left: '22%' },
+    desktop: { top: '4%', left: '28%' },
+    mobile: { top: '2%', left: '26%' },
   },
   {
     label: 'AWS',
-    desktop: { top: '2%', right: '4%' },
-    mobile: { top: '4%', right: '6%' },
+    desktop: { top: '3%', right: '2%' },
+    mobile: { top: '12%', right: '6%' },
   },
   {
     label: 'Flutter',
-    desktop: { top: '14%', left: '0%' },
-    mobile: { top: '16%', left: '0%' },
+    desktop: { top: '20%', left: '0%' },
+    mobile: { top: '18%', left: '2%' },
   },
   {
     label: 'Node.js',
-    desktop: { top: '21%', right: '28%' },
-    mobile: { top: '12%', right: '18%' },
+    desktop: { top: '22%', left: '42%' },
+    mobile: { top: '28%', right: '22%' },
   },
   {
     label: 'Python',
-    desktop: { top: '33%', left: '18%' },
-    mobile: { top: '28%', left: '12%' },
+    desktop: { top: '40%', left: '14%' },
+    mobile: { top: '38%', left: '20%' },
   },
   {
     label: 'Docker',
-    desktop: { top: '44%', right: '6%' },
-    mobile: { top: '24%', right: '0%' },
+    desktop: { top: '42%', right: '2%' },
+    mobile: { top: '40%', right: '3%' },
   },
   {
     label: 'TypeScript',
-    desktop: { top: '51%', left: '4%' },
-    mobile: { top: '42%', left: '2%' },
+    desktop: { top: '58%', left: '0%' },
+    mobile: { top: '56%', left: '2%' },
   },
   {
     label: 'Postgres',
-    desktop: { top: '58%', right: '18%' },
-    mobile: { top: '38%', right: '10%' },
+    desktop: { top: '61%', right: '18%' },
+    mobile: { top: '64%', left: '42%' },
   },
   {
     label: 'AI / ML',
-    desktop: { top: '72%', left: '24%' },
-    mobile: { top: '54%', left: '20%' },
+    desktop: { top: '78%', left: '22%' },
+    mobile: { top: '76%', left: '5%' },
   },
   {
     label: 'DevOps',
-    desktop: { top: '66%', right: '0%' },
-    mobile: { top: '50%', right: '2%' },
+    desktop: { top: '76%', right: '1%' },
+    mobile: { top: '80%', right: '6%' },
   },
 ]
 

@@ -893,8 +893,8 @@ body::before {
   align-items: stretch;
   position: relative;
   width: 100%;
-  height: clamp(380px, 36vw, 560px);
-  max-height: 560px;
+  height: clamp(300px, 30vw, 500px);
+  max-height: 500px;
   border-radius: 20px;
   overflow: visible;
 }
@@ -907,18 +907,18 @@ body::before {
   max-width: 520px;
   background: linear-gradient(145deg, #c2bb4a 0%, #a6a035 100%);
   border-radius: 18px;
-  padding: 52px 48px;
+  padding: clamp(28px, 3.5vw, 52px) clamp(22px, 3vw, 48px);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 22px;
+  gap: clamp(14px, 1.8vw, 22px);
   box-shadow:
     8px 8px 60px rgba(0,0,0,0.55),
     0 0 0 1px rgba(212,204,96,0.15);
   margin-top: 24px;
   margin-bottom: 24px;
   margin-left: 0;
-  margin-right: -48px;
+  margin-right: clamp(-32px, -3.5vw, -48px);
   align-self: center;
 }
 
@@ -1175,8 +1175,8 @@ body::before {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
-  min-height: clamp(380px, 36vw, 560px);
-  max-height: 560px;
+  min-height: clamp(300px, 30vw, 500px);
+  max-height: 500px;
   border-radius: 24px;
   overflow: hidden;
   border: 1px solid rgba(194,187,74,0.12);
@@ -1189,7 +1189,7 @@ body::before {
   position: relative;
   background: #151515;
   overflow: hidden;
-  padding: 52px 48px;
+  padding: clamp(28px, 3.5vw, 52px) clamp(22px, 3vw, 48px);
   display: flex;
   align-items: center;
 }
@@ -1214,7 +1214,7 @@ body::before {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: clamp(12px, 1.5vw, 20px);
   width: 100%;
   max-width: min(560px, 100%);
 }
@@ -1497,7 +1497,7 @@ body::before {
 
 .cf-wrapper {
   display: grid;
-  grid-template-columns: minmax(220px, 18%) 1fr 1fr;
+  grid-template-columns: minmax(180px, 16%) 1fr 1fr;
   grid-template-areas:
     "brand navigation contact"
     "brand panel    panel";
@@ -1751,8 +1751,9 @@ body::before {
 
 .cf-form-area {
   display: flex;
-  gap: 40px;
+  gap: clamp(18px, 2.5vw, 40px);
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .cf-form-headline {
@@ -2129,10 +2130,10 @@ body::before {
 }
 
 @media (min-width: 1920px) {
-  .svc-slide { height: 560px; max-height: 560px; }
-  .pj-page { min-height: 560px; max-height: 560px; }
+  .svc-slide { height: 500px; max-height: 500px; }
+  .pj-page { min-height: 500px; max-height: 500px; }
   .pj-bg-num { font-size: clamp(14rem, 10vw, 18rem); }
-  .cf-wrapper { grid-template-columns: minmax(240px, 16%) 1fr 1fr; }
+  .cf-wrapper { grid-template-columns: minmax(220px, 16%) 1fr 1fr; }
 }
 
 /* ===================== SMALL SCREENS (≤375px) ===================== */

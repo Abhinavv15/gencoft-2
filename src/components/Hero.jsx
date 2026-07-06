@@ -127,7 +127,7 @@ export default function Hero() {
                   </div>
                 </div>
                 <div className="callout-text-content">
-                  <p className="callout-text-sub">Cloud Solutions</p>
+                  <p className="callout-text-sub">Cloud Solution</p>
                   <p className="callout-text-main">DevOps</p>
                 </div>
               </div>

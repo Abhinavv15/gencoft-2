@@ -67,39 +67,39 @@
 }
 
 .bento-cta-label {
-  font-size: 0.62rem;
+  font-size: 0.54rem;
   font-weight: 800;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   color: #c2bb4a;
   margin: 0;
   text-transform: uppercase;
 }
 
 .bento-cta-heading {
-  font-size: clamp(1.2rem, 2vw, 1.7rem);
+  font-size: clamp(1.05rem, 1.6vw, 1.45rem);
   font-weight: 900;
   color: #fff;
   margin: 0;
   line-height: 1.1;
   letter-spacing: -0.02em;
+  text-align: center;
 }
 
 .bento-cta-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   margin-top: 4px;
-  padding: 9px 18px;
+  padding: 6px 14px;
   background: #c2bb4a;
   color: #0a0a0a;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-size: 0.68rem;
+  font-weight: 600;
   text-decoration: none;
   border-radius: 50px;
-  width: fit-content;
-  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 4px 16px rgba(194, 187, 74, 0.25);
+  transition: all 0.25s ease;
+  white-space: nowrap;
 }
 
 .bento-cta-btn:hover {
@@ -117,7 +117,7 @@
   max-width: var(--content-max-width);
   margin: 0 auto;
   /* top padding clears navbar + signature logo */
-  padding: 110px var(--site-padding-x) 40px;
+  padding: clamp(80px, 8vh, 120px) var(--site-padding-x) clamp(24px, 3vh, 48px);
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
@@ -132,16 +132,16 @@
 .bento-grid {
   display: grid;
   grid-template-columns: 1fr 1.6fr 1.6fr 1fr;
-  grid-template-rows: 1fr 0.65fr 0.65fr;
+  grid-template-rows: 1fr 0.48fr 0.72fr;
   grid-template-areas:
     "tl tm tm tr"
     "bl c  c  tr"
     "bl bm bm br";
   gap: 14px;
   width: 100%;
-  height: min(calc(100dvh - 150px), 680px);
-  min-height: 560px;
-  max-height: 680px;
+  /* Never exceed 90dvh minus the container's top+bottom padding */
+  height: min(calc(100dvh - clamp(120px, 14vh, 180px)), 660px);
+  min-height: 460px;
   position: relative;
 }
 
@@ -173,7 +173,7 @@
 }
 
 /* Grid area assignments */
-.bento-card-tl { grid-area: tl; min-height: 190px; }
+.bento-card-tl { grid-area: tl; min-height: clamp(140px, 16vh, 185px); }
 .bento-card-tm { grid-area: tm; }
 .bento-card-tr { grid-area: tr; }
 .bento-card-bl { grid-area: bl; }
@@ -241,7 +241,7 @@
   font-size: 0.7rem;
   font-weight: 700;
   color: #c2bb4a;
-  background: rgba(194,187,74,0.12);
+  background: rgba(194,194,74,0.12);
   border: 1px solid rgba(194,187,74,0.25);
   border-radius: 20px;
   padding: 3px 8px;
@@ -670,7 +670,7 @@
   flex-shrink: 0;
   margin-top: auto;
   padding: clamp(14px, 1.6vw, 24px) clamp(12px, 1.4vw, 20px);
-  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 55%, transparent 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 55%, transparent 100%);
 }
 
 /* ── TR status widget ── */
@@ -803,7 +803,7 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  min-height: 260px;
+  min-height: clamp(180px, 22vh, 245px);
   z-index: 10;
   overflow: hidden;
   border-radius: 16px;
@@ -963,11 +963,12 @@
 }
 
 .callout-card {
-  flex: 1 1 88px;
-  min-width: 72px;
-  max-width: 118px;
-  aspect-ratio: 3 / 4;
-  height: auto;
+  flex: 1 1 100px;
+  min-width: 80px;
+  max-width: 136px;
+  /* Use clamp height scaled with device screen height (vh) */
+  height: clamp(110px, 14.5vh, 155px);
+  aspect-ratio: unset;
   border-radius: 14px;
   overflow: hidden;
   position: relative;
@@ -976,7 +977,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 14px;
+  padding: 14px 12px;
 }
 
 .callout-card::before {
@@ -1021,8 +1022,8 @@
   font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-style: italic;
   font-weight: 500;
-  font-size: 11px;
-  line-height: 18px;
+  font-size: clamp(9.5px, 0.95vw, 12px);
+  line-height: 15px;
   color: rgba(17,17,17,0.75);
   margin: 0;
   white-space: nowrap;
@@ -1096,9 +1097,8 @@
    RESPONSIVE — LARGE (≥1400px)
    =================================================================== */
 @media (min-width: 1400px) {
-  .bento-container { padding: 120px var(--site-padding-x) 48px; }
   .bento-grid { gap: 16px; }
-  .callout-card { min-width: 96px; max-width: 128px; flex: 0 1 128px; }
+  .callout-card { min-width: 96px; max-width: 128px; flex: 0 1 128px; height: clamp(110px, 14vh, 155px); }
 }
 
 @media (min-width: 1920px) {
@@ -1118,18 +1118,75 @@
 }
 
 /* ===================================================================
-   RESPONSIVE — TABLET LANDSCAPE (769–1280px)
+   RESPONSIVE — WINDOWS LAPTOPS (1280–1440px, e.g. 1366×768, 1440×900)
    =================================================================== */
-@media (max-width: 1280px) {
+@media (max-width: 1440px) and (min-width: 1025px) {
   .bento-grid {
-    grid-template-columns: 1fr 1.4fr 1.4fr 1fr;
+    height: min(calc(100dvh - clamp(110px, 12vh, 160px)), 640px);
+    min-height: 440px;
     gap: 12px;
   }
-  .callout-card { min-width: 82px; max-width: 118px; padding: 12px; }
-  .callout-icon-wrapper { width: 34px; height: 34px; top: 12px; right: 12px; border-radius: 9px; }
-  .callout-text-main { font-size: 12px; }
+  .bento-bm-layout {
+    padding: clamp(12px, 1.5vh, 18px) clamp(14px, 1.8vw, 22px);
+    gap: 12px;
+  }
+  .callout-container { gap: 8px; }
+  .callout-card {
+    min-width: 76px;
+    max-width: 124px;
+    flex: 1 1 100px;
+    height: clamp(100px, 13.5vh, 145px);
+  }
+  .callout-icon-wrapper { width: 30px; height: 30px; top: 9px; right: 9px; border-radius: 8px; }
+  .callout-icon-inner svg { width: 14px; height: 14px; }
+  .bento-cta-content { padding: 14px 12px; gap: 5px; }
+  .bento-cta-heading { font-size: clamp(0.95rem, 1.4vw, 1.25rem); }
+}
+
+/* ===================================================================
+   RESPONSIVE — SMALL WINDOWS LAPTOPS (1025–1366px, e.g. 1366×768)
+   =================================================================== */
+@media (max-width: 1366px) and (min-width: 1025px) {
+  .bento-grid {
+    height: min(calc(100dvh - clamp(100px, 11vh, 145px)), 600px);
+    min-height: 420px;
+    gap: 10px;
+  }
+  .bento-bm-layout {
+    padding: clamp(10px, 1.2vh, 16px) clamp(12px, 1.5vw, 20px);
+    gap: 8px;
+  }
+  .callout-container { gap: 7px; flex-shrink: 1; }
+  .callout-card {
+    min-width: 72px;
+    max-width: 114px;
+    flex: 1 1 90px;
+    height: clamp(92px, 12vh, 132px);
+  }
+  .callout-icon-wrapper { width: 28px; height: 28px; top: 8px; right: 8px; border-radius: 7px; }
+  .callout-icon-inner svg { width: 12px; height: 12px; }
+  .callout-text-sub,
+  .callout-text-main { font-size: 10px; line-height: 15px; }
+  .bento-heading-medium { font-size: clamp(0.85rem, 1.4vw, 1.15rem); }
+  .bento-cta-content { padding: 12px 10px; gap: 4px; }
+  .bento-cta-heading { font-size: clamp(0.85rem, 1.2vw, 1.15rem); }
+  .bento-cta-label { font-size: 0.5rem; }
+  .bento-cta-btn { padding: 6px 12px; font-size: 0.62rem; }
+}
+
+/* ===================================================================
+   RESPONSIVE — TABLET LANDSCAPE (769–1280px)
+   =================================================================== */
+@media (max-width: 1280px) and (min-width: 1025px) {
+  .bento-grid {
+    grid-template-columns: 1fr 1.4fr 1.4fr 1fr;
+    gap: 11px;
+  }
+  .callout-card { min-width: 75px; max-width: 110px; padding: 11px; }
+  .callout-icon-wrapper { width: 32px; height: 32px; top: 10px; right: 10px; border-radius: 8px; }
+  .callout-text-main { font-size: 11px; }
   .bento-metric { font-size: 1.7rem; }
-  .tr-title { font-size: 1.6rem; }
+  .tr-title { font-size: 1.5rem; }
 }
 
 /* ===================================================================
@@ -1137,7 +1194,7 @@
    =================================================================== */
 @media (max-width: 1024px) {
   .bento-container {
-    padding: 100px var(--site-padding-x) 32px;
+    padding: clamp(76px, 9vh, 110px) var(--site-padding-x) clamp(20px, 2.5vh, 36px);
     min-height: auto;
   }
 
@@ -1185,7 +1242,7 @@
    RESPONSIVE — MOBILE LANDSCAPE + SMALL TABLET (481–768px)
    =================================================================== */
 @media (max-width: 768px) {
-  .bento-container { padding: 86px var(--site-padding-x) 24px; }
+  .bento-container { padding: clamp(72px, 8vh, 92px) var(--site-padding-x) clamp(16px, 2.5vh, 28px); }
 
   .bento-grid {
     grid-template-columns: 1fr 1fr;
@@ -1230,8 +1287,13 @@
     flex: 1 1 0;
     min-width: 0;
     max-width: none;
-    aspect-ratio: 3 / 4;
-    padding: 10px;
+    height: clamp(95px, 24vw, 135px);
+    aspect-ratio: unset;
+    padding: clamp(8px, 2vw, 12px);
+  }
+  .callout-text-sub,
+  .callout-text-main {
+    font-size: clamp(8px, 2.2vw, 10px);
   }
   .callout-icon-wrapper { width: 28px; height: 28px; top: 8px; right: 8px; border-radius: 7px; }
 
@@ -1248,6 +1310,10 @@
   .tr-tags-area--mobile {
     flex: 1 1 auto;
     min-height: 112px;
+  }
+
+  .tr-tags-area--mobile .tr-tags-scene {
+    display: none;
   }
 
   .tr-tags-area--mobile .tr-float-tags {
@@ -1279,11 +1345,13 @@
     min-width: clamp(36px, 12vw, 48px);
     max-width: 48%;
   }
+  /* Remove dark overlay on mobile — it creates a solid black box */
   .tr-content {
     position: relative;
     z-index: 3;
     margin-top: auto;
-    background: linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.82) 100%);
+    background: transparent;
+    padding: 12px;
   }
 }
 
@@ -1377,13 +1445,13 @@
   .callout-container { gap: 6px; }
   .callout-card { padding: 8px; border-radius: 10px; }
   .callout-text-sub,
-  .callout-text-main { font-size: 9px; line-height: 15px; }
+  .callout-text-main { font-size: clamp(7.5px, 2vw, 9px); line-height: 14px; }
   .callout-icon-wrapper { width: 24px; height: 24px; top: 7px; right: 7px; border-radius: 6px; }
   .callout-icon-inner svg { width: 12px; height: 12px; }
 
-  .bento-cta-label { font-size: 0.55rem; }
-  .bento-cta-heading { font-size: 1.1rem; }
-  .bento-cta-btn { padding: 7px 14px; font-size: 0.65rem; }
+  .bento-cta-label { font-size: 0.5rem; }
+  .bento-cta-heading { font-size: 0.95rem; }
+  .bento-cta-btn { padding: 6px 12px; font-size: 0.6rem; }
 }
 
 /* ===================================================================
@@ -1400,7 +1468,7 @@
   .bl-stat-num { font-size: 1.1rem; }
   .bento-heading-medium { font-size: 0.82rem; }
   .callout-text-sub,
-  .callout-text-main { font-size: 8px; }
+  .callout-text-main { font-size: clamp(7px, 1.8vw, 8.5px); }
 }
 
 /* ===================================================================
