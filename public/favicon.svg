@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <!-- Premium metallic gold gradient matching Gencoft's brand colors -->
+    <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFEFA6" />
+      <stop offset="50%" stop-color="#C2BB4A" /> <!-- Brand Gold #c2bb4a -->
+      <stop offset="100%" stop-color="#8A8330" />
+    </linearGradient>
+  </defs>
+  <!-- Modern geometric letter 'G' vector path with transparent background -->
+  <path d="M420,160 C385,95 310,60 220,60 C110,60 40,135 40,256 C40,377 110,452 220,452 C310,452 385,417 420,352 L360,315 C335,360 285,392 220,392 C145,392 100,340 100,256 C100,172 145,120 220,120 C285,120 335,152 360,197 L420,160 Z M440,225 L440,285 L220,285 L220,225 L440,225 Z" fill="url(#gold-gradient)"/>
+</svg>
