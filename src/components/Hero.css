@@ -4,14 +4,17 @@
 
 .hero-redesign-section {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 700px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 135px 0 70px 0;
+  padding: 100px 0 45px 0;
   overflow: hidden;
   background: #060606;
   z-index: 1;
+  box-sizing: border-box;
 }
 
 /* Background Veil and Glowing Radial FX */
@@ -56,7 +59,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: calc(100vh - 130px);
+  flex: 1;
 }
 
 .hero-three-column-grid {
@@ -861,6 +864,8 @@
 @media (max-width: 992px) {
   .hero-redesign-section {
     padding-top: 100px;
+    height: auto;
+    min-height: auto;
   }
   
   .hero-three-column-grid {
