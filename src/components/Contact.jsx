@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { onScrollClick } from '../utils/scroll'
+import newLogo from '../assets/gencoft new logo.png'
 
 /* ── Icons ── */
 const XIcon = () => (
@@ -104,20 +105,8 @@ export default function Contact() {
           <div className="cf-card-blob cf-blob-2" />
 
           {/* Logo */}
-          <div className="cf-card-logo">
-            <div className="cf-logo-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#cf-logo-g)"/>
-                <path d="M2 17L12 22L22 17" stroke="#d4cc60" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M2 12L12 17L22 12" stroke="#c2bb4a" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.8"/>
-                <defs>
-                  <linearGradient id="cf-logo-g" x1="2" y1="2" x2="22" y2="12" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#c2bb4a"/>
-                    <stop offset="1" stopColor="#d4cc60"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
+          <div className="cf-card-logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <img src={newLogo} alt="Gencoft" style={{ height: '26px', width: 'auto', objectFit: 'contain' }} />
             <span className="cf-logo-text">Gencoft</span>
           </div>
 

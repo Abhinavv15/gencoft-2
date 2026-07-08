@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { onScrollClick } from '../utils/scroll'
 import './Navbar.css'
+import newLogo from '../assets/gencoft new logo.png'
 
 const SunIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -63,8 +64,9 @@ export default function Navbar({ theme, toggleTheme }) {
       <nav className={`navbar-ellion ${scrolled ? 'scrolled' : ''} ${isLight ? 'light' : ''}`}>
         <div className="navbar-ellion-container">
           {/* Cursive signature logo */}
-          <a href="#home" className="navbar-ellion-logo navbar-sig-logo" onClick={onScrollClick('home')}>
-            gencoft
+          <a href="#home" className="navbar-ellion-logo" onClick={onScrollClick('home')} style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+            <img src={newLogo} alt="Gencoft" style={{ height: '36px', width: 'auto', objectFit: 'contain' }} />
+            <span className="navbar-sig-logo">gencoft</span>
           </a>
 
           {/* Desktop nav links */}
