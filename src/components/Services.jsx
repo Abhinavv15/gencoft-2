@@ -113,9 +113,15 @@ export default function Services() {
                 <span className="svc-service-badge">SERVICE {current.num}</span>
                 <h2 className="svc-service-title">{current.name}</h2>
                 <p className="svc-service-desc">{current.desc}</p>
-                <a href="#contact" className="svc-view-btn" onClick={onScrollClick('contact')}>
+                <motion.a
+                  href="#contact"
+                  className="svc-view-btn"
+                  onClick={onScrollClick('contact')}
+                  whileHover={{ scale: 1.04, y: -2 }}
+                  whileTap={{ scale: 0.96 }}
+                >
                   GET IN TOUCH <DiagonalArrow />
-                </a>
+                </motion.a>
               </div>
 
               {/* ── Image panel (right, behind card) ── */}

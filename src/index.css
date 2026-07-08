@@ -986,16 +986,8 @@ body::before {
 }
 
 .svc-view-btn:hover {
-  box-shadow: 0 4px 15px rgba(194, 187, 74, 0.35);
-  transform: scale(1.02);
+  box-shadow: 0 8px 36px rgba(194, 187, 74, 0.5);
   color: #060606;
-}
-
-.svc-view-btn:hover {
-  background: rgba(255,255,255,0.15);
-  border-color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
 .svc-img-panel {
