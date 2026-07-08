@@ -70,10 +70,10 @@ void main(){
     float lum = dot(col.rgb, vec3(0.299, 0.587, 0.114));
     vec3 col_rgb;
     if (uIsLight > 0.5) {
-        // Light Mode: mix cream base (#f8f7f2) with soft brand gold (#CDC658)
-        vec3 baseCream = vec3(0.972, 0.968, 0.949);
+        // Light Mode: mix white base (#ffffff) with soft brand gold (#CDC658)
+        vec3 baseWhite = vec3(1.0, 1.0, 1.0);
         vec3 brandGold = vec3(0.803, 0.776, 0.345);
-        col_rgb = mix(baseCream, brandGold, lum * 0.45);
+        col_rgb = mix(baseWhite, brandGold, lum * 0.45);
     } else {
         // Dark Mode: original black background with gold tint highlights
         vec3 yellowTint = vec3(0.76, 0.73, 0.29);

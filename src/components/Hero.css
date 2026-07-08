@@ -1054,7 +1054,7 @@
    ========================================================================== */
 
 .light-mode .hero-redesign-section {
-  background: radial-gradient(circle at 15% 25%, rgba(205, 198, 88, 0.15) 0%, var(--section-bg-hero) 60%);
+  background: #ffffff;
   position: relative;
   overflow: hidden;
 }
