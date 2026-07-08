@@ -118,7 +118,7 @@
   font-weight: 800;
   line-height: 1.15;
   color: var(--text-primary);
-  margin-bottom: 20px;
+  margin-bottom: 32px;
   letter-spacing: -0.02em;
 }
 
@@ -137,7 +137,7 @@
   font-size: clamp(0.95rem, 1.1vw, 1.15rem);
   line-height: 1.65;
   color: var(--text-secondary);
-  margin-bottom: 24px;
+  margin-bottom: 36px;
   max-width: 520px;
 }
 
@@ -146,7 +146,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 30px;
+  margin-bottom: 48px;
   flex-wrap: wrap;
 }
 
