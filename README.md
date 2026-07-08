@@ -1,16 +1,84 @@
-# React + Vite
+# Gencoft Technologies Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium corporate website for Gencoft Technologies, showcasing software products, consulting services, and contact channels. Built with modern web technologies, the site features custom glassmorphic components, fluid animation triggers, and a real-time WebGL interactive background shader.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Key Features
 
-## React Compiler
+- **Interactive 3D WebGL Background**: A real-time particle/fluid vortex shader canvas rendered with `ogl`, responsive to theme state controls.
+- **Persistent Theme Controls**: Seamlessly switches between a luxury dark mode and high-contrast pure white light mode, storing user selection in `localStorage`.
+- **Framer Motion Animations**: Elegant push-up hover animations on CTA buttons, parallax 3D tilts on cursor movement, card staggers, and slideshow page transitions.
+- **Responsive Mobile Menu Drawer**: Sleek full-screen navigation overlay on mobile screen widths with auto-closing handlers.
+- **Glassmorphic UI Design**: Beautiful translucent panels (`backdrop-filter`) with refined gold highlights and ambient background glows.
+- **Responsive & Accessible Touch Targets**: Expanded click areas (`44x44px`) for tiny slider pagination dots ensuring mobile accessibility.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Prerequisites
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Make sure you have the following installed on your machine:
+- [Node.js](https://nodejs.org/) (Version 18.0.0 or higher recommended)
+- [npm](https://www.npmjs.com/) (installed automatically with Node) or **Yarn** / **pnpm**
+
+---
+
+## Getting Started
+
+Follow these step-by-step instructions to run the project locally after cloning:
+
+### 1. Clone the Repository
+Open your terminal and run:
+```bash
+git clone https://github.com/Abhinavv15/gencoft-2.git
+```
+
+### 2. Navigate to the Project Folder
+```bash
+cd gencoft-2
+```
+
+### 3. Install Dependencies
+Install all required package packages listed in `package.json`:
+```bash
+npm install
+```
+
+### 4. Run the Development Server
+Launch the local dev environment:
+```bash
+npm run dev
+```
+
+Vite will start the server and print the local URL in your terminal:
+```text
+  VITE v8.x.x  ready in xxx ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+```
+*Note: If port `5173` is already in use, Vite will automatically select the next available port (e.g., `5174` or `5175`). Check the terminal output for the exact address.*
+
+Open the printed URL in your web browser to view the live site.
+
+---
+
+## Available Commands
+
+Here are the primary scripts defined in `package.json`:
+
+| Command | Action |
+| :--- | :--- |
+| `npm run dev` | Boots up the local development server with Hot Module Replacement (HMR). |
+| `npm run build` | Compiles and minifies the code into optimized production assets inside the `/dist` directory. |
+| `npm run preview` | Runs a local server to preview the built production bundle (`/dist`) before deployment. |
+
+---
+
+## Tech Stack & Core Libraries
+
+- **Frontend Library**: [React.js](https://react.dev/)
+- **Build Tool / Bundler**: [Vite](https://vite.dev/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **WebGL Rendering**: [OGL](https://github.com/o-g-l/ogl) (A lightweight WebGL library used for the fluid background shader)
+- **Styling**: Modern CSS variables, flexbox, and grid layouts.
