@@ -27,24 +27,13 @@ Make sure you have the following installed on your machine:
 
 Follow these step-by-step instructions to run the project locally after cloning:
 
-### 1. Clone the Repository
-Open your terminal and run:
-```bash
-git clone https://github.com/Abhinavv15/gencoft-2.git
-```
-
-### 2. Navigate to the Project Folder
-```bash
-cd gencoft-2
-```
-
-### 3. Install Dependencies
+### 1. Install Dependencies
 Install all required package packages listed in `package.json`:
 ```bash
 npm install
 ```
 
-### 4. Run the Development Server
+### 2. Run the Development Server
 Launch the local dev environment:
 ```bash
 npm run dev
