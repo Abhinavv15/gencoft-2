@@ -1047,6 +1047,18 @@ body::before {
   cursor: pointer;
   padding: 0;
   transition: all 0.25s ease;
+  position: relative;
+}
+
+.svc-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
 }
 
 .svc-dot.active {
@@ -1485,6 +1497,18 @@ body::before {
   cursor: pointer;
   transition: all 0.25s ease;
   padding: 0;
+  position: relative;
+}
+
+.pj-pip::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
 }
 
 .pj-pip.active {
