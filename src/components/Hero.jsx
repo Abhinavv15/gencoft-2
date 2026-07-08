@@ -1,87 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { services } from '../data/services'
 import { projects } from '../data/projects'
 import { onScrollClick } from '../utils/scroll'
 import DarkVeil from './DarkVeil'
 import './Hero.css'
 
-// Custom SVGs for services based on index/num
-function getServiceIcon(num) {
-  switch (num) {
-    case '01': // Mobile Apps
-      return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
-          <line x1="12" y1="18" x2="12.01" y2="18" />
-        </svg>
-      )
-    case '02': // Web Apps
-      return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="16 18 22 12 16 6" />
-          <polyline points="8 6 2 12 8 18" />
-          <line x1="14" y1="4" x2="10" y2="20" />
-        </svg>
-      )
-    case '03': // Cloud
-      return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
-        </svg>
-      )
-    case '04': // DevOps
-      return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 12c-1.8-2-3.5-3-5.5-3a4 4 0 1 0 0 8c2 0 3.7-1 5.5-3Z" />
-          <path d="M12 12c1.8 2 3.5 3 5.5 3a4 4 0 1 0 0-8c-2 0-3.7 1-5.5 3Z" />
-        </svg>
-      )
-    case '05': // SRE
-      return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
-          <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
-          <line x1="6" y1="6" x2="6.01" y2="6" />
-          <line x1="6" y1="18" x2="6.01" y2="18" />
-        </svg>
-      )
-    case '06': // AI Agents
-      return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="4" y="4" width="16" height="16" rx="2" />
-          <rect x="9" y="9" width="6" height="6" />
-          <line x1="9" y1="1" x2="9" y2="4" />
-          <line x1="15" y1="1" x2="15" y2="4" />
-          <line x1="9" y1="20" x2="9" y2="23" />
-          <line x1="15" y1="20" x2="15" y2="23" />
-          <line x1="20" y1="9" x2="23" y2="9" />
-          <line x1="20" y1="15" x2="23" y2="15" />
-          <line x1="1" y1="9" x2="4" y2="9" />
-          <line x1="1" y1="15" x2="4" y2="15" />
-        </svg>
-      )
-    default:
-      return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="10" />
-        </svg>
-      )
-  }
-}
-
 export default function Hero() {
-  const [serviceIndex, setServiceIndex] = useState(0)
   const [projectIndex, setProjectIndex] = useState(0)
-
-  // Autoplay timers
-  useEffect(() => {
-    // Cycles services one by one
-    const timer = setInterval(() => {
-      setServiceIndex((prev) => (prev + 1) % services.length)
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [])
 
   useEffect(() => {
     // Cycles products two by two
@@ -93,7 +18,6 @@ export default function Hero() {
 
   const p1 = projects[projectIndex]
   const p2 = projects[(projectIndex + 1) % projects.length]
-  const currentService = services[serviceIndex]
 
   return (
     <section className="hero-redesign-section" id="home">
@@ -109,10 +33,6 @@ export default function Hero() {
           
           {/* COLUMN 1: Heading, Subtitle, Buttons, Stats Pill */}
           <div className="hero-left-column">
-            <div className="hero-welcome-badge">
-              <span className="badge-dot" />
-              WELCOME TO GENCOFT
-            </div>
             
             <h1 className="hero-main-title">
               Web, Mobile <br />
@@ -278,74 +198,6 @@ export default function Hero() {
                     aria-label={`Go to product slide ${idx + 1}`}
                   />
                 ))}
-              </div>
-            </div>
-          </div>
-
-          {/* COLUMN 3: Services Showcase (One Card) */}
-          <div className="hero-right-column">
-            <div className="product-showcase-card">
-              
-              {/* Service Icon Header */}
-              <div className="product-logo-header-container">
-                <div className="product-logo-reflection-glow" />
-                <div className="product-logo-frame">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={currentService.num}
-                      className="service-header-icon-wrap"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.8 }}
-                      transition={{ duration: 0.35, ease: 'easeOut' }}
-                    >
-                      {getServiceIcon(currentService.num)}
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-              </div>
-
-              {/* Service Info Slider */}
-              <div className="product-slider-content">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentService.num}
-                    className="product-info-slide"
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.45 }}
-                  >
-                    <span className="product-eyebrow">OUR SERVICES</span>
-                    <h2 className="product-title">{currentService.short}</h2>
-                    <span className="product-category">{currentService.name}</span>
-                    <p className="product-desc">{currentService.desc}</p>
-                    
-                    <a
-                      href="#services"
-                      onClick={onScrollClick('services')}
-                      className="product-know-more"
-                    >
-                      View All Services
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                        <polyline points="12 5 19 12 12 19" />
-                      </svg>
-                    </a>
-                  </motion.div>
-                </AnimatePresence>
-
-                {/* Service dots */}
-                <div className="product-carousel-dots">
-                  {services.map((s, idx) => (
-                    <button
-                      key={s.num}
-                      className={`carousel-dot ${serviceIndex === idx ? 'active' : ''}`}
-                      onClick={() => setServiceIndex(idx)}
-                      aria-label={`Go to service ${s.short}`}
-                    />
-                  ))}
-                </div>
               </div>
             </div>
           </div>

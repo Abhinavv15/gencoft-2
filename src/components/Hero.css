@@ -61,8 +61,8 @@
 
 .hero-three-column-grid {
   display: grid;
-  grid-template-columns: 1.25fr 1fr 1fr;
-  gap: 40px;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 50px;
   align-items: center;
 }
 
@@ -546,15 +546,7 @@
 }
 
 
-/* ==========================================
-   COLUMN 3: PRODUCT SHOWCASE
-   ========================================== */
 
-.hero-right-column {
-  display: flex;
-  justify-content: flex-end;
-  height: 100%;
-}
 
 .product-showcase-card {
   width: 100%;
@@ -855,16 +847,6 @@
     grid-template-columns: 1.1fr 1fr;
     gap: 30px;
   }
-  
-  .hero-right-column {
-    grid-column: span 2;
-    justify-content: center;
-  }
-  
-  .product-showcase-card {
-    max-width: 100%;
-    width: 600px;
-  }
 
   .cube-scene-container {
     height: 140px;
@@ -920,13 +902,7 @@
     max-width: 420px;
   }
 
-  .hero-right-column {
-    grid-column: span 1;
-  }
 
-  .product-showcase-card {
-    max-width: 420px;
-  }
 
   .hero-trusted-ticker-bar {
     flex-direction: column;
