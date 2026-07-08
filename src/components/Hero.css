@@ -64,6 +64,9 @@
   grid-template-columns: 1.35fr 1fr;
   gap: 50px;
   align-items: center;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 /* ==========================================
@@ -75,7 +78,7 @@
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  padding-left: clamp(20px, 4.5vw, 64px);
+  padding-left: clamp(10px, 2vw, 30px);
 }
 
 /* Welcome Badge */
@@ -1051,7 +1054,9 @@
    ========================================================================== */
 
 .light-mode .hero-redesign-section {
-  background: var(--section-bg-hero);
+  background: radial-gradient(circle at 15% 25%, rgba(205, 198, 88, 0.15) 0%, var(--section-bg-hero) 60%);
+  position: relative;
+  overflow: hidden;
 }
 
 .light-mode .darkveil-canvas {
@@ -1059,7 +1064,15 @@
 }
 
 .light-mode .hero-radial-glow {
-  opacity: 0.06;
+  opacity: 0.35;
+}
+
+.light-mode .glow-left {
+  background: radial-gradient(circle, rgba(205, 198, 88, 0.4) 0%, transparent 75%);
+}
+
+.light-mode .glow-right {
+  background: radial-gradient(circle, rgba(205, 198, 88, 0.35) 0%, transparent 75%);
 }
 
 .light-mode .hero-welcome-badge {
