@@ -42,8 +42,7 @@ export default function Hero({ theme }) {
           <div className="hero-left-column">
             
             <h1 className="hero-main-title">
-              Web, Mobile <br />
-              <span className="highlight-gradient">&amp; Cloud</span> <br />
+              Web, Mobile <span className="highlight-gradient">&amp; Cloud</span> <br />
               Built Right
             </h1>
             
