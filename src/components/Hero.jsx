@@ -5,7 +5,7 @@ import { onScrollClick } from '../utils/scroll'
 import DarkVeil from './DarkVeil'
 import './Hero.css'
 
-export default function Hero() {
+export default function Hero({ theme }) {
   const [projectIndex, setProjectIndex] = useState(0)
 
   useEffect(() => {
@@ -23,7 +23,14 @@ export default function Hero() {
     <section className="hero-redesign-section" id="home">
       {/* Background Dark Veil Shader */}
       <div className="hero-bg-veil">
-        <DarkVeil noiseIntensity={0.08} speed={0.3} warpAmount={0.3} scanlineIntensity={0.3} scanlineFrequency={200} />
+        <DarkVeil 
+          theme={theme}
+          noiseIntensity={theme === 'light' ? 0.03 : 0.08} 
+          speed={0.3} 
+          warpAmount={0.3} 
+          scanlineIntensity={theme === 'light' ? 0.05 : 0.3} 
+          scanlineFrequency={200} 
+        />
         <div className="hero-radial-glow glow-left" />
         <div className="hero-radial-glow glow-right" />
       </div>

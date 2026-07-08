@@ -18,6 +18,7 @@ uniform float uNoise;
 uniform float uScan;
 uniform float uScanFreq;
 uniform float uWarp;
+uniform float uIsLight;
 #define iTime uTime
 #define iResolution uResolution
 
@@ -67,16 +68,26 @@ void mainImage(out vec4 fragColor,in vec2 fragCoord){
 void main(){
     vec4 col;mainImage(col,gl_FragCoord.xy);
     float lum = dot(col.rgb, vec3(0.299, 0.587, 0.114));
-    vec3 yellowTint = vec3(0.76, 0.73, 0.29); // #c2bb4a
-    col.rgb = vec3(lum) * yellowTint * 1.5;
+    vec3 col_rgb;
+    if (uIsLight > 0.5) {
+        // Light Mode: mix cream base (#f8f7f2) with soft brand gold (#CDC658)
+        vec3 baseCream = vec3(0.972, 0.968, 0.949);
+        vec3 brandGold = vec3(0.803, 0.776, 0.345);
+        col_rgb = mix(baseCream, brandGold, lum * 0.45);
+    } else {
+        // Dark Mode: original black background with gold tint highlights
+        vec3 yellowTint = vec3(0.76, 0.73, 0.29);
+        col_rgb = vec3(lum) * yellowTint * 1.5;
+    }
     float scanline_val=sin(gl_FragCoord.y*uScanFreq)*0.5+0.5;
-    col.rgb*=1.-(scanline_val*scanline_val)*uScan;
-    col.rgb+=(rand(gl_FragCoord.xy+uTime)-0.5)*uNoise;
-    gl_FragColor=vec4(clamp(col.rgb,0.0,1.0),1.0);
+    col_rgb*=1.-(scanline_val*scanline_val)*uScan;
+    col_rgb+=(rand(gl_FragCoord.xy+uTime)-0.5)*uNoise;
+    gl_FragColor=vec4(clamp(col_rgb,0.0,1.0),1.0);
 }
 `;
 
 export default function DarkVeil({
+  theme = 'dark',
   hueShift = 0,
   noiseIntensity = 0,
   scanlineIntensity = 0,
@@ -117,7 +128,8 @@ export default function DarkVeil({
         uNoise: { value: noiseIntensity },
         uScan: { value: scanlineIntensity },
         uScanFreq: { value: scanlineFrequency },
-        uWarp: { value: warpAmount }
+        uWarp: { value: warpAmount },
+        uIsLight: { value: theme === 'light' ? 1.0 : 0.0 }
       }
     });
 
@@ -143,6 +155,7 @@ export default function DarkVeil({
       program.uniforms.uScan.value = scanlineIntensity;
       program.uniforms.uScanFreq.value = scanlineFrequency;
       program.uniforms.uWarp.value = warpAmount;
+      program.uniforms.uIsLight.value = theme === 'light' ? 1.0 : 0.0;
       renderer.render({ scene: mesh });
       frame = requestAnimationFrame(loop);
     };
@@ -153,6 +166,6 @@ export default function DarkVeil({
       cancelAnimationFrame(frame);
       window.removeEventListener('resize', resize);
     };
-  }, [hueShift, noiseIntensity, scanlineIntensity, speed, scanlineFrequency, warpAmount, resolutionScale]);
+  }, [theme, hueShift, noiseIntensity, scanlineIntensity, speed, scanlineFrequency, warpAmount, resolutionScale]);
   return <canvas ref={ref} className="darkveil-canvas" />;
 }

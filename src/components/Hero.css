@@ -1059,9 +1059,7 @@
   overflow: hidden;
 }
 
-.light-mode .darkveil-canvas {
-  display: none !important;
-}
+
 
 .light-mode .hero-radial-glow {
   opacity: 0.35;
