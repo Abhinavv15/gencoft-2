@@ -63,10 +63,9 @@ export default function Navbar({ theme, toggleTheme }) {
     <>
       <nav className={`navbar-ellion ${scrolled ? 'scrolled' : ''} ${isLight ? 'light' : ''}`}>
         <div className="navbar-ellion-container">
-          {/* Cursive signature logo */}
-          <a href="#home" className="navbar-ellion-logo" onClick={onScrollClick('home')} style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+          {/* Brand logo image */}
+          <a href="#home" className="navbar-ellion-logo" onClick={onScrollClick('home')} style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
             <img src={newLogo} alt="Gencoft" style={{ height: '36px', width: 'auto', objectFit: 'contain' }} />
-            <span className="navbar-sig-logo">gencoft</span>
           </a>
 
           {/* Desktop nav links */}

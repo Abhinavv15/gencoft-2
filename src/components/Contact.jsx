@@ -105,9 +105,8 @@ export default function Contact() {
           <div className="cf-card-blob cf-blob-2" />
 
           {/* Logo */}
-          <div className="cf-card-logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div className="cf-card-logo" style={{ display: 'flex', alignItems: 'center' }}>
             <img src={newLogo} alt="Gencoft" style={{ height: '26px', width: 'auto', objectFit: 'contain' }} />
-            <span className="cf-logo-text">Gencoft</span>
           </div>
 
           {/* Tagline */}
