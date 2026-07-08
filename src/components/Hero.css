@@ -1073,6 +1073,15 @@
   background: radial-gradient(circle, rgba(205, 198, 88, 0.35) 0%, transparent 75%);
 }
 
+.light-mode .carousel-dot {
+  background: rgba(15, 23, 42, 0.18);
+}
+
+.light-mode .carousel-dot.active {
+  background: #8a8330;
+  box-shadow: 0 0 8px rgba(138, 131, 48, 0.4);
+}
+
 .light-mode .hero-welcome-badge {
   background: rgba(194, 187, 74, 0.08);
   border-color: rgba(194, 187, 74, 0.25);
